@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link type="text/css" rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Calibri/stylesheet.css" />    
+    <link type="text/css" rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/worldly/stylesheet.css" />    
+
+    <style>
+
+      /* Logic for changing the colors */
+      :root {      
+        --dynamic-shade-color: {{{account.colors.charcoal}}};        
+        --dynamic-headline-color: {{{account.colors.white}}};        
+        --dynamic-text-color: {{{account.colors.white}}};   
+      }
+
+      .deakin-rgb-charcoal {
+        --dynamic-shade-color: {{{account.colors.charcoal}}};   
+        --dynamic-headline-color: {{{account.colors.white}}};        
+        --dynamic-text-color: {{{account.colors.white}}};        
+      }     
+
+      .deakin-rgb-black {
+        --dynamic-shade-color: {{{account.colors.grey}}};   
+        --dynamic-headline-color: {{{account.colors.black}}};        
+        --dynamic-text-color: {{{account.colors.black}}};        
+      }           
+
+      .deakin-rgb-pink {
+        --dynamic-shade-color: {{{account.colors.grey}}};
+        --dynamic-headline-color: {{{account.colors.pink-digital-copy}}};        
+        --dynamic-text-color: {{{account.colors.black}}};        
+      }        
+
+      .deakin-rgb-teal {
+        --dynamic-shade-color: {{{account.colors.grey}}};       
+        --dynamic-text-color: {{{account.colors.black}}};
+        --dynamic-headline-color: {{{account.colors.teal-digital-copy}}};              
+      }     
+
+      .deakin-rgb-yellow {
+        --dynamic-shade-color: {{{account.colors.charcoal}}};
+        --dynamic-text-color: {{{account.colors.white}}};
+        --dynamic-headline-color: {{{account.colors.yellow}}};              
+      }          
+
+      .deakin-rgb-orange {
+        --dynamic-shade-color: {{{account.colors.grey}}};    
+        --dynamic-text-color: {{{account.colors.black}}};
+        --dynamic-headline-color: {{{account.colors.orange-digital-copy}}};              
+      }       
+
+      /* End - Logic for changing the colors */
+
+      html {
+        font-family: "Worldly", sans-serif;
+        font-size: 9pt;
+        color: {{{account.colors.white}}};
+      }
+
+      .overflow {
+        border: 3px dashed red;
+        position: relative; }
+      .overflow h1,
+      .overflow h2,
+      .overflow h3,
+      .overflow h4,
+      .overflow h5,
+      .overflow h6,
+      .overflow p,
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: ‘+’;
+        position: absolute;
+        z-index: 5;
+        top: 5x;   
+        right: 5px;   
+        height: 55px;   
+        width: 55px;    
+        border: 1px solid red;
+        color: red;
+        padding: 2px 2px 2px 3px;
+        box-sizing: border-box;
+        font-size: 40px;   
+        text-align: center;
+        line-height: 8px;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: ‘There is overset content in this column. Please remove it’;
+        position: absolute;
+        top: 65px;  
+        right: 5px;
+        background-color: black;
+        color: white;
+        border-radius: 2px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: 40px;   
+        font-weight: 400;
+        line-height: 1.1em;
+        text-align: right;
+        width: 15em;
+      }
+
+      .placeholder {
+        position: absolute;
+        top: 3mm;
+        left: 3mm;
+        right: 3mm;
+        bottom: 3mm;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 100;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      .layout-1 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/6b3fde3f445b5ced1733b0cf6d92f000/digital-signage-template-1920x1080-Option-1.png);
+      }
+
+      .layout-2 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/b532e0e905abd3ed729c25d5453e2d52/digital-signage-template-1920x1080-Option-1-2.png);
+      }
+
+      .layout-3 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/d19c5ff3e06462020d20beb7e05a7f49/digital-signage-template-1920x1080-Option-1-3.png);
+      }
+
+      .backgroundImage {
+        position: absolute; 
+        bottom: 0 !important;
+        right: 0 !important;
+        left: unset !important;
+        top: unset !important;
+        overflow: hidden;
+        clip-path: inset(0rem -2.206rem 0rem 0 round 7.136rem 7.136rem 0 0rem);
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }
+
+      .layout-1 .backgroundImage {
+        height: 100% !important;
+        width: 12.743rem !important;
+        clip-path: inset(0rem -2.206rem 0rem 0 round 7.541rem 0rem 0 7.541rem);
+      }   
+
+      .layout-2 .backgroundImage {
+        height: 16.534rem !important;
+        width: 12.980rem !important;
+        clip-path: circle(9.705rem at 9.705rem 8.972rem);
+      }   
+
+      .layout-3 .backgroundImage {
+        height: 100% !important;
+        width: 17.875rem !important;
+        clip-path: polygon(14.558rem -10.012rem, 0rem 15.375rem, 29.242rem 100%);
+        clip-path: polygon(50% 0, 88% 0, 100% 19%, 100% 100%, 0 100%);
+      }   
+
+      .logo {
+        position: absolute;
+        top: 1.487rem;
+        right: 9.012rem;
+        width: 3.379rem;
+        height: 3.379rem;
+        background: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/4b35e67d1c8c3c77734070f5b54cd3f5/circle-white.svg') no-repeat;
+        background-size: cover;
+        z-index: 1;
+      } 
+      
+      .layout-1 .logo {
+        right: 9.312rem;
+      }
+      
+      .layout-2 .logo {
+        right: 9.912rem;
+      }
+     
+
+      .fit {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /**padding: 2.458rem 14.460rem 1.005rem 1.871rem;**/
+        padding: 2.458rem 13.25rem 1.005rem 1.871rem;
+        background: var(--dynamic-shade-color);
+      }
+
+      .body {
+        color: var(--dynamic-text-color);       
+      }  
+
+      .headline {
+        margin-bottom: 0.719rem;
+        font-size: 1.256rem;
+        font-weight: 400;
+        line-height: 1.1em;
+        color: var(--dynamic-headline-color);     
+         padding-right: 76px;
+      }
+
+      .subheader {
+        margin-bottom: 0.656rem;
+        padding-left: 0.049rem;
+        font-size: 0.698rem;
+        font-weight: 400;
+        line-height: 1.12em;
+        letter-spacing: -0.012rem;   
+        max-width: 10.1rem;
+      }
+
+      .copy {
+        padding-right: 1.592rem;
+        padding-left: 0.077rem;
+        font-family: "Calibri";
+        font-size: 0.372rem;
+        line-height: 1.27em;
+      }
+
+      .cta {
+        margin-bottom: 0.223rem;
+        font-size: 0.670rem;  
+        max-width: 10.1rem;
+      }
+      
+      .cta-text-colour--white {
+        color: {{{account.colors.white}}};
+      }
+      
+      .cta-text-colour--black {
+        color: {{{account.colors.black}}};
+      }
+      
+      .deakin-rgb-pink .cta, .deakin-rgb-pink .cricos{
+        color: var(--dynamic-text-color);
+      }
+
+      .cricos {
+        padding-left: 0.028rem;
+        font-size: 0.249rem;       
+        font-family: "Calibri";
+      }
+      
+      .deakin-rgb-teal .cta,
+      .deakin-rgb-teal .cricos,
+      .deakin-rgb-orange .cta,
+      .deakin-rgb-orange .cricos,
+      .deakin-rgb-black .cta,
+      .deakin-rgb-black .cricos{
+        color:{{{account.colors.black}}};
+      }
+
+      
+      .deakin-rgb-turquoise .cta,
+      .deakin-rgb-turquoise .cricos,
+      .deakin-rgb-yellow .cta,
+      .deakin-rgb-yellow .cricos,
+      .deakin-rgb-charcoal .cta,
+      .deakin-rgb-charcoal .cricos{
+        color:{{{account.colors.white}}};
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body class="{{ DEAKIN_layout--5-landscape--dsl}} {{^DEAKIN_layout--5-landscape--dsl}} layout-3 {{/DEAKIN_layout--5-landscape--dsl}} {{ DEAKIN_theme--1-landscape }} {{ DEAKIN_theme--1-landscape-b }}">
+
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <div class="placeholder"></div>
+
+        <div class="container fit">
+
+          <div class="body">
+            <div class="headline">
+              <div style="max-height: 3.5em;">
+                <div class="check-overflow">
+                  {{{ DEAKIN_headline }}}
+                </div><!-- end check-overflow  -->
+              </div><!-- end max-height-->
+            </div><!--headline-->
+            <div class="subheader">
+              <div style="max-height: 10em;">
+                <div class="check-overflow">
+                  {{{ DEAKIN_subheader }}}
+                </div><!-- end check-overflow  -->
+              </div><!-- end max-height-->
+            </div><!--subheader-->
+           
+          </div><!--body-->
+          <div class="footer ">
+            <div class="cta" data-char-limit="30">
+              {{{ DEAKIN_cta }}}
+            </div><!--cta-->
+            <div class="cricos">
+              <div style="max-height: 1.5em;">
+                <div class="check-overflow">
+                  Deakin University CRICOS Provider Code: {{{ DEAKIN_cricos }}}
+                </div><!-- end check-overflow  -->
+              </div><!-- end max-height-->
+            </div><!--cricos-->  
+          </div><!--footer-->
+          <div class="logo"></div><!--logo-->
+          <div class="backgroundImage">
+            {{{ DEAKIN_background-image }}}
+          </div><!--backgroundImage-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+
+                                                         if (window.showCrop) {
+                                                           document.querySelector('body').classList.add('show-crop');
+                                                         } else {
+                                                           document.querySelector('body').classList.add('hide-crop');
+                                                         }                                               
+    </script>
+
+    <script src="main.js"></script>   
+    <script src="prefixfree.js"></script>
+
+    <script>
+
+      // Check Overflow function
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          console.log(parentHeight);
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }   
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));  
+        charLimit();
+      } setInterval(loop, 1000);  
+
+      // Fix for the resizable background images - fullscreen and digital vairaitons only
+      function checkCrop() {
+        if ({{show-crop}} === true) {
+        } else {
+          [].forEach.call(document.querySelectorAll('.outfit-resizable-background'), function (el) {
+            el.parentNode.style.left = '0';
+            el.parentNode.style.right = '0';
+            el.parentNode.style.top = '0';
+            el.parentNode.style.bottom = '0';
+            el.parentNode.style.width = '100%';
+            el.parentNode.style.height = '100%';
+          });
+        }
+      }
+
+      // Adding limit for the word length
+      function charLimit() {
+        const elements = document.querySelectorAll("[data-char-limit]");
+
+        elements.forEach(element => {
+          const limit = element.dataset.charLimit;
+
+          if(element == null) { return }
+          var tokenValue = element.querySelectorAll(".token-value");
+
+          if(tokenValue.length != 0) {
+            element = tokenValue.item(0);
+          }
+          var code = element.innerText;
+          if(code.length > limit) {
+            // Check Token Again
+            if(tokenValue.length != 0) {
+              element.parentNode.classList.add("overflow");  
+            }
+            else {
+              element.classList.add("overflow");
+            }
+          }
+          else {
+            // Check Token Again
+            if(tokenValue.length != 0) {
+              element.parentNode.classList.remove("overflow");  
+            }
+            else {
+              element.classList.remove("overflow");
+            }
+          }
+        })
+      }
+      checkCrop();      
+
+    </script>
+
+
+  </body>
+</html>
