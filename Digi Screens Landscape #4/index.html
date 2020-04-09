@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link type="text/css" rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Calibri/stylesheet.css" />    
+    <link type="text/css" rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/worldly/stylesheet.css" />    
+
+    <style>
+
+      :root {
+        --dynamic-bg-color: {{{account.colors.turquoise}}};
+        --dynamic-text-color: {{{account.colors.black}}};
+        --dynamic-headline-color: {{{account.colors.black}}};        
+        --dynamic-footer-text-color: {{{account.colors.black}}};
+      }
+
+      .deakin-rgb-yellow {
+        --dynamic-bg-color: {{{account.colors.yellow}}};
+      }
+
+      .deakin-rgb-teal {
+        --dynamic-bg-color: {{{account.colors.teal}}};
+        --dynamic-text-color: {{{account.colors.white}}};
+        --dynamic-headline-color: {{{account.colors.white}}};        
+        --dynamic-footer-text-color: {{{account.colors.white}}};        
+      }      
+
+      .deakin-rgb-orange {
+        --dynamic-bg-color: {{{account.colors.orange}}};
+        --dynamic-footer-text-color: {{{account.colors.white}}};        
+      }     
+
+      /*
+      .deakin-rgb-green {
+      --dynamic-bg-color: {{{account.colors.rgb-green}}};
+      --dynamic-text-color: {{{account.colors.white}}};  
+      }
+      */
+
+      .deakin-rgb-turquoise {
+        --dynamic-bg-color: {{{account.colors.turquoise}}};
+        --dynamic-text-color: {{{account.colors.white}}};
+        --dynamic-headline-color: {{{account.colors.white}}};  
+        --dynamic-footer-text-color: {{{account.colors.white}}};        
+      }    
+
+      .deakin-rgb-pink {
+        --dynamic-bg-color: {{{account.colors.purple-josh}}};
+        --dynamic-text-color: {{{account.colors.white}}};
+        --dynamic-headline-color: {{{account.colors.white}}};  
+        --dynamic-footer-text-color: {{{account.colors.white}}};        
+      }    
+
+      html {
+        font-family: "Worldly", sans-serif;
+        font-size: 9pt;
+        color: {{{account.colors.white}}};
+      }
+
+      .overflow {
+        border: 3px dashed red;
+        position: relative; }
+      .overflow h1,
+      .overflow h2,
+      .overflow h3,
+      .overflow h4,
+      .overflow h5,
+      .overflow h6,
+      .overflow p,
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: ‘+’;
+        position: absolute;
+        z-index: 5;
+        top: 5x;   
+        right: 5px;   
+        height: 55px;   
+        width: 55px;    
+        border: 1px solid red;
+        color: red;
+        padding: 2px 2px 2px 3px;
+        box-sizing: border-box;
+        font-size: 40px;   
+        text-align: center;
+        line-height: 8px;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: ‘There is overset content in this column. Please remove it’;
+        position: absolute;
+        top: 65px;  
+        right: 5px;
+        background-color: black;
+        color: white;
+        border-radius: 2px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: 40px;   
+        font-weight: 400;
+        line-height: 1.1em;
+        text-align: right;
+        width: 15em;
+      }
+
+      .placeholder {
+        position: absolute;
+        top: 3mm;
+        left: 3mm;
+        right: 3mm;
+        bottom: 3mm;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 100;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      .layout-1 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/42b2478300a1e0c7e5420651675709c1/digital-signage-template-landscape-option-4-layout-1-dark.png);
+      }
+
+      .layout-2 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/d7a9fcba2a0d203c6e93132586be4448/landscape-4-var2.png);
+      }
+
+      .layout-3 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/20f3e87dd44cf6530794018720ea210e/landscape-4-var7.png);
+      }
+
+      .layout-4 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/c36364fbb7295a613cd8b5f81eb266f5/landscape-4-var4.png);
+      }           
+
+      .layout-5 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bd318c255d7b946b3c5457cb3a572370/digital-signage-template-1920x1080-Option-5%20-%205.png);
+      }           
+
+      .layout-6 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/93fa9f3dee9b580f4770e930e44dfb0d/landscape-5-var6.png);
+      }     
+
+      .layout-7 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/fddd7347cafe0f72741c8c2597f1361a/landscape-5-var7.png);
+      }           
+
+      .light .fit{
+        background: var(--dynamic-shade-color);
+      }
+
+      .dark .fit {
+        background: var(--dynamic-shade-color);
+      }
+
+      .backgroundImage {
+        position: absolute;
+        height: 100% !important;
+        width: 100% !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        left: unset !important;
+        top: unset !important;
+        overflow: hidden;
+        clip-path: inset(1.6rem 0rem 0rem 14.4rem round 6.3rem 6.3rem 0 0);
+      }
+
+      .layout-2 .backgroundImage {
+        z-index: 1;
+      }           
+
+      .layout-3 .backgroundImage {
+        height: 100% !important;
+        clip-path: circle(9.695rem at 24.953rem 9.353rem);
+      }               
+
+      .layout-1 .backgroundImage,
+      .layout-2 .backgroundImage {
+        height: 100% !important;
+        clip-path: polygon(21.972rem -3.881rem, 32.944rem 15.118rem, 11.0001rem 100%);
+      }      
+
+      .layout-4 .backgroundImage {
+        clip-path: inset(1.6rem 0rem 0rem 14.4rem round 6.3rem 6.3rem 0 0);
+      }          
+
+      .layout-5 .backgroundImage,
+      .layout-6 .backgroundImage,
+      .layout-7 .backgroundImage {
+        clip-path: none;
+      }      
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }       
+
+      .wrap {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+      }
+
+      .body {
+        padding: 1.328rem 2.335rem 0.995rem 0.944rem;  
+        z-index: 1;
+        background: var(--dynamic-bg-color);
+        color: var(--dynamic-text-color);
+        clip-path: inset( 0 round 0 0 7.407rem 7.407rem);
+      }   
+
+      .layout-1 .body,
+      .layout-4 .body {
+        width: 12.814rem;
+        height: 11.817rem;
+        padding: 1.828rem 1.535rem 0.995rem 1.944rem;
+        clip-path: inset( 0 round 0 0 7.407rem 7.407rem);
+      }
+
+      .layout-2 .body,
+      .layout-3 .body {
+        width: 13.059rem;
+        height: 11.754rem;
+        clip-path: circle(7.252rem at 5.779rem 4.481rem);
+        padding: 1.808rem 1.773rem 3.427rem 1.870rem;
+      }      
+
+      .layout-2 .body {
+        clip-path: none;
+        background: none;
+      }
+
+      .layout-5 .body,
+      .layout-6 .body,
+      .layout-7 .body {
+        width: 11.593rem;
+        height: 10.535rem;
+        padding: 1.528rem 1.935rem 0.995rem 1.644rem;
+        clip-path: inset( 0 round 0 0 7.407rem 7.407rem);
+        margin-left: 1.919rem;        
+      }     
+
+      .layout-7 .body {
+        width: 14.693rem;
+        padding-left: 2.2rem;
+        margin-left: 1.319rem;
+      }
+
+      .layout-6 .body,
+      .layout-7 .body {
+        clip-path: none;
+        background: none;
+      }   
+
+      .layout-6 .body {
+        margin-left: 0;
+      }
+
+      .logo {
+        position: absolute;
+        width: 3.336rem;
+        height: 3.336rem;
+        background: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/4b35e67d1c8c3c77734070f5b54cd3f5/circle-white.svg') no-repeat;
+        background-size: cover;
+        bottom: 3.404rem;
+        left: 9.406rem;
+        z-index: 2;
+      }   
+
+      .layout-6 .logo,
+      .layout-7 .logo,
+      .layout-5 .logo {
+        bottom: 3.004rem;
+        left: 10.606rem;
+      }
+
+      .layout-5 .logo {
+        left: 10.06rem;
+      }
+
+      .layout-7 .logo {
+        bottom: 2.104rem;
+        left: 10.506rem;
+      }
+
+      .layout-6 .logo {
+        left: 8.606rem;
+        bottom: 2.804rem;
+      }
+
+      .shape {
+        display: none;        
+        position: absolute;
+        width: 14.909rem;
+        height: 100%;
+        background: #ffd923;
+        top: 0;
+        right: 0;
+        background: var(--dynamic-bg-color);        
+        clip-path: polygon(-5.346rem -9.241rem, 23.968rem -9.241rem, 9.409rem 16.151rem);
+      }
+
+      .layout-2 .shape,
+      .layout-6 .shape,
+      .layout-7 .shape {
+        display: block;
+      }
+
+      .layout-2 .shape {
+        z-index: 0;
+      }
+
+      .layout-6 .shape {
+        top: -2.185rem;
+        width: 14.378rem;
+        height: 14.378rem;
+        border-radius: 50%;
+        clip-path: none;
+        left: -1.225rem;
+      }
+
+      .layout-7 .shape {
+        right: auto;
+        left: 0;
+        top: 0;
+        width: 18.664rem;
+        height: 100%;
+        clip-path: polygon(-6.254rem -1.382rem, 19.487rem -1.382rem, 6.687rem 20.855rem);
+      }
+
+      .headline {
+        margin-bottom: 0.733rem;
+        font-size: 1.218rem;
+        font-weight: 400;
+        line-height: 1.1em;
+        color: var(--dynamic-headline-color);
+      }
+
+      .layout-5 .headline {
+        line-height: 1.12em;
+      }  
+
+      .subheader {
+        margin-bottom: 0.967rem;
+        font-size: 0.65rem;
+        font-weight: 400;
+        line-height: 1.23em;
+        letter-spacing: 0.009046rem;
+      }
+
+      .layout-7 .subheader {
+        padding-right: 3.5rem;
+      }
+
+      .footer {       
+        padding-left: 1.928rem;
+        z-index: 3;
+        color: var(--dynamic-footer-text-color);
+        padding-bottom: 1rem;
+      }
+
+      .layout-5 .footer,
+      .layout-6 .footer,
+      .layout-7 .footer {
+        padding-left: 3.528rem;
+      }
+
+      .layout-7 .footer {
+        width: 10rem;
+      }
+
+      .layout-6 .footer {
+        padding-left: 1.7em;
+      }
+
+      .cta {
+        font-size: 0.5rem;
+        letter-spacing: 0.02rem;
+      }   
+
+      .cricos {
+        margin-top: 0.281rem;
+        font-size: 0.248rem;
+        padding-left: 0.022rem;
+        font-family: "Calibri";
+      }   
+
+
+      .deakin-rgb-yellow .cta,
+      .deakin-rgb-yellow .cricos,
+      .deakin-rgb-orange .cta,
+      .deakin-rgb-orange .cricos{
+        color:{{{account.colors.black}}};
+      }
+
+      .deakin-rgb-orange.layout-6 .cta,
+      .deakin-rgb-orange.layout-6 .cricos,
+      .deakin-rgb-teal .cta,
+      .deakin-rgb-teal .cricos,
+      .deakin-rgb-turquoise .cta,
+      .deakin-rgb-turquoise .cricos{
+        color:{{{account.colors.white}}};
+      }
+      /*   
+      .deakin-rgb-orange.layout-6 .cta-text-colour--white .cta,
+      .deakin-rgb-orange.layout-6 .cta-text-colour--white .cricos
+      {
+      color: {{{account.colors.white}}};
+      }
+
+      .deakin-rgb-orange.layout-6 .cta-text-colour--black .cta,
+      .deakin-rgb-orange.layout-6 .cta-text-colour--black .cricos{
+      color: {{{account.colors.black}}};
+      }
+      */     
+
+      .cta.cta-text-colour--white {
+        color: {{{account.colors.white}}};
+      }
+
+      .cta.cta-text-colour--black {
+        color: {{{account.colors.black}}};
+      }
+
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body class="{{ DEAKIN_theme--5-landscape}} {{ DEAKIN_layout--ext2}}">    
+
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <div class="placeholder"></div>
+
+        <div class="container fit">
+          <div class="backgroundImage">
+            {{{ DEAKIN_background-image }}}
+          </div><!--backgroundImage-->
+          <div class="wrap">
+            <div class="body">
+              <!--     {{ #DEAKIN_headline }} -->
+              <div class="headline">
+                <div style="max-height: 3.5em;">
+                  <div class="check-overflow">
+                    {{{ DEAKIN_headline }}}
+                  </div><!-- end check-overflow -->
+                </div><!-- end max-height -->
+              </div><!--headline-->
+              <!-- {{ /DEAKIN_headline }} -->
+              <div class="subheader">
+                <div style="max-height: 5em;">
+                  <div class="check-overflow">
+                    {{{ DEAKIN_subheader }}}
+                  </div><!-- end check-overflow -->
+                </div><!-- end max-height -->
+              </div><!--subheader-->
+            </div><!--body-->
+            <div class="footer">
+              <div class="cta cta-text-colour--{{DE_cta-text-color--dsl4}}" style="max-height:5.4em; width: 7rem;">
+                <div class="check-overflow">
+                  {{{ DEAKIN_cta }}}
+                </div>
+              </div><!--cta-->
+              <div class="cricos">
+                <div style="max-height: 1.5em;">
+                  <div class="check-overflow">
+                    Deakin University CRICOS Provider Code: {{{ DEAKIN_cricos }}}
+                  </div><!-- end check-overflow -->
+                </div><!-- end max-height -->
+              </div><!--cricos-->   
+            </div><!--footer-->
+          </div><!-- end wrap -->
+          <div class="shape"></div><!--shape-->
+          <div class="logo"></div><!--logo-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+
+                                                         if (window.showCrop) {
+                                                           document.querySelector('body').classList.add('show-crop');
+                                                         } else {
+                                                           document.querySelector('body').classList.add('hide-crop');
+                                                         }                                               
+    </script>
+
+    <script src="main.js"></script>   
+    <script src="prefixfree.js"></script>
+
+    <script>
+
+      // Check Overflow function
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }   
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));  
+        charLimit();
+      } setInterval(loop, 1000);  
+
+      // Fix for the resizable background images - fullscreen and digital vairaitons only
+      function checkCrop() {
+        if ({{show-crop}} === true) {
+        } else {
+          [].forEach.call(document.querySelectorAll('.outfit-resizable-background'), function (el) {
+            el.parentNode.style.left = '0';
+            el.parentNode.style.right = '0';
+            el.parentNode.style.top = '0';
+            el.parentNode.style.bottom = '0';
+            el.parentNode.style.width = '100%';
+            el.parentNode.style.height = '100%';
+          });
+        }
+      }
+
+      // Adding limit for the word length
+      function charLimit() {
+        const elements = document.querySelectorAll("[data-char-limit]");
+
+        elements.forEach(element => {
+          const limit = element.dataset.charLimit;
+
+          if(element == null) { return }
+          var tokenValue = element.querySelectorAll(".token-value");
+
+          if(tokenValue.length != 0) {
+            element = tokenValue.item(0);
+          }
+          var code = element.innerText;
+          if(code.length > limit) {
+            // Check Token Again
+            if(tokenValue.length != 0) {
+              element.parentNode.classList.add("overflow");  
+            }
+            else {
+              element.classList.add("overflow");
+            }
+          }
+          else {
+            // Check Token Again
+            if(tokenValue.length != 0) {
+              element.parentNode.classList.remove("overflow");  
+            }
+            else {
+              element.classList.remove("overflow");
+            }
+          }
+        })
+      }
+      checkCrop();      
+
+    </script>
+
+
+  </body>
+</html>
