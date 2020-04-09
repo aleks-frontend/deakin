@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Deakin University</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <style>
+      
+      /*
+      {{crop-marks}}
+      {{DK_header-image--cf}}
+      */
+      
+      :root {
+        --white: {{{account.colors.white}}};
+        --black: {{{account.colors.black}}};
+
+        /*CMYK COLOUR*/
+        --cmyk-pink: {{{account.colors.hex-cmyk-pink}}}; 
+        --cmyk-turquoise: {{{account.colors.hex-cmyk-turquoise}}};   
+        --cmyk-teal: {{{account.colors.hex-cmyk-teal}}};
+        --cmyk-orange: {{{account.colors.hex-cmyk-orange}}};
+        --cmyk-charcoal: {{{account.colors.hex-cmyk-charcoal}}};
+        --cmyk-yellow: {{{account.colors.hex-cmyk-yellow}}};
+        --cmyk-grey: {{{account.colors.hex-cmyk-grey}}};
+
+
+        /*RGB COLOUR*/       
+        --rgb-turquoise: rgb(13,133,114);
+        --rgb-pink: rgb(199, 66, 152);
+        --rgb-teal: rgb(0, 125, 152);
+        --rgb-orange: rgb(247, 105, 25);
+        --rgb-yellow: rgb(255, 217, 35);
+        --rgb-charcoal: rgb(54, 54, 53);
+        --rgb-grey: rgb(224, 224, 224);
+      }
+
+      .rgb.theme--pink {
+        --dynamic-shade-color: var(--rgb-pink);   
+        --dynamic-text-color: var(--white);
+      }      
+
+      .cmyk.theme--pink {
+        --dynamic-shade-color: var(--cmyk-pink);   
+        --dynamic-text-color: var(--white);
+      }  
+
+      .rgb.theme--turquoise {
+        --dynamic-shade-color: var(--rgb-turquoise);       
+        --dynamic-text-color: var(--white);
+      }  
+
+      .cmyk.theme--turquoise {
+        --dynamic-shade-color: var(--cmyk-turquoise);      
+        --dynamic-text-color: var(--white);
+      }  
+
+      .rgb.theme--teal {
+        --dynamic-shade-color: var(--rgb-teal);       
+        --dynamic-text-color: var(--white);      
+      }   
+
+      .cmyk.theme--teal {
+        --dynamic-shade-color: var(--cmyk-teal);      
+        --dynamic-text-color: var(--white);   
+      }   
+
+      .rgb.theme--yellow {
+        --dynamic-shade-color: var(--rgb-yellow);   
+        --dynamic-text-color: var(--black);      
+      } 
+
+      .cmyk.theme--yellow {
+        --dynamic-shade-color: var(--cmyk-yellow);   
+        --dynamic-text-color: var(--black);
+      }
+
+      .rgb.theme--orange {
+        --dynamic-shade-color: var(--rgb-orange);    
+        --dynamic-text-color: var(--black);         
+      }
+
+      .cmyk.theme--orange {
+        --dynamic-shade-color: var(--cmyk-orange);   
+        --dynamic-text-color: var(--black);       
+      } 
+
+      .rgb {
+        --dynamic-bg-color: var(--rgb-grey);
+      }
+
+      .cmyk {
+        --dynamic-bg-color: var(--cmyk-grey);
+      }
+
+      .test-background-image {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/f4b5e65cc7558d6aba4dd9ad3d6297c5/Screen%20Shot%202017-06-26%20at%204.34.24%20pm.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+
+      .show-crop-marks .test-background-image {
+        top: 0.5in;
+        left: 0.5in;
+        right: 0.5in;
+        bottom: 0.5in;
+      }
+
+      .header-image {
+        z-index: 1;
+      }
+      /* theme-teal */
+
+      .rgb.theme--teal .page-1-column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--teal .page-1-column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+         color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--teal .column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--teal .column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--teal .website {
+        margin: 0;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--teal .column-table-header {
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--teal tr:nth-child(odd) { background-color: {{{account.colors.grey}}}; }
+      .rgb.theme--teal tr:nth-child(even) { color: #fff; background-color: {{{account.colors.teal}}}; }
+      
+       .rgb.theme--teal  .bleed-block-one {
+         background-color: var(--dynamic-shade-color);
+      }
+      
+      .rgb.theme--teal  .bleed-block-one {
+        background-color: var(--dynamic-shade-color);
+      }
+        .rgb.theme--teal  .bleed-block-two {
+        background-color: var(--dynamic-bg-color);
+      }
+       .rgb.theme--teal  .column-2-container h2 {
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+      
+      /* CMYK */
+       .cmyk.theme--teal .page-1-column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--teal .page-1-column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+         color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--teal .column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--teal .column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--teal .website {
+        margin: 0;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--teal .column-table-header {
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--teal tr:nth-child(odd) { background-color: --dynamic-bg-color; }
+      .cmyk.theme--teal tr:nth-child(even) { color: #fff; background-color: --dynamic-shade-color; }
+      
+        .cmyk.theme--teal  .bleed-block-one {
+         background-color: var(--dynamic-shade-color);
+      }
+      
+      .cmyk.theme--teal  .bleed-block-one {
+        background-color: var(--dynamic-shade-color);
+      }
+        .cmyk.theme--teal  .bleed-block-two {
+        background-color: var(--dynamic-bg-color);
+      }
+       .cmyk.theme--teal  .column-2-container h2 {
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+      
+      /* end of theme-teal */
+       /* theme-pink */
+
+      .rgb.theme--pink .page-1-column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--pink .page-1-column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+         color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--pink .column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--pink .column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--pink .website {
+        margin: 0;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--pink .column-table-header {
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--pink tr:nth-child(odd) { background-color: {{{account.colors.grey}}}; }
+      .rgb.theme--pink tr:nth-child(even) { color: #fff; background-color: {{{account.colors.teal}}}; }
+      
+       .rgb.theme--pink  .bleed-block-one {
+         background-color: var(--dynamic-shade-color);
+      }
+      
+      .rgb.theme--pink  .bleed-block-one {
+        background-color: var(--dynamic-shade-color);
+      }
+        .rgb.theme--pink  .bleed-block-two {
+        background-color: var(--dynamic-bg-color);
+      }
+       .rgb.theme--pink  .column-2-container h2 {
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+      
+      /* CMYK */
+       .cmyk.theme--pink .page-1-column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--pink .page-1-column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+         color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--pink .column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--pink .column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--pink .website {
+        margin: 0;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--pink .column-table-header {
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--pink tr:nth-child(odd) { background-color: --dynamic-bg-color; }
+      .cmyk.theme--pink tr:nth-child(even) { color: #fff; background-color: --dynamic-shade-color; }
+      
+        .cmyk.theme--pink  .bleed-block-one {
+         background-color: var(--dynamic-shade-color);
+      }
+      
+      .cmyk.theme--pink  .bleed-block-one {
+        background-color: var(--dynamic-shade-color);
+      }
+        .cmyk.theme--pink  .bleed-block-two {
+        background-color: var(--dynamic-bg-color);
+      }
+       .cmyk.theme--pink  .column-2-container h2 {
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+      
+      /* end of theme-pink */
+       /* theme-turquoise */
+
+      .rgb.theme--turquoise .page-1-column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--turquoise .page-1-column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+         color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--turquoise .column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--turquoise .column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--turquoise .website {
+        margin: 0;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--turquoise .column-table-header {
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--turquoise tr:nth-child(odd) { background-color: {{{account.colors.grey}}}; }
+      .rgb.theme--turquoise tr:nth-child(even) { color: #fff; background-color: {{{account.colors.teal}}}; }
+      
+       .rgb.theme--turquoise  .bleed-block-one {
+         background-color: var(--dynamic-shade-color);
+      }
+      
+      .rgb.theme--turquoise  .bleed-block-one {
+        background-color: var(--dynamic-shade-color);
+      }
+        .rgb.theme--turquoise  .bleed-block-two {
+        background-color: var(--dynamic-bg-color);
+      }
+       .rgb.theme--turquoise  .column-2-container h2 {
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+      
+      /* CMYK */
+       .cmyk.theme--turquoise .page-1-column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--turquoise .page-1-column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+         color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--turquoise .column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--turquoise .column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--turquoise .website {
+        margin: 0;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--turquoise .column-table-header {
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--turquoise tr:nth-child(odd) { background-color: --dynamic-bg-color; }
+      .cmyk.theme--turquoise tr:nth-child(even) { color: #fff; background-color: --dynamic-shade-color; }
+      
+        .cmyk.theme--turquoise  .bleed-block-one {
+         background-color: var(--dynamic-shade-color);
+      }
+      
+      .cmyk.theme--turquoise  .bleed-block-one {
+        background-color: var(--dynamic-shade-color);
+      }
+        .cmyk.theme--turquoise  .bleed-block-two {
+        background-color: var(--dynamic-bg-color);
+      }
+       .cmyk.theme--turquoise  .column-2-container h2 {
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+     /* end of theme-turquoise */
+      
+      /* theme-orange */
+      .rgb.theme--orange .page-1-column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--orange .page-1-column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+         color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--orange .column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--orange .column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--orange .website {
+        margin: 0;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--orange .column-table-header {
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--orange tr:nth-child(odd) { background-color: {{{account.colors.grey}}}; }
+      .rgb.theme--orange tr:nth-child(even) { color: #fff; background-color: {{{account.colors.teal}}}; }
+      
+       .rgb.theme--orange  .bleed-block-one {
+         background-color: var(--dynamic-shade-color);
+      }
+      
+      .rgb.theme--orange  .bleed-block-one {
+        background-color: var(--dynamic-shade-color);
+      }
+        .rgb.theme--orange  .bleed-block-two {
+        background-color: var(--dynamic-bg-color);
+      }
+       .rgb.theme--orange  .column-2-container h2 {
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+      
+      /* CMYK */
+       .cmyk.theme--orange .page-1-column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--orange .page-1-column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+         color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--orange .column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--orange .column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--orange .website {
+        margin: 0;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--orange .column-table-header {
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--orange tr:nth-child(odd) { background-color: --dynamic-bg-color; }
+      .cmyk.theme--orange tr:nth-child(even) { color: #fff; background-color: --dynamic-shade-color; }
+      
+        .cmyk.theme--orange  .bleed-block-one {
+         background-color: var(--dynamic-shade-color);
+      }
+      
+      .cmyk.theme--orange  .bleed-block-one {
+        background-color: var(--dynamic-shade-color);
+      }
+        .cmyk.theme--orange  .bleed-block-two {
+        background-color: var(--dynamic-bg-color);
+      }
+       .cmyk.theme--orange  .column-2-container h2 {
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+      /* end of theme-orange */
+      
+      /* theme-yellow */
+      .rgb.theme--yellow .page-1-column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--yellow .page-1-column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+         color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--yellow .column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--yellow .column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--yellow .website {
+        margin: 0;
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--yellow .column-table-header {
+        color: var(--dynamic-shade-color);
+      }
+
+      .rgb.theme--yellow tr:nth-child(odd) { background-color: {{{account.colors.grey}}}; }
+      .rgb.theme--yellow tr:nth-child(even) { color: #fff; background-color: {{{account.colors.teal}}}; }
+      
+       .rgb.theme--yellow  .bleed-block-one {
+         background-color: var(--dynamic-shade-color);
+      }
+      
+      .rgb.theme--yellow  .bleed-block-one {
+        background-color: var(--dynamic-shade-color);
+      }
+        .rgb.theme--yellow  .bleed-block-two {
+        background-color: var(--dynamic-bg-color);
+      }
+       .rgb.theme--yellow  .column-2-container h2 {
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+      
+      /* CMYK */
+       .cmyk.theme--yellow .page-1-column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--yellow .page-1-column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+         color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--yellow .column-1-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--yellow .column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--yellow .website {
+        margin: 0;
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--yellow .column-table-header {
+        color: var(--dynamic-shade-color);
+      }
+
+      .cmyk.theme--yellow tr:nth-child(odd) { background-color: --dynamic-bg-color; }
+      .cmyk.theme--yellow tr:nth-child(even) { color: #fff; background-color: --dynamic-shade-color; }
+      
+        .cmyk.theme--yellow  .bleed-block-one {
+         background-color: var(--dynamic-shade-color);
+      }
+      
+      .cmyk.theme--yellow  .bleed-block-one {
+        background-color: var(--dynamic-shade-color);
+      }
+        .cmyk.theme--yellow  .bleed-block-two {
+        background-color: var(--dynamic-bg-color);
+      }
+       .cmyk.theme--yellow  .column-2-container h2 {
+        font-size: 2em;
+        color: var(--dynamic-shade-color);
+      }
+      /* end of theme-yellow */
+      
+
+      .theme-two .page-1-column-1-container h2 {
+        margin: 0.6em 0 0 0;
+        font-size: 2em;
+        color: var(--purple);
+      }
+
+      .theme-two .page-1-column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--purple);
+      }
+
+      .theme-two .column-1-container h2 {
+        margin: 0.6em 0 0 0;
+        font-size: 2em;
+        color: var(--purple);
+      }
+
+      .theme-two .column-2-container h2 {
+        margin: 0.6em 0 0.1em 0;
+        font-size: 2em;
+        color: var(--purple);
+      }
+
+      .theme-two .website {
+        margin: 0;
+        color: #fff;
+        color: var(--purple);
+      }
+
+      .theme-two .column-table-header {
+        color: var(--purple);
+      }
+
+      .theme-two tr:nth-child(odd) { background-color: var(--grey); }
+      .theme-two tr:nth-child(even) { color: #fff; background-color: var(--purple); }
+
+      #Fill-1 {
+        fill: var(--grey);
+      }
+
+      /* Bleedblocks by Alt-J */
+
+      .bleed-block-one {
+        position: absolute;
+        
+        height: 11.1em;
+        top: -0.25in;
+        left: -0.25in;
+        z-index: -1;
+		
+        position: absolute;
+        background: black;
+        width: 15.5em;
+        height: 11.15em;
+        height: calc(10.47em + 0.25in);
+        top: -0.25in;
+        left: -0.25in;
+        z-index: 10;
+        border-radius: 0em 7em 6em 0em;
+      }
+      
+      .no-header-image.bleed-block-one {
+        width: 21.5em;
+      }
+
+
+      .logo {
+        position: absolute;
+        top: 3.4em;
+        left: auto;
+        right: -1.3em;
+        width: 4.4em;
+        z-index: 3;
+      }
+
+      .logo img {
+        width: 100%;
+      }
+
+
+      .bleed-block-two {
+        position: absolute;
+        width: 16.4em;
+        height: 11.1em;
+        height: calc(10.47em + 0.25in);
+        top: -0.25in;
+        right: -0.25in;
+         
+        background-color: var(--grey);
+         z-index: -1;
+      }
+      
+       .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+      
+      .reposition-fix div {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .bleed-block-three {
+        position: absolute;
+        width: 0.7em;
+        height: 11.15em;
+        top: -0.25in;
+        left: -0.25in;
+        z-index: -1;
+      }
+     
+
+      .theme-two .bleed-block-one {
+        background-color: var(--purple);
+      } 
+
+    
+
+      .theme-two .bleed-block-two {
+        background-color: var(--grey);
+      } 
+
+
+      /* Colour Updates */
+
+      .hide-crop-marks .theme-one .bleed-block-one, .hide-crop-marks .theme-one .bleed-block-three {
+        background-color: #C74298;
+      }
+
+      .hide-crop-marks .theme-one tr:nth-child(even) {
+        background-color: rgba(11,113,97,0.8);
+      }
+
+      .hide-crop-marks .theme-one .page-1-column-1-container h2,
+      .hide-crop-marks .theme-one .page-1-column-2-container h2,
+      .hide-crop-marks .theme-one .column-1-container h2,
+      .hide-crop-marks .theme-one .column-2-container h2,
+      .hide-crop-marks .theme-one .website,
+      .hide-crop-marks .theme-one .column-table-header {
+        color: #0B7161;
+      }
+
+     
+
+      .hide-crop-marks .theme-two .bleed-block-one, .hide-crop-marks .theme-two .bleed-block-three {
+        background-color: #0D8572;
+      }
+
+      .hide-crop-marks .theme-two tr:nth-child(even) {
+        background-color: rgba(172,51,130,0.8);
+      }
+
+      .hide-crop-marks .theme-two .page-1-column-1-container h2,
+      .hide-crop-marks .theme-two .page-1-column-2-container h2,
+      .hide-crop-marks .theme-two .column-1-container h2,
+      .hide-crop-marks .theme-two .column-2-container h2,
+      .hide-crop-marks .theme-two .column-table-header {
+        color: #AC3382;
+      }
+      
+      .hide-crop-marks .theme-one .website {
+        color: #0B7161;
+      }      
+      
+      .hide-crop-marks .theme-two .website {
+        color: #AC3382;
+      }
+      
+      .hide-crop-marks .theme-one #Fill-0 {
+        fill: var(--dynamic-color);
+      }
+      
+      .hide-crop-marks .theme-two #Fill-0 {
+        fill: var(--dynamic-color);
+      }
+      
+      h1.column-table-header {
+          font-family: 'Worldly', sans-serif !important;
+      }
+      
+    </style>
+  </head>
+  <body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}
+               {{DEAKIN_colour-theme--po1}}{{^DEAKIN_colour-theme--po1}}rgb{{/DEAKIN_colour-theme--po1}}
+               theme--{{theme-colour}}">
+    <div class="page page-1">
+
+      <div class="document">
+        <div class="content">
+
+          <div class="bleed-block-one {{^DK_header-image--cf}}no-header-image{{/DK_header-image--cf}}">
+
+            <div class="logo">
+              <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/707519103ba710c7b30755b32af38a99/circle-white.svg">
+            </div>
+
+          </div>
+          <div class="bleed-block-two">
+            <div class="reposition-fix">{{{DK_header-image--cf}}}</div>
+          </div>
+          <div class="bleed-block-three"></div>
+
+          <div class="header-back">
+
+          </div><!--header-back-->
+
+          <div class="headline">
+            <div class="headline-overflow">
+              <div class="headline-container">
+                <h1 class="headline-text" style="font-size: calc(1.4em - {{{headline-font-size}}}em);">{{{ headline }}}</h1>
+              </div><!--headline-container-->
+            </div><!--headline-overflow-->
+            <div class="subheader-overflow">
+              <div class="subheader-container">
+                <h2 class="subheader-text" style="font-weight: normal !important; font-size: calc(0.8em - {{{subheader-font-size}}}em);">{{{ subheader }}}</h2>
+                <h3 class="subheader-location">{{{ location }}}</h3>
+              </div><!--subheader-container-->
+            </div><!--subheader-overflow-->
+          </div><!--headline-->
+
+          <div class="column-section">
+            <div class="column-1-overflow">
+              <div class="page-1-column-1-container">
+                {{{ column-1 }}}
+              </div><!--column-1-container-->
+            </div><!--column-1-overflow-->
+            <div class="column-2-overflow">
+              <div class="page-1-column-2-container">
+                {{{ column-2 }}}
+              </div><!--column-2-container-->
+            </div><!--column-2-overflow-->
+          </div><!--column-section-->
+
+          <div class="footer">
+            <p class="website">{{{ website }}}</p>
+            <p class="cricos">{{{ cricos }}}</p>
+          </div><!--footer-->
+
+        </div><!--content-->
+      </div><!--document-->
+    </div><!--page-->
+
+
+    <div class="page page-2 {{{Colour-Options}}}">
+
+      <div class="document">
+        <div class="content">
+
+          <div class="column-section-overflow">
+            <div class="page-2-column-section-container">
+				{{#collection.backPageContent-cf}}
+              		{{#block.table}}
+                      <div class="column-table {{{hide-table}}}">   
+                        <h1 class="column-table-header">{{{ table-header }}}</h1>
+                        <p>{{{ table-copy }}}</p>
+                        <table>
+                          <tbody>
+                            {{#collection.table}}
+                            <tr>
+                              {{#one}}<td>{{{ one }}}</td>{{/one}}
+                              {{#two}}<td>{{{ two }}}</td>{{/two}}
+                              {{#three}}<td>{{{ three }}}</td>{{/three}}
+                              {{#four}}<td>{{{ four }}}</td>{{/four}}
+                              {{#five}}<td>{{{ five }}}</td>{{/five}}
+                              {{#six}}<td>{{{ six }}}</td>{{/six}}
+                            </tr>
+                            {{/collection.table}}
+                          </tbody>
+                        </table>
+                        <p class="column-table-disclaimer">{{{ table-disclaimer }}}</p>
+                      </div><!--column-table-->
+              		{{/block.table}}
+              
+              		{{#block.copy}}
+                      <div class="column-section">
+                        <div class="column-1-container">
+                          <div class="column-1-inner">
+                            {{{ copyColumn1 }}}
+                          </div>
+                        </div><!--column-1-container-->
+                        <div class="column-2-container">
+                          <div class="column-2-inner">
+                            {{{ copyColumn2 }}}
+                          </div>
+                        </div><!--column-2-container-->
+                      </div><!--column-section-->
+              		{{/block.copy}}
+              
+                {{/collection.backPageContent-cf}}
+            </div><!--column-section-container-->
+          </div><!--column-section-overflow-->
+
+          <div class="footer">
+            <p class="website">{{{ website }}}</p>
+            <p class="cricos">{{{ cricos }}}</p>
+          </div><!--footer-->
+
+          <div class="footer-shape">
+            <svg width="100%" height="100%" viewBox="0 0 1200 282" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+              <desc>Created with Sketch.</desc>
+              <defs></defs>
+              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <path d="M0,281.439091 L1058.31364,281.439091 C1136.02955,281.439091 1199.03182,218.434545 1199.03182,140.720909 C1199.03182,63.0027273 1136.02955,0.000454545455 1058.31364,0.000454545455 L0,0.000454545455 L0,281.439091 Z" id="Fill-0" fill="#FFFFFF"></path>
+              </g>
+            </svg>     
+          </div><!--footer-shape-->
+
+        </div><!--content-->
+      </div><!--document-->
+    </div><!--page-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/main.js"></script>
+
+    <script>
+
+      // Opera 8.0+
+      var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+      // Firefox 1.0+
+      var isFirefox = typeof InstallTrigger !== 'undefined';
+      // At least Safari 3+: "[object HTMLElementConstructor]"
+      var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+      // Internet Explorer 6-11
+      var isIE = /*@cc_on!@*/false || !!document.documentMode;
+      // Edge 20+
+      var isEdge = !isIE && !!window.StyleMedia;
+      // Chrome 1+
+      var isChrome = !!window.chrome && !!window.chrome.webstore;
+      // Blink engine detection
+      var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+      if (isOpera == true) {
+        $('body').addClass('-js-opera-browser');
+      } if (isFirefox == true) {
+        $('body').addClass('-js-firefox-browser');
+      } if (isSafari == true) {
+        $('body').addClass('-js-safari-browser');
+      } if (isIE == true) {
+        $('body').addClass('-js-ie-browser');
+      } if (isEdge == true) {
+        $('body').addClass('-js-edge-browser');
+      } if (isChrome == true) {
+        $('body').addClass('-js-chrome-browser');
+      } if (isBlink == true) {
+        $('body').addClass('-js-blink-browser');
+      }
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('headline-container'));
+        checkHeight(document.getElementsByClassName('subheader-container'));
+        checkHeight(document.getElementsByClassName('page-1-column-1-container'));
+        checkHeight(document.getElementsByClassName('page-1-column-2-container'));
+        checkHeight(document.getElementsByClassName('page-2-column-section-container'));
+
+        /* Add any other text boxes you want to check the overflows on with the following: checkHeight(document.getElementsByClassName('CLASS NAME')); */
+
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+
+    </script>
+
+  </body>
+</html>
