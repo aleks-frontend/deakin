@@ -1,0 +1,2139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lock screen</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link type="text/css" rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Calibri/stylesheet.css" />    
+    <link type="text/css" rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/worldly/stylesheet.css" />    
+
+    <style>
+
+      :root {
+        --dynamic-bg-color: {{{account.colors.teal}}};
+        --dynamic-text-color: {{{account.colors.black}}};
+        --dynamic-footer-text-color: {{{account.colors.white}}};
+      }       
+
+      .theme-1 {
+        --dynamic-bg-color: {{{account.colors.teal}}};
+        --dynamic-text-color: {{{account.colors.white}}};  
+      }
+
+      .theme-2 {
+        --dynamic-bg-color: {{{account.colors.orange}}};
+        --dynamic-text-color: {{{account.colors.white}}};  
+      }
+
+      .theme-3 {
+        --dynamic-bg-color: {{{account.colors.yellow}}};
+        --dynamic-text-color: {{{account.colors.black}}};   
+      } 
+
+      .theme-4 {
+        --dynamic-bg-color: {{{account.colors.turquoise}}};
+        --dynamic-text-color: {{{account.colors.white}}};   
+      } 
+
+      .theme-5 {
+        --dynamic-bg-color: {{{account.colors.purple-josh}}};
+        --dynamic-text-color: {{{account.colors.white}}};   
+      } 
+
+      .theme-3.layout-3,
+      .theme-3.layout-2{
+        --dynamic-footer-text-color: {{{account.colors.white}}};        
+      }
+
+      html {
+        font-family: "Worldly", sans-serif;
+        font-size: 9pt;
+        color: {{{account.colors.white}}};
+      }
+
+      .placeholder,
+      .visual-overlay {
+        position: absolute;
+        top: 3mm;
+        left: 3mm;
+        right: 3mm;
+        bottom: 3mm;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 100;
+        pointer-events: none;
+        opacity: 0.3;
+      }
+
+      .visual-overlay {
+        opacity: 1;
+      }
+
+      .headline {
+        width: 72.5%;
+      }
+
+      /* After developement is done, placeholder is hidden */
+      .placeholder {
+        opacity: 0;
+      }
+
+      .layout-1 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/58947f553c3540db05cbb967b3f7affe/lockscreen-template-1024x768.jpg);
+      }
+
+      .visual-overlay {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/2826cea65aa748e24a510fa1067b51a8/1024x768-overlay.png);       
+      }
+
+      /* Media print is not working in the export mode, so we must use 'visual-overlay-hide/show' input to toggle it's visibility */
+      @media print {
+        .visual-overlay {
+          display: none;
+        }
+      }
+
+      .visual-overlay-hide .visual-overlay {
+        display: none;
+      }
+
+      @media screen and (min-width: 1250px) {
+        .layout-1 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/a9fa700d8b24a4314176b7c78d07f3b0/1280x720-l1.jpg);
+        }      
+
+        .visual-overlay {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/7a66619c05fee1b852463c3a020eb568/1280x720-overlay.png);       
+        }
+      }
+
+      @media screen and (min-width: 1250px) and (min-height: 768px) {
+        .layout-1 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/39f9b060fb366d9fce42c76a4620b8f7/1280x768-l1.jpg);
+        }        
+
+        .visual-overlay {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/331094b5cb5f8409bb6554863036ba7d/1280x768-overlay.png);       
+        }
+      }      
+
+      @media screen and (min-width: 1250px) and (min-height: 800x) {
+        .layout-1 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/df97f729db467ef89dc471a6e941a376/1280x800-l1.jpg);
+        }        
+
+        .visual-overlay {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/d5baca3c174647da2effce8724ca499c/1280x800-overlay.png);       
+        }        
+      }      
+
+      @media screen and (min-width: 1250px) and (min-height: 1024px) {
+        .layout-1 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/e669371d1f9afcfd6a16d21b242e99c9/1280x1024-l1.jpg);
+        }        
+
+        .visual-overlay {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/af22fa71f4b4549968219ca297bb5cca/1280x1024-overlay.png);       
+        }                
+      }            
+
+      @media screen and (min-width: 1360px) {
+        .layout-1 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/a767fd214a41c81f25295e15dd3eaba2/1360x768-l1.jpg);
+        }    
+
+        .visual-overlay {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/3d859bdb54639b167519ec58a9f059ff/1360x768-overlay.png);       
+        }                        
+      }    
+
+      @media screen and (min-width: 1366px) {
+        .layout-1 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/dd9af2468a8b28f55d5a783903569054/1366x768-l1.jpg);
+        }        
+
+        .visual-overlay {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/be7cf5fe7c23d5ed90a4cc23f4790684/1366x768-overlay.png);       
+        }          
+      }       
+
+      @media screen and (min-width: 1440px) {
+        .layout-1 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/4fb3c2da125c05df52a8104e66444e50/1440x900-l1.jpg);
+        }   
+
+        .visual-overlay {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/c8013a826977600ec951cf726c7a0f75/1440x900-overlay.png);       
+        }                  
+      }
+
+      @media screen and (min-width: 1600px) {
+        .layout-1 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bab49b749a3d65f8a55a339bfebc2536/1600x900-l1.jpg);
+        }  
+
+        .visual-overlay {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/2bebcdc82a3e17236681f2e38a70927a/1600x900-overlay.png);       
+        }                          
+      }
+
+      @media screen and (min-width: 1600px) and (min-height: 1200px) {
+        .layout-1 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/40a0813b532d67a05f4fa424f2fed081/1600x1200-l1.jpg);
+        }   
+
+        .visual-overlay {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/b37f8a73f6ffad3577f6219f5c338bdc/1600x1200-overlay.png);       
+        }                                  
+      }
+
+      @media screen and (min-width: 3360px) and (min-height: 2100px) {
+        .layout-1 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/a5d31a7dcf9a8794c61c411e1bdf7746/1680x1050-l1.jpg);
+        }   
+
+        .visual-overlay {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/6b293901518f9a95ffbcd42f589a1c75/1680x1050-overlay.png);       
+        }                                          
+      }
+
+      @media screen and (min-width: 1740px) and (min-height: 1080px) {
+        .layout-1 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/edd9ad7eb7c601835e7ba5b35311965d/1920x1080-l1.jpg);
+        }   
+
+        .visual-overlay {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/529cf4234b758e693c7094a6330f7798/1920x1080-overlay.png);       
+        }                                          
+      }
+
+      @media screen and (min-width: 1920px) and (min-height: 1200px) {
+        .layout-1 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/dc349393c5806ea971c46d44db6d6fc7/1920x1200-l1.jpg);
+        } 
+
+        .visual-overlay {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/0c5e19f72bd35304e8950ad6e05f1824/1920x1200-overlay.png);       
+        }                                                  
+      }
+
+      .layout-1.is-windows .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/6800e12bf2e0773b2eb53c195629d6df/lockscreen-template-Windows10-1920x1080.png);
+      }      
+
+      .layout-1.is-windows .visual-overlay,
+      .layout-2.is-windows .visual-overlay,
+      .layout-3.is-windows .visual-overlay {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/02cc9405cd94000d1e521f7eb2f0e7e4/Windows10-1920x1080-overlay.png);
+      }            
+
+      .layout-2 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/d366936fa1847bb2236cbb31e67255a4/lockscreen-template-1024x768-l2.png);
+      }
+
+
+      @media screen and (min-width: 1250px) {
+        .layout-2 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/9ff068637226a8993087e29ecc504380/1280x720-l2.jpg);
+        }        
+      }      
+
+      @media screen and (min-width: 1250px) and (min-height: 768px) {
+        .layout-2 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/e710a01cdd1b8bfebe4c7ab97d67917d/1280x768-l2.jpg);
+        }        
+      }    
+
+      @media screen and (min-width: 1250px) and (min-height: 800px) {
+        .layout-2 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/4078be45cd5aafdcf633acb5528477f0/1280x800-l2.jpg);
+        } 
+      }
+
+      @media screen and (min-width: 1250px) and (min-height: 1024px) {
+        .layout-2 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/c47fca5452ddcc9bd41df8e161890128/1280x1024-l2.jpg);
+        }        
+      }          
+
+      @media screen and (min-width: 1360px) {
+        .layout-2 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/67dcbd6a42963a513e67fc15885c36f0/1360x768-l2.jpg);
+        }        
+      }            
+
+      @media screen and (min-width: 1366px) {
+        .layout-2 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/5bdbfc886c81dca3cebf51cfc6782b1b/1366x768-l2.jpg);
+        }   
+      }
+
+      @media screen and (min-width: 1440px) {
+        .layout-2 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/a75ff739e54db440f05d7be348e4f2bf/1440x900-l2.jpg);
+        }   
+      }
+
+      @media screen and (min-width: 1600px) {
+        .layout-2 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/b7187144ac02e21d28e0d97a80a4b933/1600x900-l2.jpg);
+        }   
+      }
+
+      @media screen and (min-width: 1600px) and (min-height: 1200px) {
+        .layout-2 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/c3f49f1276c35375dc691be5b2d7509f/1600x1200-l2.jpg);
+        }   
+      }
+
+      @media screen and (min-width: 1680px) and (min-height: 1050px) {
+        .layout-2 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/40997fbf616a01aebd5f40277b88d99b/1680x1050-l2.jpg);
+        }   
+      }
+
+      @media screen and (min-width: 1920px) and (min-height: 1080px) {
+        .layout-2 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bc9900ab2fcc6aa316db3db14741469a/1920x1080-l2.jpg);
+        }   
+      }
+
+      @media screen and (min-width: 1920px) and (min-height: 1200px) {
+        .layout-2 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/6187beed473d337f79ee855ef4106812/1920x1200-l2.jpg);
+        }   
+      }
+
+      .layout-2.is-windows .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/158e9ef9c980ff2ec7fdd8be9d893ae6/lockscreen-template-Windows10-1920x1080.jpg);
+      }                  
+
+      .layout-3 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/eb461c4923b6343841df92bfb4e82c24/lockscreen-template-1024x768-l3%20copy.png);
+      }  
+
+      @media screen and (min-width: 1250px) {
+        .layout-3 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/5369cdedf55213ebf4cc47d3b72c0f02/1280x720-l3.jpg);
+        }        
+      }           
+
+      @media screen and (min-width: 1250px) and (min-height: 768px) {
+        .layout-3 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/17c97aec58636734c6a32f280d9516e5/1280x768-l3.jpg);
+        }        
+      }     
+
+      @media screen and (min-width: 1250px) and (min-height: 800px) {
+        .layout-3 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/4fff8e9c5101451857d1a5a66ce23c85/1280x800-l3.jpg);
+        } 
+      }
+
+      @media screen and (min-width: 1250px) and (min-height: 1024px) {
+        .layout-3 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/a2bd159ba6c92e9bad0d0bed5df171b0/1280x1024-l3.jpg);
+        }        
+      }         
+
+      @media screen and (min-width: 1360px) {
+        .layout-3 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/6b20d317b8aa7883edc134a67d39d163/1360x768-l3new.jpg);
+        }        
+      }  
+
+      @media screen and (min-width: 1366px) {
+        .layout-3 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/469eb33cb5e5b3aa87a915b080d7c1d6/1366x768-l3.jpg);
+        }   
+      }
+
+      @media screen and (min-width: 1440px) {
+        .layout-3 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/5456b4574680995798e11e9e148e7d93/1440x900-l3.jpg);
+        }   
+      }
+
+      @media screen and (min-width: 1600px) {
+        .layout-3 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/4819fdcf25366346a83ff8a68b020f2b/1600x900-l3.jpg);
+        }   
+      }
+
+      @media screen and (min-width: 1600px) and (min-height: 1200px) {
+        .layout-3 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/424d27c815da92e047ceecac3141bdd6/1600x1200-l3.jpg);
+        }   
+      }
+
+      @media screen and (min-width: 1680px) and (min-height: 1050px) {
+        .layout-3 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/7ab77fa6a46d27607ba40b64d5a7d413/1680x1050-l3.jpg);
+        }   
+      }
+
+      @media screen and (min-width: 1920px) and (min-height: 1080px) {
+        .layout-3 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/216629fcdb133c7230b1c83b360e1211/1920x1080-l3.jpg);
+        }   
+      }
+
+      @media screen and (min-width: 1920px) and (min-height: 1200px) {
+        .layout-3 .placeholder {
+          background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/6d8c69d9005b7c721247990cab247234/1920x1200-l3.jpg);
+        }   
+      }
+
+      .layout-3.is-windows .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/31222d68aa2c5255f77941e8bc4ecd54/lockscreen-windows-l3.jpg);
+      }        
+
+      .backgroundImage {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        bottom: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }       
+
+      .body {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: 0;
+        left: 0;
+        padding: 1.528rem 0 0 1.144rem;
+        width: 70%;
+        height: 65.3%;
+        z-index: 1;
+        color: var(--dynamic-text-color);
+      }   
+
+      .theme-2 .body {
+        --dynamic-text-color: #000;
+      }
+
+
+      @media screen and (min-width: 1250px) {
+        .body {
+          width: 41%;
+          padding: 1.3rem 0 0 1.4rem;
+          height: 70%;
+        }
+      }
+
+      @media screen and (min-width: 1250px) and (min-height: 768px) {
+        .body {
+          padding-left: 1.2rem;
+          height: 70%;
+        }
+      }
+
+      @media screen and (min-width: 1250px) and (min-height: 800px) {
+        .body {
+          padding-top: 1.55rem;
+          height: 68%;
+        }
+      }     
+
+      @media screen and (min-width: 1250px) and (min-height: 1024px) {
+        .body {
+          padding-top: 1.55rem;
+          padding-left: 1.1rem;
+          width: 45%;
+          height: 60%;
+        }        
+      }   
+
+      @media screen and (min-width: 1366px) {
+        .body {
+          padding-top: 1.4rem;
+        }
+      }
+
+      @media screen and (min-width: 1440px) {
+        .body {
+          padding-top: 1.6rem;
+          height: 66%;
+        }
+      }
+
+      @media screen and (min-width: 1600px) and (min-height: 900px) {
+        .body {
+          padding-top: 1.65rem;
+          height: 60%;
+        } 
+      }
+
+      @media screen and (min-width: 1600px) and (min-height: 1200px) {
+        .body {
+          padding-top: 1.1rem;
+          padding-left: 1.1rem;
+          height: 50%;
+        } 
+      }
+
+      @media screen and (min-width: 1680px) and (min-height: 1050px) {
+        .body {
+          padding-top: 1.60rem;
+          padding-left: 1.17rem;
+          height: 60%;
+        } 
+      }
+
+      @media screen and (min-width: 1920px) and (min-height: 1080px) {
+        .body {
+          padding-left: 1.06rem;
+          padding-top: 1.73rem;
+          height: 60%;
+        }  
+      }
+
+      /*--- 1920 x 1200 is windows screen --*/
+
+      @media screen and (min-width: 1920px) and (min-height: 1200px) {
+        .body {
+          padding-left: 1rem;
+          padding-top: 2.13rem;
+        } 
+      }
+
+      .is-windows .body {
+        width: 30%;
+        padding: 0.68rem 0 0 0.68rem;
+        height: 52%;
+      }     
+
+      .is-windows.layout-3 .body {
+        height: 40%;
+      }
+
+      .shape {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--dynamic-bg-color);        
+      }
+
+      .layout-1 .shape {
+        clip-path: inset( 10.1px 2.35rem 3.85rem 0 round 0 300.25px 300.25px 0);
+      }
+
+      @media screen and (min-width: 1024px) {
+        .layout-1 .shape {
+          clip-path: inset( 10.1px 6.35rem 5rem 0 round 0 300.25px 300.25px 0)
+        }        
+      }
+
+      @media screen and (min-width: 1250px) {
+        .layout-1 .shape {
+          clip-path: inset( 10.1px 11.45rem 3.2rem 0 round 0 300.25px 300.25px 0);
+        }        
+      }
+
+      @media screen and (min-width: 1250px) and (min-height: 768px) {
+        .layout-1 .shape {
+          clip-path: inset( 10.1px 10.15rem 3.55rem 0 round 0 300.25px 300.25px 0);
+        }        
+      }   
+
+      @media screen and (min-width: 1250px) and (min-height: 800px) {
+        .layout-1 .shape {
+          clip-path: inset( 10.1px 10.55rem 3.75rem 0 round 0 300.25px 300.25px 0);
+        }        
+      }      
+
+      @media screen and (min-width: 1250px) and (min-height: 1024px) {
+        .layout-1 .shape {
+          clip-path: inset( 10.1px 8.95rem 5.999rem 0 round 0 328.25px 328.25px 0);
+        }        
+      }    
+
+      @media screen and (min-width: 1360px) {
+        .layout-1 .shape{
+          clip-path: inset( 10.1px 11.75rem 3.55rem 0 round 0 300.25px 300.25px 0);
+        }
+      }
+
+      @media screen and (min-width: 1440px){
+        .layout-1 .shape {
+          clip-path: inset( 10.1px 10rem 4.15rem 0 round 0 328.25px 328.25px 0);
+        }
+      }
+
+      @media screen and (min-width: 1600px) and (min-height: 900px) {
+        .layout-1 .shape {
+          clip-path: inset( 10.1px 12.95rem 5.25rem 0 round 0 328.25px 328.25px 0);
+        }
+      }
+
+      @media screen and (min-width: 1600px) and (min-height: 1200px) {
+        .layout-1 .shape {
+          clip-path: inset( 10.1px 9.75rem 7.32rem 0 round 0 334.25px  342.25px 0);
+        } 
+      }
+
+
+      @media screen and (min-width: 1680px) {
+        .layout-1 .shape {
+          clip-path: inset( 10.1px 12.15rem 5.65rem 0 round 0  326.75px 326.75px 0);
+        }
+      }
+
+      @media screen and (min-width: 1740px) and (min-height: 1080px) {
+        .layout-1 .shape {
+          clip-path: inset( 10.1px 14.45rem 5.65rem 0 round 0 326.75px 326.75px 0);
+        } 
+      }
+
+      @media screen and (min-width: 1740px) and (min-height: 1200px) {
+        .layout-1 .shape {
+          clip-path: inset( 10.1px 13.75rem 5.75rem 0 round 0 369.25px 389.75px 0);
+        } 
+      }
+
+      .layout-1.is-windows .shape {
+        clip-path: inset( 0 round 0 4.375rem 4.375rem 0);
+        width: 37%;
+        height: 8.75rem;
+      }
+
+      .layout-2 .shape {         
+        clip-path: circle(1032px at 800px 668px);
+      }
+
+      @media screen and (min-width: 1024px) {
+        .layout-2 .shape {
+          clip-path: circle(700px at 3.35rem 4.85rem);
+          top: -7rem;
+        }
+      }
+
+      @media screen and (min-width: 1250px) {
+        .layout-2 .shape {
+          clip-path: circle(15.731rem at 0.795rem 3.0346rem);
+        }        
+      }      
+
+      @media screen and (min-width: 1250px) and (min-height: 768px) {
+        .layout-2 .shape {
+          clip-path: circle(15.0971rem at 3.195rem 3.9346rem);
+        }        
+      }   
+
+      @media screen and (min-width: 1250px) and (min-height: 800px) {
+        .layout-2 .shape {
+          clip-path: circle(14.1971rem at 0.595rem  3.7346rem);
+        }
+      }
+
+      @media screen and (min-width: 1250px) and (min-height: 1024px) {
+        .layout-2 .shape {
+          clip-path: circle(14.6971rem at -1.205rem 3.7346rem);
+        }        
+      }   
+
+      @media screen and (min-width: 1360px) {
+        .layout-2 .shape {
+          clip-path: circle(15.5971rem at 0.795rem 2.9346rem);
+        }
+      }
+
+      @media screen and (min-width: 1440px) {
+        .layout-2 .shape  {
+          clip-path: circle(13.3971rem at 0.595rem 4.7346rem);
+        }
+      }
+
+      @media screen and (min-width: 1600px) and (min-height: 900px) {
+        .layout-2 .shape {
+          clip-path: circle(14.7971rem at 0.395rem 4.3346rem);
+        } 
+      }
+
+      @media screen and (min-width: 1600px) and (min-height: 1200px) {
+        .layout-2 .shape {
+          clip-path: circle(12.6971rem at 0.695rem 4.4346rem);
+        } 
+      }
+
+      @media screen and (min-width: 1680px) {
+        .layout-2 .shape {
+          clip-path: circle(12.5rem at 1.2rem 4.7346rem);
+        }  
+      }
+
+      @media screen and (min-width: 1740px) and (min-height: 1080px) {
+        .layout-2 .shape {
+          /* clip-path: circle(12.6971rem at 1.595rem 4.5346rem); */
+          clip-path: circle(7.7971rem at 4.395rem 4.7346rem);
+          top: -3.3rem;
+          left: 0rem;
+        } 
+      }
+
+      @media screen and (min-width: 1920px) and (min-height: 1200px) {
+        .layout-2.is-windows  .shape {
+          clip-path: circle(6.9971rem at 4.395rem 4.7346rem);
+          top: -3rem;
+          left: 0;
+        } 
+        .layout-2 .shape {
+          clip-path: circle(12.9971rem at 1.395rem 4.7346rem);
+          top: -3rem;
+          left: 0;
+        }
+      }
+
+      .layout-2.is-windows .shape {         
+        /*  clip-path: circle(900px at 125px 261px); */
+      }      
+
+      .layout-3 .shape {
+        clip-path: polygon(0 -632px, 2171px 607px, 0 1872px);
+      }
+      @media screen and (min-width: 1024px) {
+        .layout-3 .shape {
+          clip-path: polygon(-1.6157rem -6.96001rem, 16.3228rem 3.4489rem, -1.6157rem 13.79574rem);
+        }
+
+        /*polygon(0 -152px, 823px 157px, 0 624px*/
+
+        @media screen and (min-width: 1250px) {
+          .layout-3 .shape {
+            clip-path: polygon(-1.6157rem -6.96001rem, 16.3228rem 3.4489rem, -1.6157rem 13.79574rem);
+          }        
+        }      
+
+        @media screen and (min-width: 1250px) and (min-height: 768px) {
+          .layout-3 .shape {
+            clip-path: polygon(-1.6157rem -6.47001rem, 15.8228rem 3.7489rem, -1.6157rem 13.79574rem);
+          }        
+        }     
+
+        @media screen and (min-width: 1250px) and (min-height: 1024px) {
+          .layout-3 .shape {
+            clip-path: polygon(-1.6157rem -5.17001rem, 14.3228rem 4rem, -1.6157rem 13.19574rem);
+          }        
+        }   
+
+        @media screen and (min-width: 1360px) {
+          .layout-3 .shape {
+            clip-path: polygon(-1.6157rem -6.87001rem, 16.07rem 3.4rem, -2.1157rem 13.79574rem);
+          }
+        }
+
+        @media screen and (min-width: 1440px) {
+          .layout-3 .shape  {
+            clip-path: polygon(-1.6157rem -5.97001rem, 16.07rem 4.1rem, -0.9157rem 13.79574rem);
+          }
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 900px) {
+          .layout-3 .shape {
+            clip-path: polygon(-1.6157rem -5.77001rem, 15.17rem 4rem, -1.7157rem 13.79574rem);
+          } 
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 1200px) {
+          .layout-3 .shape {
+            clip-path: polygon(-1.6157rem -4.47001rem, 14.37rem 4.8rem, -1.3157rem 13.79574rem);
+          } 
+        }
+
+        @media screen and (min-width: 1680px) {
+          .layout-3 .shape {
+            clip-path: polygon(-1.6157rem -5.67001rem, 15.67rem 4.4rem, -1.7157rem 14.39574rem);
+          }
+        }
+
+        @media screen and (min-width: 1920px) and (min-height: 1080px) {
+          .layout-3 .shape {
+            clip-path: polygon(-1.6157rem -4.87001rem, 13.97rem 4.1rem, -1.7157rem 13.19574rem);
+          }
+        }
+
+        @media screen and (min-width: 1920px) and (min-height: 1200px) {
+          .layout-3 .shape {
+            clip-path: polygon(-1.6157rem -4.77001rem, 14.2rem 4.33rem, -1.1157rem 13.18rem);
+          } 
+        }
+
+        .layout-3.is-windows .shape {
+          clip-path: polygon(-1012px -683px, 987px 294px, -613px 978px);
+        }      
+
+        .logo {
+          position: absolute;
+          width: 3.036rem;
+          height: 3.036rem;
+          background: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/4b35e67d1c8c3c77734070f5b54cd3f5/circle-white.svg') no-repeat;
+          background-size: contain;
+          top: 0.904rem;
+          right: 10.6%;
+          z-index: 2;        
+        }         
+
+        @media screen and (min-width: 1024px) {
+
+          .layout-1 .logo {
+            left: 58%;
+          }
+
+          .layout-2 .logo {
+            left:70.4%;
+          }
+
+          .layout-3 .logo {
+            left: 55.9%;
+            top: 0.404rem !important;
+          }
+        }
+
+        @media screen and (min-width: 1250px) {
+          .logo {
+            top: 0.6rem;
+            right: auto;
+            left: 50%;
+            width: 2.6rem;
+            height: 2.6rem;
+            transform: translateX(-50%);
+          }
+
+          .layout-1 .logo {
+            left:51%;
+          }
+
+          .layout-2 .logo {
+            left:58.4%;
+          }
+
+          .layout-3 .logo {
+            left: 52%;
+          }
+        }
+
+        @media screen and (min-width: 1250px) and (min-height: 768px) {
+          .logo {
+            top: 0.83rem;
+            width: 2.5rem;
+            height: 2.5rem;
+          }
+
+          .layout-1 .logo {
+            left:54%;
+          }
+
+          .layout-2 .logo {
+            left:67.7%;
+          }
+
+          .layout-3 .logo {
+            left: 51.6%;
+            top: 0.7rem !important;
+          }
+        }    
+
+        @media screen and (min-width: 1250px) and (min-height: 800px) {
+
+          .layout-1 .logo {
+            left:51%;
+          }
+
+          .layout-2 .logo {
+            left:55.3%;
+          }
+
+          .layout-3 .logo {
+            left: 52%;        
+          }
+        }     
+
+        @media screen and (min-width: 1250px) and (min-height: 1024px) {
+          .logo {
+            top: 1.57rem;
+            left: 53%;
+            width: 2.1rem;
+            height: 2.1rem;
+
+          }
+          .layout-1 .logo {
+            left:52%;
+          }
+
+          .layout-2 .logo {
+            left:57%;
+          }
+
+          .layout-3 .logo {
+            left: 53%;
+            top: 1.004rem !important;
+          }     
+        } 
+
+        @media screen and (max-width: 1250px) {
+          .layout-3 .logo {
+            top: 3.004rem;
+            right: 4.7%;
+          }        
+        }
+
+        @media screen and (min-width: 1360px){
+          .layout-1 .logo {
+            left:49%;
+          }
+
+          .layout-2 .logo {
+            left: 56.8%;
+          }
+
+          .layout-3 .logo {
+            left: 49.8%;
+          }
+        }
+
+        @media screen and (min-width: 1440px){
+          .logo {
+            left: 49.2%;
+            top: 1.02rem;
+            width: 2.4rem;
+            height: 2.4rem;
+          }
+
+          .layout-2 .logo {
+            left:52%;
+          }
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 900px) {
+          .logo {
+            left: 43.65%;
+            top: 1.12rem;
+            width: 2.3rem;
+            height: 2.3rem;
+          }
+          .layout-1 .logo {
+            left:48%;
+          }
+
+          .layout-2 .logo {
+            left: 53.5%;
+          }
+
+          .layout-3 .logo {
+            left: 45.5%;
+            top: 1rem !important;
+          }
+        }
+
+        @media screen and (min-width: 1680px) and (min-height: 1050px) {
+          .logo {
+            top: 1.12rem;
+            width: 2.3rem;
+            height: 2.3rem;
+          }
+
+          .layout-1 .logo {
+            left:48%;
+          }        
+
+          .layout-2 .logo {
+            left:52%;
+          }     
+
+          .layout-3 .logo {
+            left:52%;
+          }     
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 1200px) {
+          .logo {
+            top: 2.22rem;
+            width: 2.2rem;
+            height: 2.2rem;
+          } 
+          .layout-1 .logo {
+            left:54%;
+          }
+
+          .layout-2 .logo {
+            left:53.3%;
+          }
+
+          .layout-3 .logo {
+            left: 53.5%;
+            top: 2rem !important;
+          }
+        }
+
+        @media screen and (min-width: 1680px) {
+          .logo {
+            left: 48.45%;
+            top: 1.22rem;
+            width: 2.4rem;
+            height: 2.4rem; 
+          } 
+
+          .layout-1 .logo {
+            left:48%;
+          }
+
+          .layout-2 .logo {
+            left:50.4%;
+          }
+
+          .layout-3 .logo {
+            left: 49%;
+          }
+        }
+
+        /*--- 1920 x 1080 windows screen ---*/
+
+        @media screen and (min-width: 1720px) and (min-height: 1080px) {
+          .logo {
+            left: 39.45%;
+            top: 1.37rem;
+            width: 2.3rem;
+            height: 2.3rem;
+          } 
+          .layout-1 .logo {
+            left:43%;
+          }
+
+          .layout-2 .logo {
+            left:50%;
+          }
+
+          .layout-3 .logo {
+            left: 45%;
+            top: 1.7rem !important;
+          }
+
+          .layout-1.is-windows .logo {
+            left:30%;
+          }
+
+          .layout-2.is-windows .logo {
+            left: 41.7%;
+          }
+
+          .layout-3.is-windows .logo {
+            left: 35%;
+          }
+        }
+
+        /*--- short term solution for manipulating the logo for different shapes ---*/
+
+        @media screen and (min-width: 1920px) and (min-height: 1200px) {
+          .logo {
+            left: 43.15%;
+            top: 1.74rem;
+          } 
+
+          .layout-1 .logo {
+            left: 43%;
+          } 
+
+          .layout-2 .logo {
+            left: 52.4%;
+          } 
+
+          .layout-3 .logo {
+            left: 47%;
+          } 
+
+          .layout-1.is-windows .logo {
+            left: 30.3%;
+          }   
+
+          .layout-2.is-windows .logo {
+            left: 40.1%;
+          }   
+
+          .layout-3.is-windows .logo {
+            left: 36%;
+            top: 1.3rem !important;
+          }   
+        }
+
+        .is-windows .logo {
+          right: auto;
+          width: 2.25rem;
+          height: 2.25rem;
+          top: 1.4rem;
+          transform: none;
+        }
+
+
+        .headline {
+          margin-bottom: 0.2rem;
+          font-size: 1.105rem;
+          font-weight: 400;
+          line-height: 1.1em;
+        }
+
+        .headline__maxHeight {
+          max-height: 1.4em;
+        }
+
+        @media screen and (min-width: 1000px) {
+          .headline {
+            width: 70%;
+          }
+        }
+
+        @media screen and (min-width: 1250px) {
+          .headline {
+            margin-bottom: 0.34rem;
+            font-size: 1.07rem;
+            width: 75%;
+            padding-right: 5%;
+          }
+        }
+
+        @media screen and (min-width: 1250px) {
+          .headline__maxHeight {
+            max-height: 2.5em;
+          } 
+        }
+
+        @media screen and (min-width: 1250px) and (min-height: 768px) {
+          .headline {
+            line-height: 1.05em;
+            margin-bottom: 0.64rem;
+            font-size: 1rem;
+            font-weight: 400; 
+            letter-spacing: 0.01rem;
+          }
+        }      
+
+        @media screen and (min-width: 1250px) and (min-height: 800px) {
+          .headline {
+            margin-bottom: 0.55rem;
+            letter-spacing: -0.002rem;
+          }
+        }
+
+        @media screen and (min-width: 1250px) and (min-height: 1024px) {
+          .headline {
+            margin-bottom: 0.44rem;
+            font-size: 0.88rem;
+            letter-spacing: -0.012rem;
+            width: 100%;
+          }        
+        } 
+
+        @media screen and (min-width: 1360px) {
+          .headline {
+            margin-bottom: 0.54rem;
+            font-size: 0.98rem;
+            font-weight: 400;
+            line-height: 1.05em;
+            width: 100%;
+          }
+        }
+
+        @media screen and (min-width: 1366px) {
+          .headline {
+            margin-bottom: 0.64rem;
+          }
+        }
+
+        @media screen and (min-width: 1440px) {
+          .headline {
+            font-size: 0.97rem;
+            letter-spacing: -0.007rem;
+          } 
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 900px) {
+          .headline {
+            margin-bottom: 0.54rem;
+            font-size: 0.93rem;
+            letter-spacing: -0.003rem;
+          } 
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 1200px) {
+          .headline {
+            font-size: 0.85rem;
+            letter-spacing: 0.01rem;
+            margin-bottom: 0.6rem;
+          } 
+        }
+
+        @media screen and (min-width: 1680px) and (min-height: 1050px) {
+          .headline {
+            letter-spacing: 0rem;
+          } 
+        }
+
+        @media screen and (min-width: 1920px) and (min-height: 1080px) {
+          .headline {
+            margin-bottom: 0.54rem;
+            font-size: 0.84rem;
+            letter-spacing: 0.015rem;
+          }  
+        }
+
+        @media screen and (min-width: 1920px) and (min-height: 1200px) {
+          .headline {
+            margin-bottom: 0.64rem;
+            line-height: 1.1em;
+            width: 73%;
+          } 
+        }
+
+        .is-windows .headline {
+          font-size: 0.72rem;
+          margin-bottom: 0.58rem;
+          letter-spacing: 0.022rem;
+          width: 100%;
+        }
+
+        .subheader {
+          /*margin-bottom: 1.5rem;*/
+          font-size: 0.59rem;
+          font-weight: 400;
+          line-height: 1.23em;
+          letter-spacing: -1.4px;
+        }
+
+        .subheader__maxHeight {
+          max-height: 1.4em;
+        }
+
+        @media screen and (min-width: 1024px) {
+          .subheader {
+            /*margin-bottom: -0.9rem;*/
+            max-width: 90%
+          }
+        }    
+
+        @media screen and (min-width: 1250px) {
+          .subheader {
+            width: 52%;
+            line-height: 1.05em;
+            font-size: 0.57rem;
+            /*margin-bottom: 0.2rem;*/
+          }
+        }     
+
+        @media screen and (min-width: 1250px) {
+          .subheader__maxHeight {
+            max-height: 7em;
+          }
+        }  
+
+        @media screen and (min-width: 1250px) and (min-height: 768px) {
+          .subheader {
+            font-size: 0.544rem;
+            width: 50%;
+            line-height: 1.05em;
+            /*margin-bottom: 0.2rem;*/
+          }
+        }
+
+        @media screen and (min-width: 1250px) and (min-height: 800px) {
+          .subheader {
+            /*margin-bottom: -0.35rem;*/
+            font-size: 0.499rem;
+            font-weight: 400;
+            letter-spacing: 0rem;
+            line-height: 1.1em;
+          }
+        }
+
+        @media screen and (min-width: 1250px) and (min-height: 1024px) {
+          .subheader {
+            /*margin-bottom: -1.8rem;*/
+            font-weight: 400;
+            font-size: 0.45rem;
+            line-height: 1.05em;
+          }        
+        } 
+
+        @media screen and (min-width: 1360px) {
+          .subheader {
+            font-size: 0.53rem;
+            width: 50%;
+            line-height: 1.1em;
+            /*margin-bottom: -0.2rem;*/
+          }
+        }      
+
+        @media screen and (min-width: 1366px) {
+          .subheader {
+            line-height: 1.05em;
+            /*margin-bottom: -0.4rem;*/
+          }
+        }
+
+        @media screen and (min-width: 1440px) {
+          .subheader {
+            width: 66%;
+            font-size: 0.45rem;
+            letter-spacing: -0.001rem;
+            font-weight: 400;
+            /*margin-bottom: 0.4rem;*/
+            line-height: 1.06em;
+          } 
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 900px) {
+          .subheader {
+            letter-spacing: -0.006rem;
+            /*margin-bottom: -1.3rem;*/
+          }
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 1200px) {
+          .subheader {
+            /*margin-bottom: 0.6rem;*/
+            letter-spacing: -0.015rem;
+            font-size: 0.416rem;
+            line-height: 1.05em;
+          } 
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 1200px) {
+          .subheader {
+            letter-spacing: -0.002rem;
+          } 
+        }
+
+        @media screen and (min-width: 1680px) and (min-height: 1050px) {
+          .subheader {
+            letter-spacing: -0.002rem;
+            /*margin-bottom: -1.2rem;*/
+          } 
+        }
+
+        @media screen and (min-width: 1920px) and (min-height: 1080px) {
+          .subheader {
+            font-size: 0.427rem;
+            line-height: 1.05em;
+          }  
+
+          .is-windows .subheader {
+            font-size: 0.4rem;
+            padding-right: 1rem;
+            padding-left: 0.05rem;
+            line-height: 1.12em;
+            margin-bottom: 0.1rem;
+            width: auto;
+            letter-spacing: 0.004rem;
+          }     
+        }
+
+        @media screen and (min-width: 1920px) and (min-height: 1200px) {
+          .subheader {
+            /*margin-bottom: -1.5rem;*/
+            font-size: 0.42rem;
+            letter-spacing: 0.007rem;
+            line-height: 1.06em;
+          } 
+        }
+
+        .is-windows .subheader {
+          font-size: 0.4rem;
+          padding-right: 1rem;
+          padding-left: 0.05rem;
+          line-height: 1.12em;
+          margin-bottom: 0.1rem;
+          width: auto;
+          letter-spacing: 0.004rem;
+          transform: translateY(-12px);
+        }     
+
+        .copy {
+          display: flex;
+          align-items: flex-start;
+          flex: 0.75;
+          padding-left: 0.028rem;   
+          width: 21%;
+          font-size: 0.401rem;
+          line-height: 1.35em;
+        }      
+
+        @media screen and (min-width: 1024px) and (min-height: 768px) {
+          .copy {
+            width: 25%;
+            font-size: 0.375rem; 
+            margin-top: 1rem;
+          }
+        }    
+
+        @media screen and (min-width: 1250px) {
+          .copy {
+            width: 45%;
+            font-size: 0.375rem;                  
+          }
+        }      
+
+        @media screen and (min-width: 1250px) and (min-height: 768px) {
+          .copy {
+            width: 45%;
+            letter-spacing: -0.007rem;
+            line-height: 1.30em;
+            align-items: flex-start;	
+            margin-top: 1.4rem;
+          }
+        }
+        @media screen and (min-width: 1250px) and (min-height: 800px) {
+          .copy {
+            padding-left: 0;
+          } 
+        }
+
+        @media screen and (min-width: 1250px) and (min-height: 1024px) {
+          .copy {
+            font-size: 0.32rem;
+          }        
+        } 
+
+        @media screen and (min-width: 1360px) {
+          .copy {
+            letter-spacing: -0.007rem;
+            line-height: 1.30em;
+            margin-top: 0.6rem;
+          }
+        }
+
+        @media screen and (min-width: 1440px) {
+          .copy {
+            width:51%; 
+            font-size: 0.327rem;
+            letter-spacing: -0.005rem;
+            margin:0;
+          } 
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 900px) {
+          .copy {
+            width: 60%
+              letter-spacing: -0.008rem;
+            align-items: flex-start;
+            margin-top: 1.6rem;
+          }
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 1200px) {
+          .copy {
+            width: 50%;
+            font-size: 0.28rem;
+            align-items: flex-start;
+          } 
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 1200px) and (max-width: 1679px) and (min-height: 1199px) {
+          .copy {
+            max-height: 2rem;
+          } 
+        }
+
+        @media screen and (min-width: 1680px) and (min-height: 1050px) {
+          .copy {
+            font-size: 0.295rem;
+          } 
+        }
+
+        @media screen and (min-width: 1920px) and (min-height: 1080px) {
+          .copy {
+            font-size: 0.276rem;
+
+          }  
+        }
+
+        @media screen and (min-width: 1920px) and (min-height: 1200px) {
+          .copy {
+            font-size: 0.286rem;
+            letter-spacing: -0.0083rem;
+            line-height: 1.2em;
+            align-items: flex-end;
+          } 
+        }
+
+        .is-windows .copy {
+          display: none;
+          align-items: flex-end;
+          width: auto;
+          font-size: 0.275rem;
+          padding-right: 1.7rem;
+          padding-left: 0.05rem;
+          padding-bottom: 1.04rem; 
+        }
+
+        .copy__maxHeight {
+          max-height: 18em;
+        }
+
+        .is-windows .copy__maxHeight {
+          max-height: 6em;
+        }      
+
+        .footer {    
+          position: absolute;
+          bottom: 1.95rem;
+          left: 1.15rem;
+          z-index: 3;
+          width: 9rem;
+          color: var(--dynamic-footer-text-color);
+        }
+
+
+        @media screen and (min-width: 1024px) and (min-height: 768px) and (max-width: 1024px) and (max-height: 768px){
+          .copy__maxHeight {
+            max-height: 8.1em;
+          }
+        }
+
+        @media screen and (min-width: 1250px) {
+          .footer {
+            bottom: 1.67rem;
+            left: 1.4rem;
+          }
+        }
+
+        @media screen and (min-width: 1250px) and (min-height: 768px) {
+          .footer {
+            bottom: 1.9rem;
+            left: 1.19rem;          
+          }
+        }
+
+        @media screen and (min-width: 1250px) and (min-height: 800px) {
+          .footer {
+            bottom: 2rem;
+            left: 1.18rem;
+          }
+        }
+
+        @media screen and (min-width: 1250px) and (min-height: 1024px) {
+          .footer {
+            bottom: 1.60rem;
+            left: 1.11rem;
+          }        
+        } 
+
+        @media screen and (min-width: 1360px) {
+          .footer { 
+            bottom: 1.75rem;
+            left: 1.23rem;
+          }
+        }
+
+        @media screen and (min-width: 1440px) {
+          .footer {
+            bottom: 1.85rem;
+            left: 1.18rem;
+          }
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 900px) {
+          .footer {
+            bottom: 1.55rem;
+            left: 1.25rem;
+          } 
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 1200px) {
+          .footer {
+            bottom: 1.46rem;
+            left: 1.07rem; 
+          } 
+        }
+
+        @media screen and (min-width: 1680px) {
+          .footer {
+            bottom: 1.5rem;
+            left: 1.22rem;
+          } 
+        }
+
+        @media screen and (min-width: 1920px) and (min-height: 1080px) {
+          .footer {
+            bottom: 1.6rem;
+            left: 1.11rem;
+          }  
+        }
+
+        @media screen and (min-width: 1920px) and (min-height: 1200px) {
+          .footer {
+            bottom: 1.37rem;
+            left: 1.03rem;
+          } 
+        }
+
+        .is-windows .footer {
+          left: 0.73rem;
+          bottom: 7.1rem;
+          height: 1.15rem;
+        }
+
+        .is-windows.layout-2 .footer {
+          bottom: 7.6rem;
+        }
+
+        .is-windows.layout-3 .footer {
+          bottom: 8.05rem; 
+        }
+
+        .cta {
+          font-size: 0.713rem;
+          letter-spacing: 0.025rem;
+          word-wrap: break-word;
+        }     
+
+        .cta-text-colour--white {
+          color: {{{account.colors.white}}};
+        }
+
+        .cta-text-colour--black {
+          color: {{{account.colors.black}}};
+        }
+
+        @media screen and (min-width: 1024px) {
+          .cta {
+            width: 25%;
+            font-size: 0.5rem;
+          }
+        }
+        /*--- CTA 1280 x 768 screen ---*/
+        @media screen and (min-width: 1250px) {
+          .cta {
+            width: 50%;
+            font-size: 0.623rem;
+          }
+        }
+
+        @media screen and (min-width: 1250px) and (min-height: 768px) {
+          .cta {
+            width: 50%;
+          }
+        }
+
+        @media screen and (min-width: 1250px) and (min-height: 768px) {
+          .cta {
+            width: 50%;
+            font-size: 0.666rem;
+            letter-spacing: 0.02rem;
+          }
+        }
+
+        @media screen and (min-width: 1250px) and (min-height: 800px) {
+          .cta {
+            letter-spacing: 0.013rem;
+          }
+        }
+
+        @media screen and (min-width: 1250px) and (min-height: 1024px) {
+          .cta {
+            font-size: 0.55rem;
+            letter-spacing: 0.018rem;
+          }        
+        } 
+
+        @media screen and (min-width: 1360px) {
+          .cta {
+            font-size: 0.65rem;
+            letter-spacing: 0.02rem;
+          }
+        }
+
+        @media screen and (min-width: 1440px) {
+          .cta {
+            font-size: 0.6rem;
+            letter-spacing: 0.009rem;
+            width: 50%;
+          }
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 900px) {
+          .cta {
+            letter-spacing: -0.0001rem;
+          } 
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 1200px) {
+          .cta {
+            min-width: 60%;
+            font-size: 0.521rem;
+            letter-spacing: 0.017rem;
+          } 
+        }
+
+        @media screen and (min-width: 1680px) {
+          .cta {
+            font-size: 0.56rem;
+            letter-spacing: 0.018rem;
+          } 
+        }
+
+        @media screen and (min-width: 1920px) and (min-height: 1080px) {
+          .cta {
+            max-width: 412px;
+            margin-top: 0em;
+            font-size: 0.52rem;
+          }  
+        }
+
+        @media screen and (min-width: 1920px) and (min-height: 1200px) {
+          .cta {
+            font-size: 0.49rem;
+          }  
+        }
+
+        .is-windows .cta {
+          font-size: 0.52rem;
+        }
+
+        .cricos {
+          margin-top: 0.151rem;
+          font-size: 0.228rem;
+          padding-left: 0.022rem;
+          font-family: "Calibri";
+          letter-spacing: -0.7px;
+          width: 100%;
+        }    
+
+        @media screen and (min-width: 1024px) {
+          .cricos {
+            font-size: 0.17rem;
+            width: 100%;
+          }
+        }      
+
+        @media screen and (min-width: 1250px) {
+          .cricos {
+            font-size: 0.22rem;
+            width: 100%;
+          }
+        }      
+
+        @media screen and (min-width: 1250px) and (min-height: 768px) {
+          .cricos {
+            margin-top: 0.1rem;
+            font-size: 0.21rem;
+            letter-spacing: -0.8px;
+            width: 100%;
+          }
+        }      
+
+        @media screen and (min-width: 1250px) and (min-height: 1024px) {
+          .cricos {
+            font-size: 0.178rem; 
+            width: 100%;
+          }        
+        } 
+
+        @media screen and (min-width: 1360px) {
+          .cricos {
+            margin-top: 0.051rem;
+            font-size: 0.21rem;
+            letter-spacing: -0.8px;
+            width: 30%;
+          }
+        }
+
+        @media screen and (min-width: 1440px) {
+          .cricos {
+            margin-top: 0.09rem;
+            font-size: 0.185rem;
+            width: 100%;
+          }
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 900px) {
+          .cricos {
+            min-width: 30%;
+            margin-top: 0.19rem;
+            font-size: 0.18rem;
+            width: 100%;
+          } 
+        }
+
+        @media screen and (min-width: 1600px) and (min-height: 1200px) {
+          .cricos {
+            margin-top: 0.17rem;
+            font-size: 0.15rem;
+            width: 100%;
+          } 
+        }
+
+        @media screen and (min-width: 1680px) {
+          .cricos {
+            margin: 0.2rem 0;
+            font-size: 0.16rem;
+          } 
+        }
+
+        @media screen and (min-width: 1920px) and (min-height: 1080px) {
+          .cricos {
+            font-size: 0.15rem;
+            /*transform: translateY(-0.6rem);*/
+            width: 50%;
+          }  
+
+          .layout-3 .cricos {
+            /*transform: translateY(-0.2rem);*/
+          }
+        }
+
+        @media screen and (min-width: 1920px) and (min-height: 1200px) {
+          .cricos {
+            /*transform: translateY(-0.6rem);*/
+            position: relative;
+            display: block;
+            margin-top: 0.15rem;
+            font-size: 0.14rem;
+            margin-bottom: 4em;
+          }  
+
+          .layout-3 .cricos {
+            /*transform: translateY(-0.2rem);*/
+          }
+        }
+
+        .is-windows .cricos {
+          font-size: 0.148rem;  
+        }    
+
+        .theme-2 .cta,
+        .theme-2 .cricos,
+        .theme-3 .cta,
+        .theme-3 .cricos{
+          color:{{{account.colors.black}}};
+        }
+
+        .deakin-rgb-teal .cta,
+        .deakin-rgb-teal .cricos,
+        .theme-1 .cta,
+        .theme-1 .cricos{
+          color:{{{account.colors.white}}};
+        }
+
+      }
+
+
+
+
+
+
+
+
+
+      /*-----------------------*/    
+
+      .placeholderImage {       
+        position: absolute;
+        top: 3mm;
+        bottom: 3mm;
+        left: 3mm;
+        right: 3mm;
+        background-color: black;
+        z-index: 999;
+        opacity: 0.3;
+        background-image: url('https://files.outfit.io/media_library_items/179093/Windows10-1920x1080-shield.jpg');
+        background-size: contain;
+        pointer-events: none;
+        display: none;
+      }
+
+      /*
+      .placeholderImage--shield-1920-1080 - https://files.outfit.io/media_library_items/179093/Windows10-1920x1080-shield.jpg
+      .placeholderImage--circle-1920-1080 - https://files.outfit.io/media_library_items/179094/Windows10-1920x1080-circle.jpg
+      .placeholderImage--triangle-1920-1080 - https://files.outfit.io/media_library_items/179092/Windows10-1920x1080-triangle.jpg
+      .placeholderImage--shield-1920-1200 - https://files.outfit.io/media_library_items/179095/Windows10-1920x1200-shield.jpg
+      .placeholderImage--circle-1920-1200 - https://files.outfit.io/media_library_items/179096/Windows10-1920x1200-circle.jpg
+      .placeholderImage--triangle-1920-1200 - https://files.outfit.io/media_library_items/179097/Windows10-1920x1200-triangle.jpg
+      */
+
+      .format--1920x1200.is-windows .body {
+        width: 32%;
+        padding: 1.73rem 0 0 1.12rem;
+        height: 52.4%;
+      }
+      .format--1920x1080.is-windows .body {
+        width: 32%;
+        padding: 1.64rem 0 0 1.18rem;
+        height: 52.1%;
+      }
+
+      .bodyTop { 
+        flex: 1;
+      }
+
+      .bodyBottom {
+        margin-top: 10pt;
+      }
+
+      .format--1920x1200.layout-3.is-windows .bodyBottom {
+        padding-right: 58pt;
+      }
+      .format--1920x1080.layout-3.is-windows .bodyBottom {
+        padding-right: 90pt;
+      }
+
+      .format--1920x1200.is-windows .headline {    
+        margin-bottom: 0.58rem;   
+        padding-right: 0;
+        font-size: 0.75rem;
+      }
+      .format--1920x1080.is-windows .headline {    
+        margin-bottom: 0.52rem;
+        padding-right: 0;
+        font-size: 0.71rem;
+        line-height: 1.2em;
+      }
+
+      .format--1920x1200.is-windows .subheader {
+        transform: none;
+        max-width: none;
+        margin-bottom: 0;
+        padding: 0;
+        font-size: 0.415rem;               
+        line-height: 1.2em;
+      } 
+      .format--1920x1080.is-windows .subheader {
+        transform: none;
+        max-width: none;
+        margin-bottom: 0;
+        padding: 0;
+        font-size: 0.395rem;
+        line-height: 1.3em;
+      }
+
+      .format--1920x1200.layout-1.is-windows .shape {
+        clip-path: inset( 0 round 0 4.6rem 4.6rem 0);
+        width: 47%;
+        height: 8.9rem;
+      }
+      .format--1920x1080.layout-1.is-windows .shape {
+        clip-path: inset( 0 round 0 4.6rem 4.6rem 0);
+        width: 39.6%;
+        height: 8.6rem;
+      }
+
+      .format--1920x1200.layout-2.is-windows .shape  {
+        clip-path: circle(6.8rem at 4rem 6.7rem);
+      }
+      .format--1920x1080.layout-2.is-windows .shape  {
+        clip-path: circle(6.5rem at 4.3rem 7.2rem);
+      }
+
+      .format--1920x1200.layout-3.is-windows .shape {
+        clip-path: polygon(0% -23%, 61% 29%, 0% 80%);
+      }
+      .format--1920x1080.layout-3.is-windows .shape {
+        clip-path: polygon(0% -29.6%, 54.4% 26.4%, 0% 81%);
+      }
+
+      .format--1920x1200.layout-1.is-windows .logo,
+      .format--1920x1200.layout-2.is-windows .logo,
+      .format--1920x1200.layout-3.is-windows .logo {
+        width: 141pt;
+        height: 141pt;
+      }
+      .format--1920x1080.layout-1.is-windows .logo,
+      .format--1920x1080.layout-2.is-windows .logo,
+      .format--1920x1080.layout-3.is-windows .logo {
+        width: 122pt;
+        height: 122pt;
+      }
+
+      .format--1920x1200.layout-1.is-windows .logo {
+        left: 38.3%;
+        top: 6%;
+      }
+      .format--1920x1080.layout-1.is-windows .logo {
+        left: 32.1%;
+        top: 6%;
+      }
+
+      .format--1920x1200.layout-2.is-windows .logo {
+        left: 38%;
+        top: 6.4%;
+      }
+      .format--1920x1080.layout-2.is-windows .logo {
+        left: 35.8%;
+        top: 6.7%;
+      }
+
+      .format--1920x1200.layout-3.is-windows .logo {
+        left: 38.3%;
+        top: 1rem!important;
+      }
+      .format--1920x1080.layout-3.is-windows .logo {
+        left: 35.9%;
+        top: 1rem!important;
+      }
+
+      .format--1920x1200.is-windows .cta {  
+        width: 100%;
+        max-width: none;
+        font-size: 0.48rem;
+      }
+      .format--1920x1080.is-windows .cta {  
+        width: 100%;
+        max-width: none;
+        font-size: 0.43rem;
+      }
+
+      .format--1920x1200.is-windows .visual-overlay,
+      .format--1920x1080.is-windows .visual-overlay {
+        background-position: bottom;
+        background-size: contain;
+      }
+
+      .format--1920x1200 .cricos,
+      .format--1920x1080 .cricos {
+        margin-bottom: 0;
+        margin-top: 0.1rem; 
+        width: none;
+      }
+
+
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body class="format--{{DE_format-size--lsc}} {{ DEAKIN_theme}} {{ DEAKIN_layout}} {{ DEAKIN_iswindows }} {{ DEAKIN_visual-overlay }}">    
+
+
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <div class="placeholder "></div>
+
+        <div class="visual-overlay"></div>
+
+        <div class="container fit">
+          <div class="placeholderImage "></div><!--placeholder-->
+
+          <div class="backgroundImage">
+            {{{ DEAKIN_background-image }}}
+          </div><!--backgroundImage-->
+          <div class="shape"></div><!--shape-->
+          <div class="body">
+            <div class="bodyTop">
+              <div class="bodyTop__inner" data-max-height="dynamic">
+                <div class="headline" data-max-line="3">
+                  {{{ DEAKIN_headline }}}
+                </div><!--headline-->
+                <div class="subheader" data-max-line="6">
+                  {{{ DEAKIN_subheader }}}
+                </div><!--subheader-->
+              </div><!--bodyTop__inner-->
+            </div><!--bodyTop-->
+            <div class="bodyBottom">
+              <div class="cta">
+                <div class="textFit">
+                  {{{ DEAKIN_cta }}}
+                </div> <!-- textFit -->
+              </div><!--cta-->
+              <div class="cricos">
+                <div style="max-height: 1.5em;">
+                  <div class="check-overflow">
+                    Deakin University CRICOS Provider Code: {{{ DEAKIN_cricos }}}
+                  </div><!-- end check-overflow -->
+                </div><!-- end max-height -->
+              </div><!--cricos-->
+            </div><!--bodyBottom-->
+          </div><!--body-->
+          <!--<div class="footer">
+            <div class="cta" data-char-limit="30">
+              {{{ DEAKIN_cta }}}
+            </div><!--cta-->
+          <!--<div class="cricos">
+              <div style="max-height: 1.5em;">
+                <div class="check-overflow">
+                  Deakin University CRICOS Provider Code: {{{ DEAKIN_cricos }}}
+                </div><!-- end check-overflow -->
+          <!--</div><!-- end max-height -->
+          <!--</div><!--cricos-->   
+          <!--</div><!--footer-->
+          <div class="logo"></div><!--logo-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+
+                                                         if (window.showCrop) {
+                                                           document.querySelector('body').classList.add('show-crop');
+                                                         } else {
+                                                           document.querySelector('body').classList.add('hide-crop');
+                                                         }                                               
+    </script>
+
+    <script src="main.js"></script>   
+    <script src="prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+        });
+      });
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+      });
+
+      checkCrop();
+      checkExport();
+      charLimit();
+
+
+
+
+    </script>
+
+
+  </body>
+</html>
