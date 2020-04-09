@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html async>
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link type="text/css" rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Calibri/stylesheet.css" />    
+    <link type="text/css" rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/worldly/stylesheet.css" />    
+
+    <style>
+      :root {
+        --white: {{{account.colors.white}}};
+        --black: {{{account.colors.black}}};
+
+        /*CMYK COLOUR*/
+        --cmyk-pink: {{{account.colors.hex-cmyk-pink}}}; 
+        --cmyk-turquoise: {{{account.colors.hex-cmyk-turquoise}}};   
+        --cmyk-teal: {{{account.colors.hex-cmyk-teal}}};
+        --cmyk-orange: {{{account.colors.hex-cmyk-orange}}};
+        --cmyk-charcoal: {{{account.colors.hex-cmyk-charcoal}}};
+        --cmyk-yellow: {{{account.colors.hex-cmyk-yellow}}};
+        --cmyk-grey: {{{account.colors.hex-cmyk-grey}}};
+
+
+        /*RGB COLOUR*/       
+        --rgb-turquoise: rgb(13,133,114);
+        --rgb-pink: rgb(199, 66, 152);
+        --rgb-teal: rgb(0, 125, 152);
+        --rgb-orange: rgb(247, 105, 25);
+        --rgb-yellow: rgb(255, 217, 35);
+        --rgb-charcoal: rgb(54, 54, 53);
+        --rgb-grey: rgb(224, 224, 224);
+
+
+        /*RGB HEADING COLOUR*/
+        --rgb-heading-turquoise: rgb(11, 113, 97);
+        --rgb-heading-pink: rgb(172, 51, 130);
+        --rgb-heading-teal: rgb(0, 109, 136);
+        --rgb-heading-orange: rgb(173, 66, 6);
+      }
+
+
+      /* Setting up color variables for teal theme */
+      .rgb.deakin-rgb-teal-1 {
+        --dynamic-bg-color: var(--rgb-teal);
+        --dynamic-text-color: var(--white);  
+        --dynamic-shade-color: var(--rgb-charcoal);
+        --dynamic-cricos-color: var(--white);   
+      }
+
+      .rgb.deakin-rgb-teal-2 {
+        --dynamic-bg-color: var(--rgb-teal);
+        --dynamic-text-color: var(--white);  
+        --dynamic-shade-color: var(--rgb-grey);    
+        --dynamic-cricos-color: var(--black);    
+      }   
+
+      .cmyk.deakin-cmyk-teal-1 {
+        --dynamic-bg-color: var(--cmyk-teal);
+        --dynamic-text-color: var(--white);  
+        --dynamic-shade-color: var(--cmyk-charcoal);
+        --dynamic-cricos-color: var(--white);   
+      }
+
+      .cmyk.deakin-cmyk-teal-2 {
+        --dynamic-bg-color: var(--cmyk-teal);
+        --dynamic-text-color: var(--white);  
+        --dynamic-shade-color: var(--cmyk-grey);    
+        --dynamic-cricos-color: var(--black);    
+      } 
+
+      /* Setting up color variables for yellow theme */
+      .rgb.deakin-rgb-yellow-1 {
+        --dynamic-bg-color: var(--rgb-yellow);
+        --dynamic-text-color: var(--black);    
+        --dynamic-shade-color: var(--rgb-charcoal);     
+        --dynamic-cricos-color: var(--white);  
+      }
+
+      .rgb.deakin-rgb-yellow-2 {
+        --dynamic-bg-color: var(--rgb-yellow);
+        --dynamic-text-color: var(--black);   
+        --dynamic-shade-color: var(--rgb-grey); 
+        --dynamic-cricos-color: var(--black);   
+      }  
+
+      .cmyk.deakin-cmyk-yellow-1 {
+        --dynamic-bg-color: var(--cmyk-yellow);
+        --dynamic-text-color: var(--black);    
+        --dynamic-shade-color: var(--cmyk-charcoal);     
+        --dynamic-cricos-color: var(--white);  
+      }
+
+      .cmyk.deakin-cmyk-yellow-2 {
+        --dynamic-bg-color: var(--cmyk-yellow);
+        --dynamic-text-color: var(--black);   
+        --dynamic-shade-color: var(--cmyk-grey); 
+        --dynamic-cricos-color: var(--black);   
+      }   
+
+      /* Setting up color variables for turquoise theme */
+      .rgb.deakin-rgb-turquoise-1 {
+        --dynamic-bg-color: var(--rgb-turquoise);
+        --dynamic-text-color: var(--white);  
+        --dynamic-shade-color: var(--rgb-charcoal);  
+        --dynamic-cricos-color: var(--white);  
+      }
+
+      .rgb.deakin-rgb-turquoise-2 {
+        --dynamic-bg-color: var(--rgb-turquoise);
+        --dynamic-text-color: var(--white);  
+        --dynamic-shade-color: var(--rgb-grey); 
+        --dynamic-cricos-color: var(--black);   
+      }    
+
+      .cmyk.deakin-cmyk-turquoise-1 {
+        --dynamic-bg-color: var(--cmyk-turquoise);
+        --dynamic-text-color: var(--white);  
+        --dynamic-shade-color: var(--cmyk-charcoal);  
+        --dynamic-cricos-color: var(--white);  
+      }
+
+      .cmyk.deakin-cmyk-turquoise-2 {
+        --dynamic-bg-color: var(--cmyk-turquoise);
+        --dynamic-text-color: var(--white);  
+        --dynamic-shade-color: var(--cmyk-grey); 
+        --dynamic-cricos-color: var(--black);   
+      }
+
+      /* Setting up color variables for orange theme */
+      .rgb.deakin-rgb-orange-1 {
+        --dynamic-bg-color: var(--rgb-orange);
+        --dynamic-text-color: var(--black);    
+        --dynamic-shade-color: var(--rgb-charcoal);    
+        --dynamic-cricos-color: var(--white);  
+      }
+
+      .rgb.deakin-rgb-orange-2 {
+        --dynamic-bg-color: var(--rgb-orange);
+        --dynamic-text-color: var(--black);  
+        --dynamic-shade-color: var(--rgb-grey);  
+        --dynamic-cricos-color: var(--black);   
+      }
+
+      .cmyk.deakin-cmyk-orange-1 {
+        --dynamic-bg-color: var(--cmyk-orange);
+        --dynamic-text-color: var(--black);    
+        --dynamic-shade-color: var(--cmyk-charcoal);    
+        --dynamic-cricos-color: var(--white);  
+      }
+
+      .cmyk.deakin-cmyk-orange-2 {
+        --dynamic-bg-color: var(--cmyk-orange);
+        --dynamic-text-color: var(--black);  
+        --dynamic-shade-color: var(--cmyk-grey);  
+        --dynamic-cricos-color: var(--black);   
+      }
+      /* Setting up color variables for purple theme */
+      .rgb.deakin-rgb-pink-1 {
+        --dynamic-bg-color: var(--rgb-pink);
+        --dynamic-text-color: var(--white);  
+        --dynamic-shade-color: var(--rgb-charcoal);     
+        --dynamic-cricos-color: var(--white);  
+      }
+
+      .rgb.deakin-rgb-pink-2 {
+        --dynamic-bg-color: var(--rgb-pink);
+        --dynamic-text-color: var(--white); 
+        --dynamic-shade-color: var(--rgb-grey);    
+        --dynamic-cricos-color: var(--black);   
+      } 
+
+      .cmyk.deakin-cmyk-pink-1 {
+        --dynamic-bg-color: var(--cmyk-pink);
+        --dynamic-text-color: var(--white);  
+        --dynamic-shade-color: var(--cmyk-charcoal);     
+        --dynamic-cricos-color: var(--white);  
+      }
+
+      .cmyk.deakin-cmyk-pink-2 {
+        --dynamic-bg-color: var(--cmyk-pink);
+        --dynamic-text-color: var(--white); 
+        --dynamic-shade-color: var(--cmyk-grey);    
+        --dynamic-cricos-color: var(--black);   
+      } 
+
+      html {
+        font-family: "Worldly", sans-serif;
+        font-size: 9pt;
+        color: var(--white);
+      }
+
+      .page {
+        background: var(--white);
+      }
+
+      .overflow {
+        border: 3px dashed red;
+        position: relative; }
+      .overflow h1,
+      .overflow h2,
+      .overflow h3,
+      .overflow h4,
+      .overflow h5,
+      .overflow h6,
+      .overflow p,
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: ‘+’;
+        position: absolute;
+        z-index: 5;
+        top: 5x;   
+        right: 5px;   
+        height: 55px;   
+        width: 55px;    
+        border: 1px solid red;
+        color: red;
+        padding: 2px 2px 2px 3px;
+        box-sizing: border-box;
+        font-size: 40px;   
+        text-align: center;
+        line-height: 8px;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: ‘There is overset content in this column. Please remove it’;
+        position: absolute;
+        top: 65px;  
+        right: 5px;
+        background-color: black;
+        color: white;
+        border-radius: 2px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: 40px;   
+        font-weight: 400;
+        line-height: 1.1em;
+        text-align: right;
+        width: 15em;
+      }
+
+      .placeholder {
+        position: absolute;
+        top: 3mm;
+        left: 3mm;
+        right: 3mm;
+        bottom: 3mm;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 100;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      .layout-1 .placeholder {
+        background-image: url(https://files.outfit.io/media_library_items/146729/Digi-screen-Portrait-3---reworked-designs-for-1080x1920-placeholder2.jpg);
+      }
+
+      .layout-2 .placeholder {
+        background-image: url(https://files.outfit.io/media_library_items/146728/Digi-screen-Portrait-3---reworked-designs-for-1080x1920-placeholder.jpg);
+      }
+
+      .layout-3 .placeholder {
+        background-image: url(https://files.outfit.io/media_library_items/146730/Digi-screen-Portrait-3---reworked-designs-for-1080x1920-placeholder3.jpg);
+      }
+
+      .fit {
+        background: var(--dynamic-shade-color);
+      }
+
+      .backgroundImage {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .shape {
+        position: absolute;
+        background: var(--dynamic-bg-color);
+      }
+
+      .layout-1 .shape {
+        width: 12.231rem;
+        height: 12.121rem;
+        left: 0.02rem;
+        top: 0rem;
+        clip-path: inset(0 0 0.8rem 0 round 0% 0% 50% 50%);
+      }
+
+      .layout-2 .shape {
+        left: -0.04rem;
+        top: 0rem;
+        width: 9.931rem;
+        height: 11.121rem;
+        clip-path: circle(6.4rem at 3.1rem 4.42rem);
+      }
+
+      .layout-3 .shape {
+        left: -0.46rem;
+        top: -0.88rem;
+        width: 17.4rem;
+        height: 20.179rem;
+        clip-path: polygon(0 -7.5%, 0 73.2%, 81% 33%);
+      }
+
+      .layout-1 .backgroundImage {
+        width: 12.231rem !important;
+        height: 12.121rem !important;
+        clip-path: inset(2.5rem 0 0 0 round 50% 50% 0% 0%);
+      }
+
+      .layout-2 .backgroundImage {
+        height: 11.551rem !important;
+        width: 10.403rem !important;
+        clip-path: inset(0.1rem 0rem -0.61rem 0.87rem round 6.079rem 0rem 0rem 5.579rem);
+      }
+
+      .layout-3 .backgroundImage {
+        height: 18.951rem !important;
+        width: 20.403rem !important;
+        left: -2.5rem;
+        bottom: -3.4rem;
+        clip-path: polygon(0% 50.6%, 81% 100%, 82% 0%);
+      }
+
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }       
+
+      .body {
+        position: relative;
+        z-index: 1;
+        color: var(--dynamic-text-color); 
+      }   
+
+      .layout-1 .body {
+        padding: 1.93rem 2.34rem 2.995rem 1.8rem;
+      }
+
+      .layout-2 .body {
+        padding: 1.72rem 4.335rem 3.495rem 1.2rem;  
+      }
+
+      .layout-3 .body {
+        padding: 3.028rem 4.399rem 2.864rem 1.28rem;
+      }
+
+      .logo {
+        position: absolute;
+        background: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/4b35e67d1c8c3c77734070f5b54cd3f5/circle-white.svg') no-repeat;
+        background-size: cover;
+        z-index: 2;
+      }  
+
+      .layout-1 .logo {
+        width: 3.82rem;
+        height: 3.82rem;
+        top: 9.72rem;
+        left: 4.22rem;
+      }
+
+      .layout-2 .logo {
+        width: 3.68rem;
+        height: 3.68rem;
+        top: 8.98rem;
+        left: 2.99rem;
+      }
+
+      .layout-3 .logo {
+        width: 3.38rem;
+        height: 3.38rem;
+        top: 6.65rem;
+        right: 1.25rem;
+      }
+
+      .headline {
+        font-weight: 500;
+        line-height: 1.2em;
+      }
+
+      .layout-1 .headline {
+        margin-bottom: 0.2rem;
+        font-size: 0.96rem;
+      }
+
+      .layout-2 .headline {
+        margin-bottom: 0.5rem;
+        font-size: 0.87rem;
+      }
+
+      .layout-3 .headline {
+        margin-bottom: 0.51rem;
+        font-size: 0.865rem;
+      }
+
+      .subheader {
+        font-weight: 500;
+        line-height: 1.15em;
+        letter-spacing: -0.009046rem;
+      }
+
+      .layout-1 .subheader {
+        font-size: 0.5rem;
+      }
+
+      .layout-2 .subheader {
+        font-size: 0.502rem;
+      }
+
+      .layout-3 .subheader {
+        font-size: 0.42rem;
+        letter-spacing: 0.008em;
+      }
+
+      .footer {       
+        position: absolute;
+        z-index: 3;
+        color: var(--dynamic-text-color);
+      }
+
+      .layout-1 .footer {
+        top: 7.39rem;
+        left: 1.8rem;
+      }
+
+      .layout-2 .footer {
+        top: 6.99rem;
+        left: 1.2rem;
+      }
+
+      .layout-3 .footer {
+        top: 8.24rem;
+        left: 1.28rem;
+      }
+
+      .cta {
+        font-weight: 500;
+        line-height: 1.2em;
+      }
+
+      .layout-1 .cta,
+      .layout-2 .cta {
+        font-size: 0.601rem;
+      }
+
+      .layout-3 .cta {
+        font-size: 0.537rem;
+      }
+
+
+      .cta-text-colour--white {
+        color: {{{account.colors.white}}};
+      }
+
+      .cta-text-colour--black {
+        color: {{{account.colors.black}}};
+      }
+
+      .cricos {
+        position: absolute;
+        font-family: "Calibri";
+        line-height: 1.2em;
+        color: var(--dynamic-cricos-color);
+        z-index: 3;
+      }  
+
+      .layout-1 .cricos {
+        width: 50vw;
+        transform: rotate(-90deg);
+        transform-origin: left bottom;
+        left: 0.5rem;
+        bottom: 6.86rem;
+        font-size: 0.169rem;
+      }
+
+      .layout-2 .cricos {
+        width: 70vw;
+        transform: rotate(-90deg);
+        transform-origin: left bottom;
+        left: 0.67rem;
+        bottom: 0.46rem;
+        font-size: 0.212rem;
+      }
+
+      .layout-3 .cricos {
+        width: 50vw;
+        left: 0.53rem;
+        bottom: 0.41rem;
+        font-size: 0.167rem;
+      }
+
+      @supports (-moz-appearance:none) {
+
+        .layout-1 .backgroundImage {
+          clip-path: inset(2.5rem 0 0 0 round 6rem 6rem  0% 0%);
+        }
+
+      }
+
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body class="{{DEAKIN_colour-theme--po1}}{{^DEAKIN_colour-theme--po1}}rgb{{/DEAKIN_colour-theme--po1}}             
+               {{DEAKIN_cmyk--pos3}}{{^DEAKIN_cmyk--pos3}}deakin-cmyk-pink-2{{/DEAKIN_cmyk--pos3}}
+               {{DEAKIN_theme--3-portrait}}{{^DEAKIN_theme--3-portrait}}deakin-rgb-pink-2{{/DEAKIN_theme--3-portrait}}
+               {{DEAKIN_layout}}{{^DEAKIN_layout}}layout-1{{/DEAKIN_layout}}">    
+
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <div class="placeholder"></div>
+
+        <div class="container fit">
+
+          <div class="shape"></div><!--shape-->
+          <div class="body">
+            <div class="headline">
+              <div style="max-height: 3.5em;">
+                <div class="check-overflow">
+                  {{{ DEAKIN_headline }}}
+                </div><!-- end check-overflow -->
+              </div><!-- end max-height -->
+            </div><!--headline-->
+            <div class="subheader">
+              <div style="max-height: 3.5em;">
+                <div class="check-overflow">
+                  {{{ DEAKIN_subheader }}}
+                </div><!-- end check-overflow -->
+              </div><!-- end max-height -->
+            </div><!--subheader-->
+          </div><!--body-->
+          <div class="logo"></div><!--logo-->
+          <div class="footer cta-text-colour--{{{DEAKIN_cta-text-colour}}}">
+            <div class="cta" data-char-limit="30">
+              {{{ DEAKIN_cta }}}
+            </div><!--cta-->
+          </div><!--footer-->
+          <div class="cricos">
+            <div style="max-height: 1.5em;">
+              <div class="check-overflow">
+                Deakin University CRICOS Provider Code: {{{ DEAKIN-3_cricos }}}
+              </div><!-- end check-overflow -->
+            </div><!-- end max-height -->
+          </div><!--cricos-->   
+          <div class="backgroundImage">
+            {{{ DEAKIN_background-image }}}
+          </div><!--backgroundImage-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+
+                                                         if (window.showCrop) {
+                                                           document.querySelector('body').classList.add('show-crop');
+                                                         } else {
+                                                           document.querySelector('body').classList.add('hide-crop');
+                                                         }                                               
+    </script>
+
+    <script src="main.js"></script>   
+    <script src="prefixfree.js"></script>
+
+    <script>
+
+      // Check Overflow function
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }   
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));  
+        charLimit();
+      } setInterval(loop, 1000);  
+
+      // Fix for the resizable background images - fullscreen and digital vairaitons only
+      /**function checkCrop() {
+       if ({{show-crop}} === true) {
+        } else {
+          [].forEach.call(document.querySelectorAll('.outfit-resizable-background'), function (el) {
+            el.parentNode.style.left = '0';
+            el.parentNode.style.right = '0';
+            el.parentNode.style.top = '0';
+            el.parentNode.style.bottom = '0';
+            el.parentNode.style.width = '100%';
+            el.parentNode.style.height = '100%';
+          });
+        }
+      } */
+
+      // Adding limit for the word length
+      function charLimit() {
+        const elements = document.querySelectorAll("[data-char-limit]");
+
+        elements.forEach(element => {
+          const limit = element.dataset.charLimit;
+
+          if(element == null) { return }
+          var tokenValue = element.querySelectorAll(".token-value");
+
+          if(tokenValue.length != 0) {
+            element = tokenValue.item(0);
+          }
+          var code = element.innerText;
+          if(code.length > limit) {
+            // Check Token Again
+            if(tokenValue.length != 0) {
+              element.parentNode.classList.add("overflow");  
+            }
+            else {
+              element.classList.add("overflow");
+            }
+          }
+          else {
+            // Check Token Again
+            if(tokenValue.length != 0) {
+              element.parentNode.classList.remove("overflow");  
+            }
+            else {
+              element.classList.remove("overflow");
+            }
+          }
+        })
+      }  
+
+    </script>
+
+    <script type="text/javascript">
+      // Add many fallbacks for Print Ready
+      document.addEventListener('DOMContentLoaded', function(event) {
+        document.dispatchEvent(new Event('printready'));
+      });
+
+      setTimeout(function() {
+        document.dispatchEvent(new Event('printready'));
+      }, 2000);
+
+      document.dispatchEvent(new Event('printready'));
+    </script>    
+
+  </body>
+</html>
