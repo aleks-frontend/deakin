@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html data-sign="OSL">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+      @import url("https://outfit-assets-production.s3.amazonaws.com/fonts/worldly/stylesheet.css");
+      @import url("https://outfit-assets-production.s3.amazonaws.com/fonts/Calibri/stylesheet.css");
+
+      :root {
+        --white: {{{account.colors.white}}};
+        --black: {{{account.colors.black}}};
+
+        /*CMYK COLOUR*/
+        --cmyk-pink: {{{account.colors.hex-cmyk-pink}}}; 
+        --cmyk-turquoise: {{{account.colors.hex-cmyk-turquoise}}};   
+        --cmyk-teal: {{{account.colors.hex-cmyk-teal}}};
+        --cmyk-orange: {{{account.colors.hex-cmyk-orange}}};
+        --cmyk-charcoal: {{{account.colors.hex-cmyk-charcoal}}};
+        --cmyk-yellow: {{{account.colors.hex-cmyk-yellow}}};
+        --cmyk-grey: {{{account.colors.hex-cmyk-grey}}};
+
+
+        /*RGB COLOUR*/       
+        --rgb-turquoise: {{{account.colors.turquoise}}};
+        --rgb-pink: {{{account.colors.pink-digital-copy}}};
+        --rgb-teal: {{{account.colors.teal}}};
+        --rgb-orange: {{{account.colors.orange-digital-copy}}};
+        --rgb-yellow: {{{account.colors.yellow}}};
+        --rgb-charcoal: {{{account.colors.charcoal}}};
+        --rgb-grey: {{{account.colors.grey}}};
+      }
+
+      .rgb.rgb-pink {
+        --dynamic-shade-color: var(--rgb-pink);   
+      }      
+
+      .cmyk.cmyk-pink {
+        --dynamic-shade-color: var(--cmyk-pink);   
+      }  
+
+      .rgb.rgb-turquoise {
+        --dynamic-shade-color: var(--rgb-turquoise);       
+      }  
+
+      .cmyk.cmyk-turquoise {
+        --dynamic-shade-color: var(--cmyk-turquoise);      
+      }  
+
+      .rgb.rgb-teal {
+        --dynamic-shade-color: var(--rgb-teal);          
+      }   
+
+      .cmyk.cmyk-teal {
+        --dynamic-shade-color: var(--cmyk-teal);      
+      }   
+
+      .rgb.rgb-yellow {
+        --dynamic-shade-color: var(--rgb-yellow);      
+      } 
+
+      .cmyk.cmyk-yellow {
+        --dynamic-shade-color: var(--cmyk-yellow);   
+      }
+
+      .rgb.rgb-orange {
+        --dynamic-shade-color: var(--rgb-orange);          
+      }
+
+      .cmyk.cmyk-orange {
+        --dynamic-shade-color: var(--cmyk-orange);     
+      } 
+
+      .rgb {
+        --dynamic-bg-color: var(--rgb-grey);
+      }
+
+      .cmyk {
+        --dynamic-bg-color: var(--cmyk-grey);
+      }
+
+      html {
+        font-family: 'Worldly', sans-serif;
+        font-size: 11pt;
+        color: #000;
+        word-break: break-word;
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 2.65rem;
+        left: 7.05rem;
+        overflow: hidden;
+        width: 17.15rem;
+        height: 17.15rem;
+        border-radius: 50%;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }      
+
+      /* Helper classes */
+      .u-hide { display: none; }
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      .reposition-fix div {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .fit {
+        background-color: var(--dynamic-bg-color);
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        position: absolute!important;
+        top: 2.5rem;
+        left: 1.03rem;
+        height: 16.64rem;
+        width: 5.3rem;  
+        color: var(--black);
+      }
+
+      .topSection {
+        flex: 1;
+      }
+
+      .heading {
+        margin-bottom: 0.81rem;
+        font-weight: 300;
+      }
+
+      .heading {
+        color: var(--dynamic-shade-color);
+      }
+
+      .heading__inner {
+        max-height: 4.8rem;
+      }
+
+      .subheading {
+        margin-bottom: 0.53rem;
+        font-weight: 500;
+      }
+
+      .bodyCopy {
+        font-size: 0.285rem;
+        font-family: 'Calibri';
+      }
+
+      .bodyCopy ul {
+        padding-left: 0.37rem;
+        margin: 0.45rem 0;
+      }
+
+      .bodyCopy ul:first-child {
+        margin-top: 0;
+      }
+
+      .bodyCopy li {
+        list-style-type: disc;
+      }
+
+      .bottomSection {
+        margin-top: 0.5rem;
+      }
+
+      .cta {
+        font-size: 0.45rem;
+      }
+
+      .website {
+        font-size: 0.45rem;
+        font-weight: 700;
+      }
+
+      .cricos {
+        margin-top: 0.2rem;
+        font-size: 0.155rem;
+        font-family: 'Calibri';
+      }
+
+      .logo {
+        position: absolute;
+        top: 2.28rem;
+        left: 10rem;
+        width: 2.84rem;
+      }
+
+      .logo img {
+        width: 100%;
+      }
+
+      .u-uppercase {
+        text-transform: uppercase;
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholderToggle-new }}{{^placeholderToggle-new}}hide{{/placeholderToggle-new}} crop--{{show-crop}}
+                                         {{DEAKIN_colour-theme--po1}}{{^DEAKIN_colour-theme--po1}}rgb{{/DEAKIN_colour-theme--po1}}
+                                         {{DEAKIN_cmyk--pos4}}{{^DEAKIN_cmyk--pos4}}cmyk-pink{{/DEAKIN_cmyk--pos4}}
+                                         {{DEAKIN_rgb--pos4}}{{^DEAKIN_rgb--pos4}}rgb-pink{{/DEAKIN_rgb--pos4}}"
+        data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholderOpacity }}">
+      <div class="placeholderMaster__item" data-bg="{{ placeholderImage-1 }}"></div>
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+
+          <div class="backgroundImage"><div class="reposition-fix">{{{ DKN_background-image-a4fl1 }}}</div></div> <!--backgroundImage-->
+          <div class="content">
+            <div class="topSection">
+              <div data-max-height="dynamic">
+                {{#DKN_heading-a4fl1}}
+                <div class="heading">
+                  <div class="heading__inner" style="font-size: calc(0.91rem + 0.578rem * {{{DKN_heading-font-size-a4fl1}}});" data-max-height="css">{{{ DKN_heading-a4fl1 }}}</div><!--heading__inner-->
+                </div><!--heading-->
+                {{/DKN_heading-a4fl1}}
+                {{#DKN_subheading-a4fl1 }}
+                <div class="subheading">
+                  <div class="subheading__inner" style="font-size: calc(0.4rem + 0.578rem * {{DKN_subheading-font-size-a4fl1}});" data-max-line="6">{{{ DKN_subheading-a4fl1 }}}</div><!--heading__inner-->
+                </div><!--subheading-->
+                {{/DKN_subheading-a4fl1 }}
+                {{#DKN_body--a4fl1 }}
+                <div class="bodyCopy">
+                  {{{ DKN_body--a4fl1 }}}
+                </div><!--bodyCopy-->
+                {{/DKN_body--a4fl1 }}
+              </div><!-- dynamic -->                
+            </div><!--topSection-->
+            <div class="bottomSection">
+              {{#cta}}<div class="cta" data-max-line="6">{{{ cta }}}</div>{{/cta}}
+              <div class="website">{{{ website }}}</div>
+              <div class="cricos">
+                {{{ cricos }}}
+              </div><!--cricos-->
+            </div><!--bottomSection-->
+          </div><!--content-->
+          <div class="logo"><img src="{{{account.logos.circle}}}"></div>
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="js/dynamic-inject.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+          hideEmptyTitles();
+        });
+      });
+
+      const injectObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          injectDynamicContent();
+        });
+      });      
+
+      const injectSources = document.querySelectorAll('[data-target-id]');
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      if ( injectSources.length > 0 ) {
+        injectSources.forEach(src => {
+          injectObserver.observe(src, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });            
+        });
+      }    
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+        injectDynamicContent();
+        hideEmptyTitles();
+      });
+      
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+
+    </script>
+
+
+  </body>
+</html>
