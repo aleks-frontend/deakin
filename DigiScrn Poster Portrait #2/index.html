@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link type="text/css" rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Calibri/stylesheet.css" />    
+    <link type="text/css" rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/worldly/stylesheet.css" />    
+
+    <style>
+      :root {
+        --white: {{{account.colors.white}}};
+        --black: {{{account.colors.black}}};
+
+        /*CMYK COLOUR*/
+        --cmyk-pink: {{{account.colors.hex-cmyk-pink}}}; 
+        --cmyk-turquoise: {{{account.colors.hex-cmyk-turquoise}}};   
+        --cmyk-teal: {{{account.colors.hex-cmyk-teal}}};
+        --cmyk-orange: {{{account.colors.hex-cmyk-orange}}};
+        --cmyk-charcoal: {{{account.colors.hex-cmyk-charcoal}}};
+        --cmyk-yellow: {{{account.colors.hex-cmyk-yellow}}};
+
+
+        /*RGB COLOUR*/       
+        --rgb-turquoise: rgb(13,133,114);
+        --rgb-pink: rgb(199, 66, 152);
+        --rgb-teal: rgb(0, 125, 152);
+        --rgb-orange: rgb(247, 105, 25);
+        --rgb-yellow: rgb(255, 217, 35);
+        --rgb-charcoal: rgb(54, 54, 53);
+        --rgb-grey: rgb(255, 255, 255);
+
+
+        /*RGB HEADING COLOUR*/
+        --rgb-heading-turquoise: rgb(11, 113, 97);
+        --rgb-heading-pink: rgb(172, 51, 130);
+        --rgb-heading-teal: rgb(0, 109, 136);
+        --rgb-heading-orange: rgb(173, 66, 6);
+      }
+
+      .rgb.rgb-teal {
+        --dynamic-bg-color: var(--rgb-teal);
+        --dynamic-text-color: var(--white);
+        --dynamic-footer-text-color: var(--white);
+        --dynamic-shape-color: var(--rgb-pink);
+      }
+
+      .cmyk.cmyk-teal {
+        --dynamic-bg-color: var(--cmyk-teal); 
+        --dynamic-text-color: var(--white);
+        --dynamic-footer-text-color: var(--white);
+        --dynamic-shape-color: var(--cmyk-pink); 
+      }
+
+      .rgb.rgb-yellow {       
+        --dynamic-bg-color:  var(--rgb-yellow);
+        --dynamic-text-color: var(--black);  
+        --dynamic-footer-text-color: var(--black);
+        --dynamic-shape-color: var(--rgb-teal);;           
+      }
+
+      .cmyk.cmyk-yellow {       
+        --dynamic-bg-color: var(--cmyk-yellow);
+        --dynamic-text-color: var(--black);  
+        --dynamic-footer-text-color: var(--black);
+        --dynamic-shape-color: var(--cmyk-teal);        
+      }
+
+      .rgb.rgb-turquoise {
+        --dynamic-bg-color: var(--rgb-turquoise);
+        --dynamic-text-color: var(--white);
+        --dynamic-shape-color: var(--rgb-pink);      
+      }
+
+      .cmyk.cmyk-turquoise {
+        --dynamic-bg-color: var(--cmyk-turquoise);
+        --dynamic-text-color: var(--white);
+        --dynamic-shape-color: var(--cmyk-pink);      
+      }  
+
+      .rgb.rgb-orange {
+        --dynamic-bg-color: var(--rgb-orange);;
+        --dynamic-text-color: var(--black);
+        --dynamic-footer-text-color: var(--black);
+        --dynamic-shape-color: var(--rgb-yellow);  
+      } 
+
+      .cmyk.cmyk-orange {
+        --dynamic-bg-color: var(--cmyk-orange); 
+        --dynamic-text-color: var(--black);
+        --dynamic-footer-text-color: var(--black);
+        --dynamic-shape-color: var(--cmyk-yellow);  
+      }    
+
+      html {
+        font-family: "Worldly", sans-serif;
+        font-size: 9pt;
+        color: var(--white);
+      }
+
+      .overflow {
+        border: 3px dashed red;
+        position: relative; }
+      .overflow h1,
+      .overflow h2,
+      .overflow h3,
+      .overflow h4,
+      .overflow h5,
+      .overflow h6,
+      .overflow p,
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: ‘+’;
+        position: absolute;
+        z-index: 5;
+        top: 0.08772rem;   
+        right: 0.08772rem;   
+        height: 0.9649rem;   
+        width: 0.9649rem;    
+        border: 1px solid red;
+        color: red;
+        padding: 0.03509rem 0.03509rem 0.03509rem 0.03509rem;
+        box-sizing: border-box;
+        font-size: 0.7018rem;   
+        text-align: center;
+        line-height: 0.1404rem;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: ‘There is overset content in this column. Please remove it’;
+        position: absolute;
+        top: 1.14rem;  
+        right: 0.08772rem;
+        background-color: black;
+        color: white;
+        border-radius: 0.03509rem;
+        padding:0.08772rem;
+        box-sizing: border-box;
+        font-size: 0.7018rem;   
+        font-weight: 400;
+        line-height: 1.1em;
+        text-align: right;
+        width: 15em;
+      }
+
+      .placeholder {
+        position: absolute;
+        top: 3mm;
+        left: 3mm;
+        right: 3mm;
+        bottom: 3mm;
+        background-image: url(https://files.outfit.io/media_library_items/113842/Poster-Option-1-Portrait-placeholder.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 100;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      .option-1.layout-2 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/ce3e9f56f54fbf5abfc6947547eb14d1/option-2-placeholder.png);
+      }
+
+      .option-1.layout-3 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/973c2dfeb78a3cde16e97b39b3db4cf1/option-3a-placeholder.png); 
+      }
+
+      .option-2.layout-1 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/6d6d22766f9d0a24935263c589cbd3bc/digital-signage-template-option-2-layout-1.png);
+      }
+
+      .option-2.layout-2 .placeholder {
+        background-image: url(https://files.outfit.io/media_library_items/113846/Poster-Option-2-Portrait-placeholder.jpg);
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        z-index: -1;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }       
+
+      .body {
+        background: var(--dynamic-bg-color);
+        color: var(--dynamic-text-color);
+      }     
+
+      .option-1.layout-1 .body {
+        width: 8.396rem;
+        height: 10.91rem;
+        clip-path: inset(0rem round 0rem 8.451rem 8.051rem 0rem);
+        padding: 1.96rem 2.308rem 1.395rem 1.123rem;      
+      }
+
+      .option-1.layout-2 .body {
+        width: 9.396rem;
+        height: 10.91rem;
+        clip-path: circle(7.847rem at 1.454rem 5.739rem);
+        padding: 1.939rem 2.408rem 0.995rem 1.023rem;   
+      }
+
+      .option-1.layout-3 .body {
+        position: relative;
+        width: 20.557rem;
+        height: 17.854rem;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        padding: 3.856rem 6.649rem 6.295rem 7.808rem;
+        left: -6.785rem;
+        top: -1.905rem;  
+      }
+
+      .option-2.layout-1 .body {
+        width: 8.78rem;
+        clip-path: inset(0 0rem 0rem -2.242rem round 5.675rem 5.875rem 0rem 0rem);
+        padding: 2.753rem 1.668rem 0.995rem 1.023rem;
+        position: absolute;
+        bottom: 0;
+        top: 3.57rem;      
+      }
+
+      .option-2.layout-2 .body {
+        width: 9.49rem;
+        height: 12.855rem;
+        clip-path: circle(5.7rem at 30.6% 49.9%);
+        padding: 3.15rem 2.761rem 0 1.10rem;
+        /*top: 13.26%;*/
+        top: 12.46%;
+        position: absolute;
+      }
+
+      .shape {
+        display: none;        
+        position: absolute;        
+        background: var(--dynamic-shape-color);
+      }
+
+      .option-2 .shape {
+        display: block;
+      }
+
+      .option-2.layout-1 .shape {
+        width: 8.785rem;
+        clip-path: inset(0 0rem -0.1rem -2.242rem round 0 0 5.775rem 5.575rem);
+        padding: 0;
+        position: absolute;
+        top: -2.651rem;
+        left: 0;
+        height: 5.574rem;
+      }      
+
+      .option-2.layout-2 .shape {
+        width: 9.351rem;
+        height: 12.755rem;
+        clip-path: circle(5.577rem at 31.3% 50%);
+        padding: 2.657rem 2.261rem 0 1.040rem;
+        top: -9.04rem;
+        position: absolute;    
+      }
+
+      .logo {
+        position: absolute;
+        top: 1.61rem;
+        right: 5.551rem;
+        width: 2.48rem;
+        height: 2.48rem;
+        background: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/4b35e67d1c8c3c77734070f5b54cd3f5/circle-white.svg') no-repeat;
+        background-size: contain;
+      }     
+
+      .option-1 .layout-2 .logo {
+        right: 2.321rem;
+      }
+
+      .option-1.layout-3 .logo {
+        top: auto;
+        bottom: 7.678rem;
+        right: 5.495rem;
+      }
+
+
+      .option-2.layout-1 .logo,
+      .option-2.layout-2 .logo {
+        top: 1.88rem;
+        right: auto;
+        left: 1.79rem;
+      }
+
+      .headline {
+        margin-bottom: 0.49rem;
+        font-size: 0.908rem;
+        font-weight: 400;
+        line-height: 1.1em;
+        padding-right: 0.2rem;
+      }
+
+      .subheader {
+        margin-bottom: 0.967rem;
+        font-size: 0.504rem;
+        font-weight: 400;
+        line-height: 1.1em;
+        letter-spacing: -0.00904rem;
+      }
+
+      .copy {
+        padding-right: 0.113rem;
+        padding-left: 0.028rem;        
+        font-family: "Calibri";
+        font-size: 0.301rem;
+        line-height: 1.3em;
+      }
+
+      .option-1.layout-3 .copy {
+        padding-right: 0.565rem;
+      }
+
+      .footer {
+        position: absolute;
+        left: 1.03rem;
+        color: var(--dynamic-footer-text-color);
+      }
+
+      .layout-1 .footer {
+        bottom: 10.56rem;
+      }
+      .layout-2 .footer {
+        bottom: 11.287rem;
+      }
+
+      .layout-3 .footer {
+        bottom: 12.487rem;
+      }
+
+      .option-2 .footer {
+        bottom: 7.4rem;
+      }
+
+      .option-2.layout-1 .footer {
+        bottom: 2.387rem;
+      }
+
+      /* Exception case - footer text will be black only in this case */
+
+      .cta {
+        font-size: 0.488rem;
+      }
+
+      .cta-text-colour--white {
+        color: var(--white);
+      }
+
+      .cta-text-colour--black {
+        color: var(--black);
+      }
+
+      .cricos {
+        margin-top: 0.15rem;
+        font-size: 0.182rem;
+        padding-left: 0.0226rem;
+        font-family: "Calibri";
+      }   
+
+      .rgb.rgb-yellow .cta,
+      .rgb.rgb-yellow .cricos,
+      .rgb.rgb-orange .cta,
+      .rgb.rgb-orange .cricos,
+      .cmyk.cmyk-yellow .cta,
+      .cmyk.cmyk-yellow .cricos,
+      .cmyk.cmyk-orange .cta,
+      .cmyk.cmyk-orange .cricos{
+        color: var(--black);
+      }
+
+      .cmy.cmyk-turquoise .cta,
+      .cmy.cmyk-turquoise .cricos,
+      .cmyk.cmyk-teal .cta,
+      .cmyk.cmyk-teal .cricos {
+        color: var(--white);
+      }
+
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="{{ DEAKIN_option }}
+                                         {{DEAKIN_colour-theme--po1}}{{^DEAKIN_colour-theme--po1}}rgb{{/DEAKIN_colour-theme--po1}}
+                                         {{DEAKIN_cmyk--po1}}{{^DEAKIN_cmyk--po1}}cmyk-teal{{/DEAKIN_cmyk--po1}}
+                                         {{DEAKIN_rgb--po1}}{{^DEAKIN_rgb--po1}}rgb-teal{{/DEAKIN_rgb--po1}}
+                                         {{ DEAKIN_layout}}
+                                         {{ DEAKIN_layout-extended }} {{ ^DEAKIN_layout-extended }} layout-1 {{ /DEAKIN_layout-extended }}">    
+
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <div class="placeholder"></div>
+
+        <div class="container fit">
+
+
+          <div class="backgroundImage">
+            {{{ DEAKIN_background-image }}}
+          </div><!--backgroundImage-->
+          <div class="body">
+            <div class="headline">
+              <div style="max-height: 3.5em;">
+                <div class="check-overflow">
+                  {{{ DEAKIN_headline }}}
+                </div><!-- end check-overflow -->
+              </div><!-- end max-height -->
+            </div><!--headline-->
+            <div class="subheader">
+              <div style="max-height: 3.5em;">
+                <div class="check-overflow">
+                  {{{ DEAKIN_subheader }}}
+                </div><!-- end check-overflow -->
+              </div><!-- end max-height -->
+            </div><!--subheader-->
+            <div class="copy">
+              <div style="max-height: 5.4em;">
+                <div class="check-overflow">
+                  {{{ DEAKIN_copy }}}
+                </div><!-- end check-overflow -->
+              </div><!-- end max-height -->
+            </div><!--copy-->
+          </div><!--body-->
+          <div class="shape"></div>
+          <div class="logo"></div><!--logo-->
+          <div class="footer">
+            <div class="cta" data-char-limit="30">
+              {{{ DEAKIN_cta }}}
+            </div><!--cta-->
+            <div class="cricos">
+              <div  style="max-height: 1.3em;">
+                <div class="check-overflow">
+                  Deakin University CRICOS Provider Code: {{{ DEAKIN_cricos }}}
+                </div><!-- end check-overflow -->
+              </div><!-- end max-height -->
+            </div><!--cricos-->
+          </div><!--footer-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+
+                                                         if (window.showCrop) {
+                                                           document.querySelector('body').classList.add('show-crop');
+                                                         } else {
+                                                           document.querySelector('body').classList.add('hide-crop');
+                                                         }                                               
+    </script>
+
+    <script src="main.js"></script>   
+    <script src="prefixfree.js"></script>
+
+    <script>
+
+      // Check Overflow function
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }   
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));  
+        charLimit();
+      } setInterval(loop, 1000);  
+
+      // Fix for the resizable background images - fullscreen and digital vairaitons only
+      function checkCrop() {
+        if ({{show-crop}} === true) {
+        } else {
+          [].forEach.call(document.querySelectorAll('.outfit-resizable-background'), function (el) {
+            el.parentNode.style.left = '0';
+            el.parentNode.style.right = '0';
+            el.parentNode.style.top = '0';
+            el.parentNode.style.bottom = '0';
+            el.parentNode.style.width = '100%';
+            el.parentNode.style.height = '100%';
+          });
+        }
+      }
+
+      // Adding limit for the word length
+      function charLimit() {
+        const elements = document.querySelectorAll("[data-char-limit]");
+
+        elements.forEach(element => {
+          const limit = element.dataset.charLimit;
+
+          if(element == null) { return }
+          var tokenValue = element.querySelectorAll(".token-value");
+
+          if(tokenValue.length != 0) {
+            element = tokenValue.item(0);
+          }
+          var code = element.innerText;
+          if(code.length > limit) {
+            // Check Token Again
+            if(tokenValue.length != 0) {
+              element.parentNode.classList.add("overflow");  
+            }
+            else {
+              element.classList.add("overflow");
+            }
+          }
+          else {
+            // Check Token Again
+            if(tokenValue.length != 0) {
+              element.parentNode.classList.remove("overflow");  
+            }
+            else {
+              element.classList.remove("overflow");
+            }
+          }
+        })
+      }
+      checkCrop();      
+
+    </script>
+
+
+  </body>
+</html>
