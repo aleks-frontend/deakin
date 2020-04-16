@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link type="text/css" rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Calibri/stylesheet.css" />    
+    <link type="text/css" rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/worldly/stylesheet.css" />    
+
+    <style>
+
+      /* Logic for changing the colors */
+      :root {
+        --white: {{{account.colors.white}}};
+        --black: {{{account.colors.black}}};
+
+        /*CMYK COLOUR*/
+        --cmyk-pink: {{{account.colors.hex-cmyk-pink}}}; 
+        --cmyk-turquoise: {{{account.colors.hex-cmyk-turquoise}}};   
+        --cmyk-teal: {{{account.colors.hex-cmyk-teal}}};
+        --cmyk-orange: {{{account.colors.hex-cmyk-orange}}};
+        --cmyk-charcoal: {{{account.colors.hex-cmyk-charcoal}}};
+        --cmyk-yellow: {{{account.colors.hex-cmyk-yellow}}};
+        --cmyk-grey: {{{account.colors.hex-cmyk-grey}}};
+
+
+        /*RGB COLOUR*/       
+        --rgb-turquoise: rgb(13,133,114);
+        --rgb-pink: rgb(199, 66, 152);
+        --rgb-teal: rgb(0, 125, 152);
+        --rgb-orange: rgb(247, 105, 25);
+        --rgb-yellow: rgb(255, 217, 35);
+        --rgb-charcoal: rgb(54, 54, 53);
+        --rgb-grey: rgb(224, 224, 224);
+
+
+        /*RGB HEADING COLOUR*/
+        --rgb-heading-turquoise: rgb(11, 113, 97);
+        --rgb-heading-pink: rgb(172, 51, 130);
+        --rgb-heading-teal: rgb(0, 109, 136);
+        --rgb-heading-orange: rgb(173, 66, 6);
+      }
+
+      .rgb.rgb-white {
+        --dynamic-shade-color: var(--rgb-charcoal);        
+        --dynamic-text-color: var(--white);
+        --dynamic-headline-color: var(--white);
+      }    
+
+      .cmyk.cmyk-white {
+        --dynamic-shade-color: var(--cmyk-charcoal);        
+        --dynamic-text-color: var(--white);
+        --dynamic-headline-color: var(--white);
+      }  
+
+      .rgb.rgb-pink {
+        --dynamic-shade-color: var(--rgb-grey);   
+        --dynamic-text-color: var(--black);
+        --dynamic-headline-color: var(--cmyk-pink);
+      }      
+
+      .cmyk.cmyk-pink {
+        --dynamic-shade-color: var(--cmyk-grey);       
+        --dynamic-text-color: var(--black);
+        --dynamic-headline-color: var(--cmyk-pink);
+      }  
+
+      .rgb.rgb-charcoal {
+        --dynamic-shade-color: var(--rgb-grey);       
+        --dynamic-text-color:  var(--black);
+        --dynamic-headline-color: var(--black);
+      }  
+
+      .cmyk.cmyk-charcoal {
+        --dynamic-shade-color: var(--cmyk-grey);      
+        --dynamic-text-color:  var(--black);
+        --dynamic-headline-color: var(--black);
+      }  
+
+      .rgb.rgb-grey {
+        --dynamic-shade-color: var(--rgb-charcoal);      
+        --dynamic-text-color:  var(--white);
+        --dynamic-headline-color: var(--rgb-grey);
+      }  
+
+      .cmyk.cmyk-grey {
+        --dynamic-shade-color: var(--cmyk-charcoal);      
+        --dynamic-text-color:  var(--white);
+        --dynamic-headline-color: var(--cmyk-grey);
+      }        
+
+      .rgb.rgb-teal {
+        --dynamic-shade-color: var(--rgb-grey);       
+        --dynamic-text-color: var(--black);
+        --dynamic-headline-color: var(--cmyk-teal);           
+      }   
+
+      .cmyk.cmyk-teal {
+        --dynamic-shade-color: var(--cmyk-grey);      
+        --dynamic-text-color: var(--black);
+        --dynamic-headline-color: var(--cmyk-teal);           
+      }   
+
+      .rgb.rgb-yellow {
+        --dynamic-shade-color: var(--rgb-charcoal);   
+        --dynamic-text-color: var(--white);
+        --dynamic-headline-color: var(--cmyk-yellow);            
+      } 
+
+      .cmyk.cmyk-yellow {
+        --dynamic-shade-color: var(--cmyk-charcoal);   
+        --dynamic-text-color: var(--white);
+        --dynamic-headline-color: var(--cmyk-yellow);           
+      }
+
+      .rgb.rgb-orange {
+        --dynamic-shade-color: var(--rgb-grey);    
+        --dynamic-text-color: var(--black);
+        --dynamic-headline-color: var(--cmyk-orange);            
+      }
+
+      .cmyk.cmyk-orange {
+        --dynamic-shade-color: var(--cmyk-grey);   
+        --dynamic-text-color: var(--black);
+        --dynamic-headline-color: var(--cmyk-orange);            
+      } 
+
+      /* End - Logic for changing the colors */      
+
+
+      html {
+        font-family: "Worldly", sans-serif;
+        font-size: 9pt;
+        color: var(--white);
+      }
+
+      .overflow {
+        border: 3px dashed red;
+        position: relative; }
+      .overflow h1,
+      .overflow h2,
+      .overflow h3,
+      .overflow h4,
+      .overflow h5,
+      .overflow h6,
+      .overflow p,
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: ‘+’;
+        position: absolute;
+        z-index: 5;
+        top: 5x;   
+        right: 5px;   
+        height: 55px;   
+        width: 55px;    
+        border: 1px solid red;
+        color: red;
+        padding: 2px 2px 2px 3px;
+        box-sizing: border-box;
+        font-size: 40px;   
+        text-align: center;
+        line-height: 8px;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: ‘There is overset content in this column. Please remove it’;
+        position: absolute;
+        top: 65px;  
+        right: 5px;
+        background-color: black;
+        color: white;
+        border-radius: 2px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: 40px;   
+        font-weight: 400;
+        line-height: 1.1em;
+        text-align: right;
+        width: 15em;
+      }
+
+      .placeholder {
+        position: absolute;
+        top: 3mm;
+        left: 3mm;
+        right: 3mm;
+        bottom: 3mm;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 100;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      .layout-1 .placeholder {
+        background-image: url(https://files.outfit.io/media_library_items/113844/Poster-Option-1-Landscape-Layout-2-placeholder.jpg);
+      }
+
+      .layout-2 .placeholder {
+        background-image: url(https://files.outfit.io/media_library_items/113843/Poster-Option-1-Landscape-Layout-1-placeholder.jpg);
+      }
+
+      .layout-3 .placeholder {
+        background-image: url(https://files.outfit.io/media_library_items/113844/Poster-Option-1-Landscape-Layout-2-placeholder.jpg);
+      }
+
+      .backgroundImage {
+        position: absolute; 
+        bottom: 0 !important;
+        right: 0 !important;
+        left: unset !important;
+        top: unset !important;
+        overflow: hidden;
+        clip-path: inset(0rem -2.206rem 0rem 0 round 7.136rem 7.136rem 0 0rem);
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }
+
+      .layout-1 .backgroundImage {
+        height: 100% !important;
+        width: 12.743rem !important;
+        clip-path: inset(0rem -2.206rem 0rem 0 round 7.541rem 0rem 0 7.541rem);
+      }   
+
+      .layout-2 .backgroundImage {
+        height: 100% !important;
+        width: 12.68rem !important;
+        clip-path: ellipse(90.4% 57.5% at 99.9% 50.4%);
+      }   
+
+      .layout-3 .backgroundImage {
+        height: 100% !important;
+        width: 16.14rem !important;
+        clip-path: polygon(58.2% 0%, 85.2% 0, 100% 28.1%, 100% 100%, 0 100%);
+      }   
+
+      .logo {
+        position: absolute;
+        top: 3.18rem;
+        right: 7.58rem;
+        width: 2.8rem;
+        height: 2.8rem;
+        background: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/4b35e67d1c8c3c77734070f5b54cd3f5/circle-white.svg') no-repeat;
+        background-size: contain;
+        z-index: 1;
+      } 
+
+      .layout-3 .logo {
+        top: 3.15rem;
+        right: 7.68rem;
+        width: 2.79rem;
+        height: 2.79rem;
+      }
+
+      .layout-2 .logo {
+        top: 2.55rem;
+        right: 8.75rem;
+      }
+
+      .fit {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 3.7rem 12rem 2.73rem 1.73rem;
+        background: var(--dynamic-shade-color);
+      }
+
+      .layout-2 .fit {
+        padding: 3.86rem 12rem 2.6rem 1.75rem;
+      }
+
+      .body {
+        color: var(--dynamic-text-color);       
+      }  
+
+      .headline {
+        margin-bottom: 0.62rem;
+        font-size: 1.042rem;
+        font-weight: 400;
+        line-height: 1.1em;
+        color: var(--dynamic-headline-color);     
+      }
+
+      .layout-2 .headline {
+        margin-top: -0.02rem;
+        margin-bottom: 0.595rem;
+        font-size: 1.035rem;
+      }
+
+      .subheader {
+        margin-bottom: 0.656rem;
+        padding-right: 0.749rem;
+        font-size: 0.587rem;
+        font-weight: 400;
+        line-height: 1.12em;
+        letter-spacing: -0.012rem;
+        max-width: 10.1rem;
+      }
+
+      .layout-2 .subheader {
+        font-size: 0.584rem;
+      }
+
+      .layout-3 .subheader {
+        padding-left: 0.05rem;
+        font-size: 0.5825rem;
+      }
+
+      .copy {
+        padding-right: 1.592rem;
+        padding-left: 0.077rem;
+        font-family: "Calibri";
+        font-size: 0.372rem;
+        line-height: 1.27em;
+      }
+
+      .cta {
+        margin-bottom: 0.19rem;
+        font-size: 0.556rem;
+        max-width: 6rem;
+      }
+
+      .layout-2 .cta {
+        margin-bottom: 0.18rem;
+        font-size: 0.552rem;
+      }
+
+      .cta-text-colour--white {
+        color: var(--white);
+      }
+
+      .cta-text-colour--black {
+        color: var(--black);
+      }
+
+      .cricos {
+        font-size: 0.207rem;    
+        font-family: "Calibri";
+      }
+
+      .rgb.rgb-teal .cta,
+      .rgb.rgb-teal .cricos,
+      .rgb.rgb-orange .cta,
+      .rgb.rgb-orange .cricos,
+      .rgb.rgb-charcoal .cta,
+      .rgb.rgb-charcoal .cricos,
+      .cmyk.cmyk-teal .cta,
+      .cmyk.cmyk-teal .cricos,
+      .cmyk.cmyk-orange .cta,
+      .cmyk.cmyk-orange .cricos,
+      .cmyk.cmyk-charcoal .cta,
+      .cmyk.cmyk-charcoal .cricos{
+        color: var(--black);
+      }
+
+      .rgb.rgb-turquoise .cta,
+      .rgb.rgb-turquoise .cricos,
+      .rgb.rgb-yellow .cta,
+      .rgb.rgb-yellow .cricos,
+      .rgb.rgb-white .cta,
+      .rgb.rgb-white .cricos,
+      .cmyk.cmyk-turquoise .cta,
+      .cmyk.cmyk-turquoise .cricos,
+      .cmyk.cmyk-yellow .cta,
+      .cmyk.cmyk-yellow .cricos,
+      .cmyk.cmyk-white .cta,
+      .cmyk.cmyk-white .cricos {
+        color: var(--white);
+      }
+
+      .rgb.rgb-pink .cta,
+      .rgb.rgb-pink .cricos,
+      .cmyk.cmyk-pink .cta,
+      .cmyk.cmyk-pink .cricos {
+        color: var(--dynamic-text-color);
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body class="{{DEAKIN_colour-theme--po1}}{{^DEAKIN_colour-theme--po1}}rgb{{/DEAKIN_colour-theme--po1}}
+               {{DEAKIN_cmyk--po5}}{{^DEAKIN_cmyk--po5}}cmyk-pink{{/DEAKIN_cmyk--po5}}
+               {{DEAKIN_rgb--po5}}{{^DEAKIN_rgb--po5}}rgb-pink{{/DEAKIN_rgb--po5}}
+               {{DEAKIN_layout--5-landscape}}{{^DEAKIN_layout--5-landscape}}layout-3{{/DEAKIN_layout--5-landscape}}">
+
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <div class="placeholder"></div>
+
+        <div class="container fit">
+
+          <div class="body">
+            <div class="headline">
+              <div style="max-height: 3.5em;">
+                <div class="check-overflow">
+                  {{{ DEAKIN_headline }}}
+                </div><!-- end check-overflow  -->
+              </div><!-- end max-height-->
+            </div><!--headline-->
+            <div class="subheader">
+              <div style="max-height: 3.5em;">
+                <div class="check-overflow">
+                  {{{ DEAKIN_subheader }}}
+                </div><!-- end check-overflow  -->
+              </div><!-- end max-height-->
+            </div><!--subheader-->
+            <div class="copy">
+              <div style="max-height: 7.8em;">
+                <div class="check-overflow">
+                  {{{ DEAKIN_copy }}}
+                </div><!-- end check-overflow  -->
+              </div><!-- end max-height-->
+            </div><!--copy-->
+          </div><!--body-->
+          <div class="footer ">
+            <div class="cta" data-char-limit="30">
+              {{{ DEAKIN_cta }}}
+            </div><!--cta-->
+            <div class="cricos">
+              <div style="max-height: 1.5em;">
+                <div class="check-overflow">
+                  Deakin University CRICOS Provider Code: {{{ DEAKIN_cricos }}}
+                </div><!-- end check-overflow  -->
+              </div><!-- end max-height-->
+            </div><!--cricos-->  
+          </div><!--footer-->
+          <div class="logo"></div><!--logo-->
+          <div class="backgroundImage">
+            {{{ DEAKIN_background-image }}}
+          </div><!--backgroundImage-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+
+                                                         if (window.showCrop) {
+                                                           document.querySelector('body').classList.add('show-crop');
+                                                         } else {
+                                                           document.querySelector('body').classList.add('hide-crop');
+                                                         }                                               
+    </script>
+
+    <script src="main.js"></script>   
+    <script src="prefixfree.js"></script>
+
+    <script>
+
+      // Check Overflow function
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }   
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));  
+        charLimit();
+      } setInterval(loop, 1000);  
+
+      // Fix for the resizable background images - fullscreen and digital vairaitons only
+      function checkCrop() {
+        if ({{show-crop}} === true) {
+        } else {
+          [].forEach.call(document.querySelectorAll('.outfit-resizable-background'), function (el) {
+            el.parentNode.style.left = '0';
+            el.parentNode.style.right = '0';
+            el.parentNode.style.top = '0';
+            el.parentNode.style.bottom = '0';
+            el.parentNode.style.width = '100%';
+            el.parentNode.style.height = '100%';
+          });
+        }
+      }
+
+      // Adding limit for the word length
+      function charLimit() {
+        const elements = document.querySelectorAll("[data-char-limit]");
+
+        elements.forEach(element => {
+          const limit = element.dataset.charLimit;
+
+          if(element == null) { return }
+          var tokenValue = element.querySelectorAll(".token-value");
+
+          if(tokenValue.length != 0) {
+            element = tokenValue.item(0);
+          }
+          var code = element.innerText;
+          if(code.length > limit) {
+            // Check Token Again
+            if(tokenValue.length != 0) {
+              element.parentNode.classList.add("overflow");  
+            }
+            else {
+              element.classList.add("overflow");
+            }
+          }
+          else {
+            // Check Token Again
+            if(tokenValue.length != 0) {
+              element.parentNode.classList.remove("overflow");  
+            }
+            else {
+              element.classList.remove("overflow");
+            }
+          }
+        })
+      }
+      checkCrop();      
+
+    </script>
+
+
+  </body>
+</html>
