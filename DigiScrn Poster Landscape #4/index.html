@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link type="text/css" rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Calibri/stylesheet.css" />    
+    <link type="text/css" rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/worldly/stylesheet.css" />    
+
+    <style>
+
+      :root {
+        --white: {{{account.colors.white}}};
+        --black: {{{account.colors.black}}};
+
+        /*CMYK COLOUR*/
+        --cmyk-pink: {{{account.colors.hex-cmyk-pink}}}; 
+        --cmyk-turquoise: {{{account.colors.hex-cmyk-turquoise}}};   
+        --cmyk-teal: {{{account.colors.hex-cmyk-teal}}};
+        --cmyk-orange: {{{account.colors.hex-cmyk-orange}}};
+        --cmyk-charcoal: {{{account.colors.hex-cmyk-charcoal}}};
+        --cmyk-yellow: {{{account.colors.hex-cmyk-yellow}}};
+        --cmyk-grey: {{{account.colors.hex-cmyk-grey}}};
+
+
+        /*RGB COLOUR*/       
+        --rgb-turquoise: rgb(13,133,114);
+        --rgb-pink: rgb(199, 66, 152);
+        --rgb-teal: rgb(0, 125, 152);
+        --rgb-orange: rgb(247, 105, 25);
+        --rgb-yellow: rgb(255, 217, 35);
+        --rgb-charcoal: rgb(54, 54, 53);
+        --rgb-grey: rgb(224, 224, 224);
+
+
+        /*RGB HEADING COLOUR*/
+        --rgb-heading-turquoise: rgb(11, 113, 97);
+        --rgb-heading-pink: rgb(172, 51, 130);
+        --rgb-heading-teal: rgb(0, 109, 136);
+        --rgb-heading-orange: rgb(173, 66, 6);
+      }
+
+      .rgb.rgb-yellow {
+        --dynamic-bg-color: var(--rgb-yellow);
+        --dynamic-text-color: var(--black); 
+        --dynamic-headline-color: var(--black);
+        --dynamic-footer-text-color: var(--black);
+      }
+
+      .cmyk.cmyk-yellow {
+        --dynamic-bg-color: var(--cmyk-yellow);
+        --dynamic-text-color: var(--black); 
+        --dynamic-headline-color: var(--black);
+        --dynamic-footer-text-color: var(--black);
+      }
+
+      .rgb.rgb-orange {
+        --dynamic-bg-color: var(--rgb-orange);
+        --dynamic-text-color: var(--black); 
+        --dynamic-headline-color: var(--black);
+        --dynamic-footer-text-color: var(--white);   
+      }  
+
+      .cmyk.cmyk-orange {
+        --dynamic-bg-color: var(--cmyk-orange);
+        --dynamic-text-color: var(--black); 
+        --dynamic-headline-color: var(--black);
+        --dynamic-footer-text-color: var(--white);      
+      }
+
+      html {
+        font-family: "Worldly", sans-serif;
+        font-size: 9pt;
+        color: var(--white);  
+      }
+
+      .overflow {
+        border: 3px dashed red;
+        position: relative; }
+      .overflow h1,
+      .overflow h2,
+      .overflow h3,
+      .overflow h4,
+      .overflow h5,
+      .overflow h6,
+      .overflow p,
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: ‘+’;
+        position: absolute;
+        z-index: 5;
+        top: 0.08772rem;   
+        right: 0.08772rem;   
+        height: 0.9649rem;   
+        width: 0.9649rem;    
+        border: 1px solid red;
+        color: red;
+        padding: 0.03509rem 0.03509rem 0.03509rem 0.03509rem;
+        box-sizing: border-box;
+        font-size: 0.7018rem;   
+        text-align: center;
+        line-height: 0.1404rem;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: ‘There is overset content in this column. Please remove it’;
+        position: absolute;
+        top: 1.14rem;  
+        right: 0.08772rem;
+        background-color: black;
+        color: white;
+        border-radius: 0.03509rem;
+        padding:0.08772rem;
+        box-sizing: border-box;
+        font-size: 0.7018rem;   
+        font-weight: 400;
+        line-height: 1.1em;
+        text-align: right;
+        width: 15em;
+      }
+
+      .placeholder {
+        position: absolute;
+        top: 3mm;
+        left: 3mm;
+        right: 3mm;
+        bottom: 3mm;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 100;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      .layout-1 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/42b2478300a1e0c7e5420651675709c1/digital-signage-template-landscape-option-4-layout-1-dark.png);
+      }
+
+      .layout-2 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/d7a9fcba2a0d203c6e93132586be4448/landscape-4-var2.png);
+      }
+
+      .layout-3 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/20f3e87dd44cf6530794018720ea210e/landscape-4-var7.png);
+      }
+
+      .layout-4 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/c36364fbb7295a613cd8b5f81eb266f5/landscape-4-var4.png);
+      }           
+
+      .layout-5 .placeholder {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bd318c255d7b946b3c5457cb3a572370/digital-signage-template-1920x1080-Option-5%20-%205.png);
+      }           
+
+      .layout-6 .placeholder {
+        background-image: url(https://files.outfit.io/media_library_items/113851/Poster-Option-5-Landscape-placeholder-1.jpg);
+      }     
+
+      .layout-7 .placeholder {
+        background-image: url(https://files.outfit.io/media_library_items/113852/Poster-Option-5-Landscape-placeholder-2.jpg);
+      }           
+
+
+      .backgroundImage {
+        position: absolute;
+        height: 100% !important;
+        width: 100% !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        left: unset !important;
+        top: unset !important;
+        overflow: hidden;
+        clip-path: inset(1.6rem 0rem 0rem 14.4rem round 6.3rem 6.3rem 0 0);
+      }
+
+      .layout-2 .backgroundImage {
+        z-index: 1;
+      }           
+
+      .layout-3 .backgroundImage {
+        height: 100% !important;
+        clip-path: circle(9.695rem at 24.953rem 9.353rem);
+      }               
+
+      .layout-1 .backgroundImage,
+      .layout-2 .backgroundImage {
+        height: 100% !important;
+        clip-path: polygon(21.972rem -3.881rem, 32.944rem 15.118rem, 11.0001rem 100%);
+      }      
+
+      .layout-4 .backgroundImage {
+        clip-path: inset(1.6rem 0rem 0rem 14.4rem round 6.3rem 6.3rem 0 0);
+      }          
+
+      .layout-5 .backgroundImage,
+      .layout-6 .backgroundImage,
+      .layout-7 .backgroundImage {
+        clip-path: none;
+      }      
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }       
+
+      .wrap {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+      }
+
+      .body {
+        padding: 1.328rem 2.335rem 0.995rem 0.944rem;  
+        z-index: 1;
+        background: var(--dynamic-bg-color);
+        color: var(--dynamic-text-color);
+        clip-path: inset( 0 round 0 0 7.407rem 7.407rem);
+      }   
+
+      .layout-1 .body,
+      .layout-4 .body {
+        width: 12.814rem;
+        height: 11.817rem;
+        padding: 1.828rem 1.535rem 0.995rem 1.944rem;
+        clip-path: inset( 0 round 0 0 7.407rem 7.407rem);
+      }
+
+      .layout-2 .body,
+      .layout-3 .body {
+        width: 13.059rem;
+        height: 11.754rem;
+        clip-path: circle(7.252rem at 5.779rem 4.481rem);
+        padding: 1.808rem 1.773rem 3.427rem 1.870rem;
+      }      
+
+      .layout-2 .body {
+        clip-path: none;
+        background: none;
+      }
+
+      .layout-5 .body,
+      .layout-6 .body,
+      .layout-7 .body {
+        width: 11.593rem;
+        height: 12.235rem;
+        padding: 1.8rem 1.48rem 2.495rem 1.9rem;
+        clip-path: inset( 0 round 0 0 7.407rem 7.407rem);
+        margin-left: 1.919rem;        
+      }     
+
+      .layout-7 .body {
+        width: 14.693rem;
+        padding-left: 0;
+        padding-top: 1.77rem;
+        margin-left: 1.36rem;
+      }
+
+      .layout-6 .body,
+      .layout-7 .body {
+        clip-path: none;
+        background: none;
+      }   
+
+      .layout-6 .body {
+        margin-left: 0;
+      }
+
+      .logo {
+        position: absolute;
+        width: 3.6rem;
+        height: 3.6rem;
+        background: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/4b35e67d1c8c3c77734070f5b54cd3f5/circle-white.svg') no-repeat;
+        background-size: contain;
+        bottom: 3.404rem;
+        left: 9.406rem;
+        z-index: 2;
+      }   
+
+      .layout-6 .logo,
+      .layout-7 .logo,
+      .layout-5 .logo {
+        bottom: 3.004rem;
+        left: 10.606rem;
+      }
+
+      .layout-5 .logo {
+        left: 10.06rem;
+      }
+
+      .layout-7 .logo {
+        bottom: 2.38rem;
+        left: 9.89rem;
+        width: 3.44rem;
+        height: 3.44rem;
+      }
+
+      .layout-6 .logo {
+        left: 9.35rem;
+        bottom: 2.92rem;
+      }
+
+      .shape {
+        display: none;        
+        position: absolute;
+        width: 14.909rem;
+        height: 100%;
+        background: #ffd923;
+        top: 0;
+        right: 0;
+        background: var(--dynamic-bg-color);        
+        clip-path: polygon(-5.346rem -9.241rem, 23.968rem -9.241rem, 9.409rem 16.151rem);
+      }
+
+      .layout-2 .shape,
+      .layout-6 .shape,
+      .layout-7 .shape {
+        display: block;
+      }
+
+      .layout-2 .shape {
+        z-index: 0;
+      }
+
+      .layout-6 .shape {
+        top: -2.185rem;
+        width: 15.04rem;
+        height: 15.06rem;
+        border-radius: 50%;
+        clip-path: none;
+        left: -1.025rem;
+      }
+
+      .layout-7 .shape {
+        right: auto;
+        left: 0;
+        top: 0;
+        width: 18.664rem;
+        height: 100%;
+        clip-path: polygon(-7.654rem -1.382rem, 19.487rem -1.782rem, 5.887rem 21.655rem);
+      }
+
+      .headline {
+        margin-bottom: 0.76rem;
+        font-size: 1.26rem;
+        font-weight: 400;
+        line-height: 1.1em;
+        color: var(--dynamic-headline-color);
+      }
+
+      .layout-5 .headline {
+        line-height: 1.12em;
+      }  
+
+      .layout-7 .headline {
+        font-size: 1.26rem;
+      }  
+
+      .subheader {
+        margin-bottom: 0.967rem;
+        font-size: 0.673rem;
+        font-weight: 400;
+        line-height: 1.23em;
+        letter-spacing: 0.009046rem;
+      }
+
+      .layout-7 .subheader {
+        padding-right: 3.5rem;
+        font-size: 0.674rem;
+      }
+
+      .footer {       
+        padding-left: 1.928rem;
+        z-index: 3;
+        color: var(--dynamic-footer-text-color);
+        padding-bottom: 1.3rem;
+      }
+
+      .layout-5 .footer,
+      .layout-6 .footer,
+      .layout-7 .footer {
+        padding-left: 3.528rem;
+      }
+
+      .layout-7 .footer {
+        width: 10rem;
+        padding-left: 2.63rem;
+        padding-bottom: 1.23rem;
+      }
+
+      .layout-6 .footer {
+        width: 14rem;
+        padding-left: 1.94em;
+      }
+
+      .cta {
+        font-size: 0.64rem;
+        letter-spacing: 0.02rem;
+      }
+
+      .layout-7 .cta {
+        font-size: 0.638rem;
+      }
+
+      .cricos {
+        margin-top: 0.281rem;
+        font-size: 0.24rem;
+        padding-left: 0.022rem;
+        font-family: "Calibri";
+      }   
+
+      .layout-7 .cricos {
+        margin-top: 0.3rem;
+        font-size: 0.257rem;
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body class="{{DEAKIN_colour-theme--po1}}{{^DEAKIN_colour-theme--po1}}rgb{{/DEAKIN_colour-theme--po1}}
+               {{DEAKIN_cmyk--pol5}}{{^DEAKIN_cmyk--pol5}}cmyk-orange{{/DEAKIN_cmyk--pol5}}
+               {{DEAKIN_rgb--pol5}}{{^DEAKIN_rgb--pol5}}rgb-orange{{/DEAKIN_rgb--pol5}}
+               {{ DEAKIN_layout--ext2}}{{^DEAKIN_layout--ext2}}layout-6{{/DEAKIN_layout--ext2}}">    
+
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <div class="placeholder"></div>
+
+        <div class="container fit">
+          <div class="backgroundImage">
+            {{{ DEAKIN_background-image }}}
+          </div><!--backgroundImage-->
+          <div class="wrap">
+            <div class="body">
+              <div class="headline">
+                <div style="max-height: 3.5em;">
+                  <div class="check-overflow">
+                    {{{ DEAKIN_headline }}}
+                  </div><!-- end check-overflow -->
+                </div><!-- end max-height -->
+              </div><!--headline-->
+              <div class="subheader">
+                <div style="max-height: 3.8em;">
+                  <div class="check-overflow">
+                    {{{ DEAKIN_subheader }}}
+                  </div><!-- end check-overflow -->
+                </div><!-- end max-height -->
+              </div><!--subheader-->
+            </div><!--body-->
+            <div class="footer cta-text-colour--{{{DEAKIN_cta-text-colour}}}">
+              <div class="cta" style="max-height:1.5em;">
+                <div class="check-overflow">
+                  {{{ DEAKIN_cta }}}
+                </div>
+              </div><!--cta-->
+              <div class="cricos">
+                <div style="max-height: 1.5em;">
+                  <div class="check-overflow">
+                    Deakin University CRICOS Provider Code: {{{ DEAKIN_cricos }}}
+                  </div><!-- end check-overflow -->
+                </div><!-- end max-height -->
+              </div><!--cricos-->   
+            </div><!--footer-->
+          </div><!-- end wrap -->
+          <div class="shape"></div><!--shape-->
+          <div class="logo"></div><!--logo-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+
+                                                         if (window.showCrop) {
+                                                           document.querySelector('body').classList.add('show-crop');
+                                                         } else {
+                                                           document.querySelector('body').classList.add('hide-crop');
+                                                         }                                               
+    </script>
+
+    <script src="main.js"></script>   
+    <script src="prefixfree.js"></script>
+
+    <script>
+
+      // Check Overflow function
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }   
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));  
+        charLimit();
+      } setInterval(loop, 1000);  
+
+      // Fix for the resizable background images - fullscreen and digital vairaitons only
+      function checkCrop() {
+        if ({{show-crop}} === true) {
+        } else {
+          [].forEach.call(document.querySelectorAll('.outfit-resizable-background'), function (el) {
+            el.parentNode.style.left = '0';
+            el.parentNode.style.right = '0';
+            el.parentNode.style.top = '0';
+            el.parentNode.style.bottom = '0';
+            el.parentNode.style.width = '100%';
+            el.parentNode.style.height = '100%';
+          });
+        }
+      }
+
+      // Adding limit for the word length
+      function charLimit() {
+        const elements = document.querySelectorAll("[data-char-limit]");
+
+        elements.forEach(element => {
+          const limit = element.dataset.charLimit;
+
+          if(element == null) { return }
+          var tokenValue = element.querySelectorAll(".token-value");
+
+          if(tokenValue.length != 0) {
+            element = tokenValue.item(0);
+          }
+          var code = element.innerText;
+          if(code.length > limit) {
+            // Check Token Again
+            if(tokenValue.length != 0) {
+              element.parentNode.classList.add("overflow");  
+            }
+            else {
+              element.classList.add("overflow");
+            }
+          }
+          else {
+            // Check Token Again
+            if(tokenValue.length != 0) {
+              element.parentNode.classList.remove("overflow");  
+            }
+            else {
+              element.classList.remove("overflow");
+            }
+          }
+        })
+      }
+      checkCrop();      
+
+    </script>
+
+
+  </body>
+</html>
