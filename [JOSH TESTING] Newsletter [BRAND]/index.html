@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    >
+    </script>
+    <!--<script src="lu-helper.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.1/tinycolor.min.js"></script>
+
+    <style>
+      
+      :root {
+        --primary: {{{account.colors.teal}}};
+        --secondary: {{{account.colors.purple}}};
+        --charcoal: {{{account.colors.charcoal}}};
+        --highlight: {{{account.colors.orange}}};
+        --gray: {{{account.colors.grey}}};
+                --url-box: {{{account.colors.teal}}};
+        --headline-color: {{{account.colors.teal}}};
+      }
+/*
+      .deakin-teal {
+        --primary: {{{account.colors.teal-digital-copy}}};
+        --secondary: {{{account.colors.pink-digital-copy}}};
+        --breakout-color: {{{account.colors.pink-digital-copy}}};
+        --url-box: {{{account.colors.teal-digital-copy}}};
+        --headline-color: {{{account.colors.teal-digital-copy}}};
+      }
+      
+
+      .deakin-pink {
+        --primary: {{{account.colors.pink-digital-copy}}};
+        --secondary: {{{account.colors.charcoal}}};
+        --breakout-color: {{{account.colors.turquoise-digital-copy}}};
+        --url-box: {{{account.colors.pink-digital-copy}}};
+        --headline-color: {{{account.colors.pink-digital-copy}}};
+      }
+
+      .deakin-turquoise {
+        --primary: {{{account.colors.turquoise-digital-copy}}};
+        --secondary: {{{account.colors.charcoal}}};
+        --breakout-color: {{{account.colors.turquoise-digital-copy}}};
+        --url-box: {{{account.colors.turquoise-digital-copy}}};
+        --headline-color: {{{account.colors.turquoise-digital-copy}}};
+        
+      }
+      */
+      /** TESTING THE GOODS **/
+      /*
+       .deakin-teal {
+        --primary: {{{account.colors.hex-cmyk-teal}}};
+        --secondary: {{{account.colors.hex-cmyk-pink}}};
+        --breakout-color: {{{account.colors.hex-cmyk-pink}}};
+        --url-box: {{{account.colors.hex-cmyk-teal}}};
+        --headline-color: {{{account.colors.hex-cmyk-teal}}};
+      }
+
+      .deakin-pink {
+        --primary: {{{account.colors.hex-cmyk-pink}}};
+        --secondary: {{{account.colors.hex-cmyk-charcoal}}};
+        --breakout-color: {{{account.colors.hex-cmyk-turquoise}}};
+        --url-box: {{{account.colors.hex-cmyk-pink}}};
+        --headline-color: {{{account.colors.hex-cmyk-pink}}};
+      }
+
+      .deakin-turquoise {
+        --primary: {{{account.colors.hex-cmyk-turquoise}}};
+        --secondary: {{{account.colors.hex-cmyk-charcoal}}};
+        --breakout-color: {{{account.colors.hex-cmyk-turquoise}}};
+        --url-box: {{{account.colors.hex-cmyk-turquoise}}};
+        --headline-color: {{{account.colors.hex-cmyk-turquoise}}};
+        
+      }
+      */
+      /*
+      @media print {
+      .deakin-teal {
+        --primary: {{{account.colors.teal-josh}}};
+        --secondary: {{{account.colors.purple-josh}}};
+        --breakout-color: {{{account.colors.purple-josh}}};
+        --url-box: {{{account.colors.teal-josh}}};
+        --headline-color: {{{account.colors.teal-josh}}};
+      }
+
+      .deakin-pink {
+        --primary: {{{account.colors.purple-josh}}};
+        --secondary: {{{account.colors.charcoal-josh}}};
+        --breakout-color: {{{account.colors.turquoise-josh}}};
+        --url-box: {{{account.colors.purple-josh}}};
+        --headline-color: {{{account.colors.purple-josh}}};
+      }
+      .deakin-turquoise {
+        --primary: {{{account.colors.turquoise-josh}}};
+        --secondary: {{{account.colors.charcoal-josh}}};
+        --breakout-color: {{{account.colors.turquoise-josh}}};
+        --url-box: {{{account.colors.turquoise-josh}}};
+        --headline-color: {{{account.colors.turquoise-josh}}};
+      }
+        
+      .deakin-tea.crop-marks-falsel {
+        --primary: {{{account.colors.teal}}};
+        --secondary: {{{account.colors.purple}}};
+        --breakout-color: {{{account.colors}}};
+        --url-box: {{{account.colors.teal}}};
+        --headline-color: {{{account.colors.teal-digital-copy}}};
+      }
+      
+
+      .deakin-pink.crop-marks-false {
+        --primary: {{{account.colors.purple}}};
+        --secondary: {{{account.colors.charcoal}}};
+        --breakout-color: {{{account.colors.turquoise}}};
+        --url-box: {{{account.colors.purple}}};
+        --headline-color: {{{account.colors.pink-digital-copy}}};
+      }
+
+      .deakin-turquoise.crop-marks-false {
+        --primary: {{{account.colors.turquoise}}};
+        --secondary: {{{account.colors.charcoal}}};
+        --breakout-color: {{{account.colors.turquoise}}};
+        --url-box: {{{account.colors.turquoise}}};
+        --headline-color: {{{account.colors.turquoise-digital-copy}}};
+        
+      }
+        
+	}
+      */
+
+      
+      .placeholder {
+        position: absolute;
+        top: 3mm;
+        left: 3mm;
+        right: 3mm;
+        bottom: 3mm;
+        background-image: url('');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 100;
+        pointer-events: none;
+        opacity: 0.7;
+        display: none;
+      }
+
+      .placeholder {
+        /*display: block;*/
+      }
+
+      .placeholder.one {
+        background-image: url('placeholder.jpg');
+        /*background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/b86b8839bbca49fb5db6b4f488309bc8/InDesign-Template-Newsletter-A4-Shield-with-ImageBG.png');*/
+      }
+
+      .placeholder.two {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/c664ed799a2ed767c1e623279c10400b/InDesign-Template-Newsletter-A4-Shield-with-ImageBG2.png');
+      }
+
+      .placeholder.three {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/b1375dabc9a7cdfd65b4f5278ecf482a/InDesign-Template-Newsletter-A4-Shield-with-ImageBG3.png');
+      }
+      
+      .flex {
+        display: flex;
+      }
+      
+      .flex div:first-child {
+        margin-right: 5pt;
+      }
+    </style>
+  </head>
+  <body style="background: white" data-theme="deakin-{{deakin-newsletter-theme-interim}}" class="deakin-{{deakin-newsletter-theme-interim}} {{^deakin-newsletter-theme-interim}}deakin-teal{{/deakin-newsletter-theme-interim}}">
+    <div class="page one">
+      <div class="bleed">
+        <div class="placeh1older one"></div>
+        <div class="container">
+          <div class="header no-bg">
+            <div class="bg-wrapper">
+              <div class="bg-2"><div></div></div>
+                <div class="bg-3">
+                </div>
+            </div>
+			<!-- Inputs Order - DONT REMOVE {{#deakin-issue-details}}{{/deakin-issue-details}}-->
+            <div class="title-wrapper">
+              <h1 class="title" max-lines="3" no-overflow fg-auto style="font-size: {{deakin-newsletter-title-font-size}}pt;">
+                {{{deakin-newsletter-title}}}
+              </h1>
+            </div>
+            <h6 class="campuses" max-lines="1" no-overflow  fg-auto>
+              {{{deakin-newsletter-campuses}}}
+            </h6>
+            <div class="issue-details" max-lines="1" no-overflow>
+              {{{deakin-issue-details}}}
+            </div>
+          </div>
+          <!-- Inputs Order - DONT REMOVE {{#deakin-sidebar-title}}{{/deakin-sidebar-title}}-->
+          <div class="content">
+            {{#collection.deakin-sidebar-content.length}}
+            <div class="sidebar" no-overflow>
+              {{#deakin-sidebar-title}}
+              <h1 class="title" max-lines="2" no-overflow>
+                {{{deakin-sidebar-title}}}
+              </h1>
+              <div class="sep">
+              </div>
+              {{/deakin-sidebar-title}}
+              <div class="sidebar-content">
+                {{#collection.deakin-sidebar-content}}
+                <div class="event">
+                  <div class="event-name">{{{event-name}}}</div>
+                  {{#spreadsheet.event-dates}}
+                  <div class="flex">
+                    <div class="event-date">{{{date}}}</div>
+                  	<div class="campus">{{{campus}}}</div>
+                  </div>
+                  {{/spreadsheet.event-dates}}
+                </div>
+                {{/collection.deakin-sidebar-content}}
+              </div>
+            </div>
+            {{/collection.deakin-sidebar-content.length}}
+            <div class="body-wrapper">
+              <div class="inner" no-overflow>
+                {{#collection.deakin-page-1-body}}
+                  {{#block.1-column-block}}
+                  <div class="body one-col">
+                    {{{copy}}}
+                  </div>
+                  {{/block.1-column-block}}
+                  {{#block.2-column-block}}
+                  <div class="body two-col">
+                    {{{copy}}}
+                  </div>
+                  {{/block.2-column-block}}
+                  {{#block.callout-block}}
+                  <div class="body callout-col">
+                    {{{copy}}}
+                  </div>
+                  {{/block.callout-block}}
+                  {{#block.hr}}
+                    {{#show}}<div class="hr"></div>{{/show}}
+                  {{/block.hr}}
+                {{/collection.deakin-page-1-body}}
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <div class="hyphens" fg-auto max-lines="1" no-overflow>{{{deakin-url}}}</div>
+            <div>Deakin University CRICOS Provider Code: 00113B</div>
+          </div>
+        </div> 
+      </div>
+    </div>
+
+    <div class="page two">
+      <div class="bleed">
+        <div class="placeholder two"></div>
+        <div class="container">
+          <div class="header">{{{deakin-page-2-banner-image}}}</div>
+          <div class="content">
+            <div class="inner" no-overflow>
+              {{#collection.deakin-page-2-body}}
+                {{#block.body-1-content}}
+                <div class="body type-1">
+                  <h2>{{header}}</h2>
+                  <div class="copy {{column}}-col">{{{copy}}}</div>
+                </div>
+                {{/block.body-1-content}}
+                {{#block.body-2-content}}
+                <div class="body type-2">
+                  <h2>{{header}}</h2>
+                  <div class="row">
+                    <div class="left">
+                      <div class="copy {{column}}-col">{{{copy}}}</div>
+                    </div>
+                    <div class="right">
+                      <div class="highlight">
+                        {{{highlight}}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {{/block.body-2-content}}
+                {{#block.hr}}
+                  {{#show}}<div class="hr"></div>{{/show}}
+                {{/block.hr}}
+              {{/collection.deakin-page-2-body}}
+            </div>
+          </div>
+          <div class="footer">
+            <div fg-auto max-lines="1" no-overflow>{{{deakin-url}}}</div>
+            <div>Deakin University CRICOS Provider Code: 00113B</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page three">
+      <div class="bleed">
+        <div class="placeholder three">
+        </div>
+        <div class="container">
+          <div class="content">
+            <div class="inner" no-overflow>
+              {{#collection.deakin-page-3-body}}
+                {{#block.body-1-content}}
+                  <div class="body type-1">{{{copy}}}</div>
+                {{/block.body-1-content}}
+                {{#block.body-2-content}}
+                  <div class="body type-2 {{column}}-col">{{{copy}}}</div>
+                {{/block.body-2-content}}
+                {{#block.image}}
+                  <div class="body image">
+                    {{{image}}}
+                  </div>
+                {{/block.image}}
+              {{/collection.deakin-page-3-body}}
+            </div>
+          </div>
+          <div class="footer">
+            <div fg-auto max-lines="1" no-overflow>{{{deakin-url}}}</div>
+            <div>Deakin University CRICOS Provider Code: 00113B</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <script>
+    window.showCrop = {{show-crop}};
+
+    //--------------------------- reposition image fix -----------------------------------
+
+    function checkCrop() {
+      if ({{show-crop}} === true) {
+      } else {
+        [].forEach.call(document.querySelectorAll('.outfit-resizable-background'), function (el) {
+          el.parentNode.style.left = '0';
+          el.parentNode.style.right = '0';
+          el.parentNode.style.top = '0';
+          el.parentNode.style.bottom = '0';
+          el.parentNode.style.width = '100%';
+          el.parentNode.style.height = '100%';
+        });
+      }
+    }
+
+    checkCrop();
+
+    //--------------------------- add crop class to page -----------------------------------
+
+    function addCropClass() {
+      if ({{show-crop}} === true) {
+        document.body.classList.add('crop-marks-true')
+      } else {
+        document.body.classList.add('crop-marks-false')
+      }
+    }
+
+    addCropClass();
+  </script>
+
+  <script src="main.js"></script>
+  <script src="prefixfree.js"></script>
+
+
+
+  </body>
+</html>
