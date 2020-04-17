@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html data-sign="OSL">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+
+      @import url("https://outfit-assets-production.s3.amazonaws.com/fonts/Calibri/stylesheet.css");
+      @import url("https://outfit-assets-production.s3.amazonaws.com/fonts/worldly/stylesheet.css");
+
+      :root {
+        --font-family-primary: 'Calibri';
+        --font-family-secondary: 'Worldly';
+
+        --white: {{{account.colors.white}}};
+        --black: {{{account.colors.black}}};
+
+        /*CMYK COLOUR*/
+        --cmyk-pink: {{{account.colors.hex-cmyk-pink}}}; 
+        --cmyk-turquoise: {{{account.colors.hex-cmyk-turquoise}}};   
+        --cmyk-teal: {{{account.colors.hex-cmyk-teal}}};
+        --cmyk-orange: {{{account.colors.hex-cmyk-orange}}};
+        --cmyk-charcoal: {{{account.colors.hex-cmyk-charcoal}}};
+
+
+        /*RGB COLOUR*/       
+        --rgb-turquoise: rgb(13,133,114);
+        --rgb-pink: rgb(199, 66, 152);
+        --rgb-teal: rgb(0, 125, 152);
+        --rgb-orange: rgb(247, 105, 25);
+        --rgb-yellow: rgb(255, 217, 35);
+        --rgb-charcoal: rgb(54, 54, 53);
+        --rgb-grey: rgb(255, 255, 255);
+
+
+        /*RGB HEADING COLOUR*/
+        --rgb-heading-turquoise: rgb(11, 113, 97);
+        --rgb-heading-pink: rgb(172, 51, 130);
+        --rgb-heading-teal: rgb(0, 109, 136);
+        --rgb-heading-orange: rgb(173, 66, 6);
+      }
+
+      .cmyk.cmyk-pink {
+        --dynamic-color-primary: var(--cmyk-pink);
+        --dynamic-color-secondary: var(--cmyk-turquoise);
+        --heading-color-primary: var(--cmyk-turquoise);
+        --heading-colour-secondary: var(--cmyk-turquoise);
+      }
+
+      .rgb.rgb-pink {
+        --dynamic-color-primary: var(--rgb-pink);
+        --dynamic-color-secondary: var(--rgb-turquoise);
+        --heading-color-primary: var(--rgb-heading-turquoise);
+        --heading-colour-secondary: var(--rgb-heading-turquoise);
+      }
+
+      .cmyk.cmyk-turquoise {
+        --dynamic-color-primary: var(--cmyk-turquoise);
+        --dynamic-color-secondary: var(--cmyk-pink);
+        --heading-color-primary: var(--cmyk-pink);
+        --heading-colour-secondary: var(--cmyk-pink);
+      }
+
+      .rgb.rgb-turquoise {
+        --dynamic-color-primary: var(--rgb-turquoise);
+        --dynamic-color-secondary: var(--rgb-pink);
+        --heading-color-primary: var(--rgb-heading-pink);
+        --heading-colour-secondary: var(--rgb-heading-pink);
+      }
+
+      .cmyk.cmyk-teal {
+        --dynamic-color-primary: var(--cmyk-teal);
+        --dynamic-color-secondary: var(--cmyk-pink);
+        --heading-color-primary: var(--cmyk-pink);
+        --heading-colour-secondary: var(--cmyk-pink);
+      }
+
+      .rgb.rgb-teal {
+        --dynamic-color-primary: var(--rgb-teal);
+        --dynamic-color-secondary: var(--rgb-pink);
+        --heading-color-primary: var(--rgb-heading-pink);
+        --heading-colour-secondary: var(--rgb-heading-pink);
+      }
+
+      .cmyk.cmyk-orange {
+        --dynamic-color-primary: var(--cmyk-orange);
+        --dynamic-color-secondary: var(--cmyk-charcoal);
+        --heading-color-primary: var(--cmyk-teal);
+        --heading-colour-secondary: var(--cmyk-teal);
+      }
+
+      .rgb.rgb-orange {
+        --dynamic-color-primary: var(--rgb-orange);
+        --dynamic-color-secondary: var(--rgb-charcoal);
+        --heading-color-primary: var(--rgb-teal);
+        --heading-colour-secondary: var(--rgb-teal);
+      }
+
+      html {
+        font-size: 11pt;
+        font-family: var(--font-family-primary);       
+        color: var(--black);
+      }
+
+      .container{
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header {
+        position: relative;
+        height: 263pt;   
+      }
+
+      .heading__container {
+        height: 100%;
+        width: 53.6%;
+        padding: 72.4pt 65pt 0 37pt;       
+        clip-path: inset(-6pt round 0px 165px 153px 0px);
+        font-family: var( --font-family-secondary);
+        background-color: var(--dynamic-color-primary);
+        color: var( --white);
+      }
+
+      .heading { 
+        margin-bottom: 26pt;
+        max-height: 94px!important;
+        align-items: flex-end;
+      }
+
+      .heading__inner {
+        font-size: 33.9pt;
+        line-height: 1.1em;
+        color: var(--white);              
+      }
+
+      .subheading {
+        font-size: 16.5pt;
+        line-height: 1.25em;
+      }
+
+      .logo {
+        position: absolute;
+        max-height: 108pt;
+        max-width: 108pt;
+        top: 31.5%;
+        left: 44.3%;
+        object-fit: contain;   
+      }
+
+      .backgroundImage {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 362pt;
+        overflow: hidden;      
+      }
+
+      .body {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 23pt;
+        flex: 1;
+        padding: 31pt 37pt 18pt;   
+      }
+
+      .theme-1 .body {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .column {
+        flex: 1;
+      }
+
+      .theme--1 .column--tertiary {
+        display: none;
+      }
+
+      .content h3 {
+        margin-bottom: 1pt;
+        font-size: 14.4pt;       
+        font-family: var(--font-family-secondary);
+        color: var(--heading-color-primary);
+      }
+
+      .content--1 h3 {
+        font-size: {{{DKN_subheading-col-1-font-size--fwmi}}}pt;
+      }
+
+      .content--2 h3 {
+        font-size: {{{DKN_subheading-col-2-font-size--fwmi}}}pt;
+      }
+
+      .content--3 h3 {
+        font-size: {{{DKN_subheading-col-3-font-size--fwmi}}}pt;
+      }
+
+      .content h3 + h4 {
+        margin-bottom: 7pt;
+      }
+
+      .content--1 h3:first-child + p {
+        margin-top: 13pt;
+      }
+
+      .content h4 {
+        margin-bottom: 1pt;
+        font-size: 12.4pt;
+        font-family: var(--font-family-secondary);        
+      }
+
+      .content p {
+        margin-bottom: 6pt;
+        font-size: 9pt;
+        line-height: 1.4em;   
+      }
+
+      .content--1 p {
+        font-size: {{{DKN_body-copy-1-font-size--fwmi}}}pt;
+      }
+
+      .content--2 p {
+        font-size: {{{DKN_body-copy-2-font-size--fwmi}}}pt;
+      }
+
+      .content--3 p {
+        font-size: {{{DKN_body-copy-3-font-size--fwmi}}}pt;
+      }
+
+      .content p:last-child {
+        margin-bottom: 0;
+      }
+
+      .content p + h3 {
+        margin-top: 11pt;
+      }
+
+      .content ul {
+        margin-bottom: 7pt;
+        list-style: none;    
+      }
+
+      .content ul + h4 {
+        margin-top: 9pt;
+      }
+
+      .content li {
+        margin-bottom: 3pt;
+        position: relative;
+        padding-left: 9pt;
+        font-size: 8.9pt;
+        line-height: 1.4em;     
+      }
+
+      .content li:before {
+        content: '.';
+        position: absolute;
+        left: 0pt;
+        top: -5pt;
+        font-size: 23.9pt;
+      }
+
+      .footer {
+        height: 61pt;
+      }
+
+      .footer__content {
+        padding: 0pt 11pt 0pt 37pt;
+      }
+
+      .url {
+        margin-bottom: 4pt;
+        font-size: 17.3pt;
+        font-family: var(--font-family-secondary);      
+        color: var(--heading-color-primary);
+        font-weight: 700;
+      }
+
+      .cricos {
+        font-size: 6.5pt;
+      }
+
+      .shapeImage {
+        position: absolute;
+        overflow: hidden
+      }
+
+      .theme-1 .shapeImage--primary,
+      .theme-2 .shapeImage--primary {
+        display: none;
+      }
+
+      .theme-3 .shapeImage--primary {
+        width: 200pt;
+        height: 140pt;
+        left: 0pt;
+        bottom: 121pt;
+        clip-path: inset(0px round 0pt 66pt 66pt 0pt);
+      }
+
+      .theme-4 .shapeImage--primary {
+        width: 163pt;
+        height: 195pt;
+        left: 37pt;
+        bottom: 85pt;
+      }
+
+      .theme-1 .shapeImage--secondary {
+        width: 303pt;
+        height: 225pt;
+        right: 0pt;
+        bottom: 87pt;
+        clip-path: inset(0px round 245pt 0pt 0pt 245pt);
+      }
+
+      .theme-2 .shapeImage--secondary,
+      .theme-3 .shapeImage--secondary,
+      .theme-4 .shapeImage--secondary {
+        right: -114pt;
+        bottom: 0;
+        width: 426pt;
+        height: 365pt;      
+        clip-path: polygon(50% 0, 100% 100%, 0 100%);
+      }
+
+      .theme-3 .shapeImage--secondary {
+        right: -156pt;
+        height: 380pt;
+        width: 435pt;
+      }
+
+      .theme-1 .content--1 {
+        max-height: 640px;
+      }
+
+      .theme-1 .content--2 {
+        max-height: 310px;
+      }
+
+      .theme-1 .content--3 {
+        display: none;
+      }
+
+      .theme-2 .content--1 {
+        max-height: 640px;
+      }
+
+      .theme-2 .content--2 {
+        max-height: 520px;
+      }
+
+      .theme-2 .content--3 {
+        max-height: 250px;
+      }
+
+      .theme-3 .content--1 {
+        max-height: 390px;
+      }
+
+      .theme-3 .content--2 {
+        max-height: 610px;
+      }
+
+      .theme-3 .content--3 {
+        max-height: 230px;
+      }
+
+      .theme-4 .content--1 {
+        max-height: 350px;
+      }
+
+      .theme-4 .content--2 {
+        max-height: 510px;
+      }
+
+      .theme-4 .content--3 {
+        max-height: 242px;
+      }
+
+      /* Helpper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}} 
+                                         {{DKN_design-theme--fwmi}}{{^DKN_design-theme--fwmi}}theme-1{{/DKN_design-theme--fwmi}}
+
+                                         {{ DKN_colour-type--fwmi }}{{^DKN_colour-type--fwmi}}cmyk{{/DKN_colour-type--fwmi}}
+                                         {{ DKN_colour-theme-CMYK--fwmi }}{{^DKN_colour-theme-CMYK--fwmi}}cmyk-pink{{/DKN_colour-theme-CMYK--fwmi}}
+                                         {{ DKN_colour-theme-RGB--fwmi }}{{^DKN_colour-theme-RGB--fwmi}}rgb-pink{{/DKN_colour-theme-RGB--fwmi}}
+                                         " 
+        data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      {{#placeholder-image-1}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      {{/placeholder-image-1}}
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+
+          <div class="header">
+            <div class="backgroundImage">
+              <div class="reposition-fix">
+                {{{DKN_main-image--fwmi}}}
+              </div><!-- end repostion-fix -->
+            </div><!--backgroundImage-->
+            <div class="heading__container">
+              {{#DKN_heading--fwmi}}
+              <div class="heading heading--main">
+                <div class="heading__inner textFit-vertical">
+                  {{{DKN_heading--fwmi}}}
+                </div><!-- end heading__inner -->
+              </div><!--heading-->
+              {{/DKN_heading--fwmi}}
+              {{#DKN_subheading--fwmi}}<div class="subheading subheading--main" data-max-line="3">{{{DKN_subheading--fwmi}}}</div><!--subheading-->{{/DKN_subheading--fwmi}}
+            </div><!--heading__container-->
+            <img src="{{{account.logos.circle}}}" alt="" class="logo"><!--logo-->
+          </div><!--header-->
+          <div class="body">
+            <div class="column column--primary">
+              <div class="content content--1" data-max-height="css">
+                {{{DKN_column-1--fwmi}}}
+              </div><!--column-->
+            </div><!--content-->
+            <div class="column column--secondary">
+              <div class="content content--2" data-max-height="css">
+                {{{DKN_column-2--fwmi}}}
+              </div><!--content-->
+            </div><!--column column--secondary-->
+            <div class="column column--tertiary">
+              <div class="content content--3" data-max-height="css">
+                {{{DKN_column-3--fwmi}}}
+              </div><!--content-->
+            </div><!--column column--tertiary-->
+          </div><!--body-->
+          <div class="footer">
+            <div class="footer__content">
+              {{#DKN_url--fwmi}}<div class="url" data-max-line="1">{{{DKN_url--fwmi}}}</div><!--site-->{{/DKN_url--fwmi}}
+              {{#DKN_cricos--fwmi}}<div class="cricos" data-max-line="1">{{{DKN_cricos--fwmi}}}</div><!--cricos-->{{/DKN_cricos--fwmi}}
+            </div><!--footer__content-->
+          </div><!--footer-->
+          <div class="shapeImage shapeImage--primary">
+            <div class="reposition-fix">
+              {{{DKN_bottom-left-image--fwmi}}}
+            </div><!--reposition-fix-->
+          </div><!--shapeImage shapeImage--primary-->
+          <div class="shapeImage shapeImage--secondary">
+            <div class="reposition-fix">
+              {{{DKN_bottom-right-image--fwmi}}}
+            </div><!--reposition-fix-->
+          </div><!--shapeImage shapeImage--secondary-->
+
+        </div><!--fit column__container-->         
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+        });
+      });
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit-vertical',
+        fitMode: 'vertical'
+      });
+
+      // Adding additional check for not allowing more than 3 lines
+      function textFitMaxLine(selector) {
+        const target = document.querySelector(selector);
+        const computedFontSize = window.getComputedStyle(target).fontSize;
+
+        const limit = 30;
+
+        if ( computedFontSize < `${limit}px`) {
+          target.classList.add('overflow');
+        } else {
+          target.classList.remove('overflow');
+        }        
+      }
+
+      setInterval(() => {
+        textFitMaxLine('.heading__inner');
+      }, 1000);      
+
+    </script>
+
+
+  </body>
+</html>
