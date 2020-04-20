@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="helper.css">
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"
+            >
+    </script>
+    <!--- <script src="lu-helper.js"></script> -->
+    <script src="textfit.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.1/tinycolor.min.js"></script>
+
+    <style>
+      :root {
+        --text-color: {{{account.colors.white}}};
+      }
+
+      .deakin-rgb-teal {
+        --primary: {{{account.colors.teal}}};
+        --highlight: {{{account.colors.purple}}};
+
+      }
+
+      .deakin-rgb-yellow {
+        --text-color: {{{account.colors.black}}};
+        --primary: {{{account.colors.yellow}}};
+        --highlight: {{{account.colors.purple}}};
+      }
+
+      .deakin-rgb-pink {
+        --primary: {{{account.colors.purple}}};
+        --highlight: {{{account.colors.turquoise}}};
+      }
+
+      .deakin-rgb-turquoise {
+        --primary: {{{account.colors.turquoise}}};
+        --highlight: {{{account.colors.purple}}};
+      }
+
+      body {
+        font-family: 'Calibri';
+        margin: 0;
+        padding: 0;
+      }
+
+      .page { position: relative; height: 100%; }
+
+      .placeholder {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+      .bleed {
+        overflow: hidden;
+      }
+      .container-theme svg:nth-child(1) {
+        width: 140%;
+        position: absolute;
+        top: -4%;
+      }
+      .container-theme svg:nth-child(2) {
+        width: 8.5%;
+        position: absolute;
+        top: 68.1%;
+      }
+      .container-theme svg:nth-child(3) {
+        width: 66.8%;
+        position: absolute;
+        top: -17%;
+        right: -8.4%;
+        transform: rotateX(-12deg);
+      }
+      .container-theme img {
+        position: absolute;
+        width: 19%;
+        top: 10.4%;
+        left: 50.5%;
+      }
+      .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/0d7af52d4151305e39ba4b1ae0821c5a/1829.05-Deakin-Accelerate-Info-Evening-Poster-A3-FA-No-Bleed-JC.png');
+      }
+
+      .fit {
+        display: inline-block;
+        white-space: nowrap;
+        font-weight: bold;
+      }
+
+      token-value {
+        word-break: initial !important;
+        overflow-wrap: initial !important;
+        -webkit-user-modify: initial !important;
+        -webkit-line-break: initial !important;
+      }
+
+    </style>
+  </head>
+  <body style="background: #e1e0de; color: var(--text-color)" data-theme="deakin-rgb-{{deakin-poster-theme}}" class=" deakin-rgb-{{deakin-poster-theme}} {{^deakin-poster-theme}}deakin-rgb-teal{{/deakin-poster-theme}} body-page">
+
+    <div class="page">
+      <div class="bleed">
+        <!--<div class="placeholder"></div>-->
+        <div class="container">
+          <div class="container-theme">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64.24 74.18"><defs><style>.cls-1{fill:var(--primary);}</style></defs><g><g><polygon class="cls-1" points="0 74.18 64.24 37.09 0 0 0 74.18"/></g></g></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64.24 74.18"><defs><style>.cls-2{fill:var(--highlight);}</style></defs><g><g><polygon class="cls-2" points="0 74.18 64.24 37.09 0 0 0 74.18"/></g></g></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 426.72 508.8"><defs><style>.cls-3{fill:var(--highlight);}</style></defs><title>Asset 3</title><g><g><polygon class="cls-3" points="0 254.4 426.72 508.8 426.72 0 0 254.4"/></g></g></svg>
+            <img src="https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/ea788308a78e204fc943363b672cfa77/Asset%204.svg"/>
+          </div>
+          <div class="container-content">
+            <div class="shape-path upper"></div> 
+
+            <div class="totalContent"> <!-- with seperate function to check overflow -->
+              	<div class="check-overflow">
+                  <div class="content-upper"> 
+
+                 <div class="to p-spacing"></div>
+
+                  <div style="display: block;" class="upper-container">
+                    <div class="content-upper-movable" >
+                      {{#deakin-title}}
+                      <div class="title-position" style="font-size: {{{font-size-title}}}em;">
+                        <div class="check-overflow title-overflow">
+                          <div class="title">{{{deakin-title}}}</div>
+                        </div>
+                      </div>
+                      {{/deakin-title}}
+
+                      {{#deakin-tagline}}
+                      <div class="tagline-position">
+                        <div class="check-overflow tagline-overflow">
+                          <div class="tagline">{{{deakin-tagline}}}</div>
+                        </div>
+                      </div>
+                      {{/deakin-tagline}}
+
+                      {{#deakin-intro}}
+                      <div class="intro-position">
+                        <div class="check-overflow intro-overflow" >
+                          <div class="intro">{{{deakin-intro}}}
+                          </div>
+                        </div>
+                      </div>
+                      {{/deakin-intro}}
+                    </div> 
+                    <!-- ********* End of Content Movable ********* -->
+
+                    {{#deakin-heading}}
+                    <div class="heading-position">
+                      <div class="check-overflow heading-overflow">
+                        <div class="heading">{{deakin-heading}}</div>
+                      </div>
+                    </div>
+                    {{/deakin-heading}}
+
+                    <div class="areas-position">
+                      <div class="check-overflow areas-overflow">
+                        <div class="areas">
+                          {{#spreadsheet.deakin-areas}}
+                          <div class="areas-row">
+                            <div class="areas-column">{{{item-1}}}</div>
+                            <div class="areas-column">{{{item-2}}}</div>
+                            <div class="areas-column">{{{item-3}}}</div>
+                          </div>
+                          {{/spreadsheet.deakin-areas}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>        
+                  <!--   ********* End of CONTENT ABOVE ********* -->
+
+                  <div class="content-below">
+                  	<div style="display: block;">
+
+                      {{#deakin-contentPoster}}
+                      <div class="contentPoster-position" style="font-size: {{{font-size-contentPoster}}}rem;">
+                        <div class="check-overflow contentPoster-overflow">
+                          <div class="contentPoster" >{{{deakin-contentPoster}}}</div>
+                        </div>
+                      </div>
+                      {{/deakin-contentPoster}}
+
+                      <div class="info-position">
+                        <h3>{{{deakin-info-heading}}}</h3>
+                        <div class="info"> 
+                          {{ #spreadsheet.deakin-info }}
+                          <div class="session">
+                            <div class="name">{{{ deakin-name }}}</div>
+                            <div class="date">{{{ deakin-date }}}</div>
+                          </div>
+                          {{ /spreadsheet.deakin-info }}
+                          <div style="clear: both"></div>
+                        </div>
+                      </div>
+                      <!-- DON'T REMOVE - For Inputs Order {{#deakin-cta}}{{/deakin-cta}} -->
+                      {{#deakin-url}}
+                      <div class="url-position">
+                        <div>{{{ deakin-cta }}}</div>
+                        <div class="url">{{{ deakin-url }}}</div>
+                      </div>
+                      {{/deakin-url}}
+                    </div>
+                  </div>
+            	</div>            
+            </div>
+            <div class="code">
+              Deakin University CRICOS Provider Code: 00113B
+            </div>	    
+          </div>
+          <!-- ********* End of CONTENT BELOW ********* -->
+
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+      window.showCrop = {{show-crop}};
+      
+      function urlCheckLength(element, stringLength) {
+        var url = element.innerHTML;
+        var urlParent = element.parentNode;
+        var urlLength = url.length;
+        
+        console.log('urlLength: ' + urlLength + ' and ' + stringLength);
+        
+        if (urlLength > stringLength) {
+          urlParent.classList.add('overflow');
+        } else {
+          urlParent.classList.remove('overflow');
+        }
+      }  
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+
+
+      //--------------------------- reposition image fix -----------------------------------
+
+      function checkCrop() {
+        if ({{show-crop}} === true) {
+        } else {
+          [].forEach.call(document.querySelectorAll('.outfit-resizable-background'), function (el) {
+            el.parentNode.style.left = '0';
+            el.parentNode.style.right = '0';
+            el.parentNode.style.top = '0';
+            el.parentNode.style.bottom = '0';
+            el.parentNode.style.width = '100%';
+            el.parentNode.style.height = '100%';
+          });
+        }
+      }
+
+      checkCrop();
+
+      //--------------------------- add crop class to page -----------------------------------
+
+      function addCropClass() {
+        if ({{show-crop}} === true) {
+          document.body.classList.add('crop-marks-true')
+        } else {
+          document.body.classList.add('crop-marks-false')
+        }
+      }
+      
+      var urlChecker = document.querySelector('.url');
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));
+        
+        if (urlChecker.childNodes.length === 1) {
+          urlCheckLength(urlChecker.childNodes[0], 50);
+        } else {
+          urlCheckLength(urlChecker, 60);	
+        }
+      } 
+      setInterval(loop, 500);
+      addCropClass();
+      // LuHelper.lazy();
+
+      fitty('.fit', {
+        maxSize: 23
+      });
+    </script>
+    <script src="main.js"></script>
+  </body>
+</html>
