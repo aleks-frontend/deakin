@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html data-sign="OSL">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+
+      @import url("https://outfit-assets-production.s3.amazonaws.com/fonts/worldly/stylesheet.css");
+      @import url("https://outfit-assets-production.s3.amazonaws.com/fonts/Calibri/stylesheet.css");
+
+      :root {
+        --font-family-primary: 'Calibri';
+        --font-family-secondary: 'Worldly';
+
+        --white: {{{account.colors.white}}};
+        --black: {{{account.colors.black}}};
+
+
+
+        /*RGB COLOUR*/       
+        --rgb-pink: rgb(199, 66, 152);
+        --rgb-turquoise: {{{account.colors.turquoise-digital-copy}}};
+        --rgb-teal: {{{account.colors.teal-digital-copy}}};
+        --rgb-yellow: {{{account.colors.yellow}}};
+        --rgb-charcoal :{{{account.colors.charcoal}}};
+        --rgb-orange: {{{account.colors.orange}}};
+
+        --main-shape-color: var(--rgb-teal);
+        --main-text-color: var(--white);
+        --button-background-color: var(--rgb-pink);
+        --button-text-color: var(--white);
+        --shape-color: var(--rgb-pink);
+      }
+
+
+      .themeOneColor--yellow,
+      .themeTwoColor--yellow {
+        --main-shape-color: var(--rgb-yellow);
+        --main-text-color: var(--black);
+      }
+
+      .themeOneColor--pink,
+      .themeTwoColor--pink {
+        --main-shape-color: var(--rgb-pink);
+        --button-background-color: var(--rgb-charcoal);
+        --main-text-color: var(--white);
+      }
+
+      .themeOneColor--turquoise,
+      .themeTwoColor--turquoise {
+        --main-shape-color: var(--rgb-turquoise);
+        --main-text-color: var(--white);
+      }
+
+      .themeTwoColor--orange {    
+        --main-shape-color: var(--rgb-orange);
+        --button-background-color: var(--rgb-charcoal);
+        --shape-color: var(--rgb-teal);
+      }
+
+      .themeTwoColor--yellow {    
+        --main-text-color: var(--black);
+      }
+
+      .themeTwoColor--pink {    
+        --shape-color: var(--rgb-yellow);
+      }
+
+
+      html {
+        font-size: 11pt;
+        font-family: var(--font-family-primary);       
+        color: var(--white);
+      }
+
+
+      .container {
+        position: absolute;
+        top: 3mm;
+        right: 3mm;
+        bottom: 3mm;
+        left: 3mm;
+        overflow: hidden;
+        background: #f1f1f1;
+      }
+
+      .content {
+        display: flex;
+        width: 83%;
+        height: 100%;
+        background: var(--main-shape-color);
+        clip-path: inset(0px round 0% 22px 22px 0);
+      }
+
+
+      .theme--1 .content {
+        width: auto;
+        -webkit-clip-path: polygon(0% 0%, 66.2% 0%, 92.8% 100%, 0% 100%);
+        clip-path: polygon(0% 0%, 66.2% 0%, 92.8% 100%, 0% 100%);
+      }
+
+      .content__container { 
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 5.8pt 1pt 2pt 5.8pt;
+      }
+
+      .theme--1 .content__container {
+        padding: 5.7pt 2pt 2pt 3.8pt;
+      }
+
+      .heading {
+        font-family: var(--font-family-secondary);
+        font-size: 8.5pt;
+        line-height: 1.25em;
+        font-weight: bold;
+        color: var(--main-text-color);
+      }
+
+      .theme--1 .heading {
+        font-size: 7.5pt;
+        line-height: 1.5em;
+      }
+
+      .cricos {
+        font-size: 5pt;
+        color: var(--main-text-color);
+      }
+
+      .button__container {
+        width: 80pt;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-right: 14pt;
+        font-family: var(--font-family-secondary);
+        font-size: 6.5pt;
+      }
+
+      .theme--1 .button__container {
+        width: 129pt;
+        padding-right: 71pt;
+      }
+
+      .button {
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+        height: 14.2pt;
+        padding: 0 5.9pt;
+        font-family: var(--secondary);
+        font-weight: bold;
+        letter-spacing: 0.3pt;
+        color: var(--button-text-color);
+        border-radius: 8pt;
+        background: var(--button-background-color);     
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .logo, .shape {
+        position: absolute;
+      }
+
+      .logo {
+        position: absolute;
+        top: 50%;
+        right: 22pt;
+        max-width: 36pt;
+        transform: translateY(-50%);
+      }
+
+      .theme--1 .logo {
+        right: 28pt;
+      }
+
+      .shape {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 16%;
+        background: var(--shape-color);
+        clip-path: inset(0px round 22px 0 0 22px);
+      }
+
+      .theme--1 .shape {
+        display: none;
+      }
+
+      .image {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        width: 72pt;
+        -webkit-clip-path: polygon(0% 0%, 87% 100%, 100% 100%, 100% 0%);
+        clip-path: polygon(0% 0%, 87% 100%, 100% 100%, 100% 0%);
+        overflow: hidden;
+      }
+
+      @media screen and (min-width: 639px) {
+        html {
+          font-size: calc(11pt * 2);
+          font-family: var(--font-family-primary);       
+          color: var(--white);
+        }
+
+
+        .container {
+          position: absolute;
+          top: 3mm;
+          right: 3mm;
+          bottom: 3mm;
+          left: 3mm;
+          overflow: hidden;
+          background: #f1f1f1;
+        }
+
+        .content {
+          display: flex;
+          width: 83%;
+          height: 100%;
+          background: var(--main-shape-color);
+          clip-path: inset(0px round 0% 44px 44px 0);
+        }
+
+
+        .theme--1 .content {
+          width: auto;
+          -webkit-clip-path: polygon(0% 0%, 66.2% 0%, 92.8% 100%, 0% 100%);
+          clip-path: polygon(0% 0%, 66.2% 0%, 92.8% 100%, 0% 100%);
+        }
+
+        .content__container { 
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 11.6pt 4pt 4pt 11.6pt;
+        }
+
+        .theme--1 .content__container {
+          padding: 11.4pt 4pt 4pt 7.6pt;
+        }
+
+        .heading {
+          font-family: var(--font-family-secondary);
+          font-size: calc(8.5pt * 2) ;
+          line-height: 1.25;
+          font-weight: bold;
+          color: var(--main-text-color);
+        }
+
+        .theme--1 .heading {
+          font-size: calc(7.5pt * 2);
+          line-height: 1.5;
+        }
+
+        .cricos {
+          font-size: calc(5pt * 2);
+          color: var(--main-text-color);
+        }
+
+        .button__container {
+          width: calc(75pt * 2);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding-right: calc(19pt * 2);
+          font-size: calc(6.5pt * 2);
+        }
+
+        .theme--1 .button__container {
+          width: calc(129pt * 2);
+          padding-right: calc(71pt * 2);
+        }
+
+        .button {
+          display: flex;
+          align-items: center;
+          text-transform: uppercase;
+          height: calc(14.2pt * 2);
+          padding: 0 11.8pt;
+          font-family: var(--secondary);
+          font-weight: bold;
+          letter-spacing: 0.6pt;
+          color: var(--button-text-color);
+          border-radius: 16pt;
+          background: var(--button-background-color);     
+        }
+
+        a {
+          text-decoration: none;
+        }
+
+        .logo, .shape {
+          position: absolute;
+        }
+
+        .logo {
+          position: absolute;
+          top: 50%;
+          right: calc(22pt * 2);
+          max-width: calc(36pt * 2);
+          transform: translateY(-50%);
+        }
+
+        .theme--1 .logo {
+          right: calc(28pt * 2);
+        }
+
+        .shape {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          width: 16%;
+          background: var(--shape-color);
+          clip-path: inset(0px round 44px 0 0 44px);
+        }
+
+        .theme--1 .shape {
+          display: none;
+        }
+
+        .image {
+          inset: unset !important;
+          position: absolute !important;
+          right: 0 !important;
+          left: unset !important;
+          top: 0 !important;
+          height: 100vh;
+          width: calc(72pt * 2) !important;
+          -webkit-clip-path: polygon(0% 0%, 87% 100%, 100% 100%, 100% 0%);
+          clip-path: polygon(0% 0%, 87% 100%, 100% 100%, 100% 0%);
+          overflow: hidden;
+        }
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}} 
+                                         theme--{{DKN_Theme-options--dam}}{{^DKN_Theme-options--dam}}1{{/DKN_Theme-options--dam}}
+                                         themeOneColor--{{DKN_Theme-colour--dam}}
+                                         themeTwoColor--{{DKN_Theme-two-colour--dam}}" 
+        data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      {{#placeholder-image-1}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      {{/placeholder-image-1}}
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+
+
+
+
+
+          <div class="content">
+            <div class="content__container">
+              <div class="heading" data-max-line="2"> {{{ DKN_headline--dafm }}}</div><!--heading-->
+              <div class="cricos" data-max-line="1"> {{{ DKN_cricos--dafm }}}</div><!--subheading-->
+            </div><!--content__container-->
+            <div class="button__container">
+              {{#DKN_cta--dafm}}<a href="javascript:window.open(window.clickTag)" class="button" data-char-limit="10"> {{{ DKN_cta--dafm }}}</a> {{/DKN_cta--dafm}}
+            </div><!--button-->
+          </div><!--content-->
+          <div class="shape"></div><!--shape-->
+          <div class="image">{{{DKN_image--dafm}}}</div> <!--image-->
+          <img class="logo" src="{{{DKN_logo--dafm}}}" alt="">
+
+
+
+
+        </div><!--fit column__container-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+        });
+      });
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+    </script>
+
+
+  </body>
+</html>
