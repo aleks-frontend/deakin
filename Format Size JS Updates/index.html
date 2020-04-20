@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+	<!-- {{crop-marks}} {{colour-options}} {{headline-font-size}} {{headline}} {{subheader-font-size}} {{sub-headline}} {{body-headline}} {{body-1}} {{body-2}} {{cta}} {{website}} {{cricos}} -->
+ 
+    <title>Deakin University</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <style>
+
+      .test-background-image {
+        /*background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/0ff3e7cee4d06999e39c5843f1c3ca42/Screen%20Shot%202017-05-31%20at%209.02.20%20am.png');*/
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+
+      .show-crop-marks .test-background-image {
+        top: 0.5in;
+        left: 0.5in;
+        right: 0.5in;
+        bottom: 0.5in;
+      }
+
+      
+      .background {
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        position: absolute;
+        width: 68%;
+        top: -1px;
+        bottom: -1px;
+        right: -1px;
+        z-index: -1;
+      } 
+      
+      
+          {{^image-upload}}
+    .background {
+      
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/2a3cc2bf281107d76a658f6881cf01bc/bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      
+    }
+    {{/image-upload}}
+      
+      
+
+      .show-crop-marks .background {
+        top: -0.25in;
+        bottom: -0.25in;
+        right: -0.25in;
+      }
+
+      .text-position { background-color: #57BAAD; }
+
+      .theme-one .document {
+        background-color: {{{account.colors.grey}}};
+      }
+
+      .theme-two .document  {
+        background-color: {{{account.colors.grey}}};
+      }
+
+      .theme-one .text-3 {
+        color: {{{account.colors.purple}}};
+      }
+
+      .theme-two .text-3  {
+        color: {{{account.colors.teal}}};
+      }
+
+      .theme-one .text-position {
+        color: {{{account.colors.black}}};
+        background-color: {{{account.colors.purple}}};
+      }
+
+      .theme-two .text-position  {
+        color: {{{account.colors.white}}};
+        background-color: {{{account.colors.teal}}};
+      }
+
+      .theme-one .footer-text-position {
+        color: {{{account.colors.black}}};
+        background-color: {{{account.colors.purple}}};
+      }
+
+      .theme-two .footer-text-position  {
+        color: {{{account.colors.white}}};
+        background-color: {{{account.colors.teal}}};
+      }
+
+      .theme-one .circle-fill {
+        fill: {{{account.colors.purple}}};
+      }
+
+      .theme-two .circle-fill {
+        fill: {{{account.colors.teal}}};
+      }
+
+      .theme-one .detail-position {
+        color: {{{account.colors.black}}};
+      }
+
+      .theme-two .detail-position {
+        color: {{{account.colors.white}}};
+      }
+      
+      .page-2 .website-overflow {
+        max-height: 3em;
+      }
+      
+      .body-container p strong{
+        font-weight: bold;
+      }
+      
+
+    </style>
+  </head>
+  <body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+
+    <div class="page-1 {{{Colour-Options}}}">
+
+      <div class="document" id="container">
+
+        <div class="content">
+
+          <div class="background">
+          	{{{image-upload}}}
+          </div>
+
+          <div class="logo"><img src="{{{account.logos.circle}}}"></div>
+
+          <div class="text-position"></div><!--text-position-->
+
+          <div class="text-1">
+            <div class="headline-overflow">
+              <div class="headline-container">
+                <h1 style="font-size: calc(2.5em - {{{headline-font-size}}}em);">{{{ headline }}}</h1>
+              </div>
+            </div><!--headline-->
+            <div class="sub-headline-overflow">
+              <div class="sub-headline-container">
+                <h2 style="font-size: calc(1.2em - {{{subheader-font-size}}}em);">{{{ sub-headline }}}</h2>
+              </div>
+            </div>
+          </div><!--text-1-->
+
+          <div class="text-2">
+            <div class="cta">
+              <div class="cta-overflow">
+                <div class="cta-container">
+                  {{#cta}}<h3 id="cta">{{{ cta }}}</h3>{{/cta}}
+                </div>
+              </div>
+              <div class="website-overflow">
+                <div class="website-container">
+                  <h4>{{{ website }}}</h4>
+                </div>
+              </div>
+            </div><!--cta-->
+            <div class="cricos">
+              <p>{{{ cricos }}}</p>
+            </div><!--cricos-->
+          </div><!--text-2-->
+
+          <div class="circle-1">
+            <svg width="100%" height="100%" viewBox="0 0 2000 2000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+              <desc>Created with Sketch.</desc>
+              <defs></defs>
+              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <circle id="Oval" class="circle-fill" fill="#57BAAD" cx="1000" cy="1000" r="1000"></circle>
+              </g>
+            </svg>
+          </div><!--circle-->
+
+        </div><!--content-->
+
+      </div><!--document-->
+
+    </div><!--page-->
+
+    <div class="page-2 {{{Colour-Options}}}">
+
+      <div class="document">
+
+        <div class="content">
+
+          <div class="footer-text-position"></div><!--text-position-->
+
+          <div class="text-3">
+            <div class="text-3-overflow">
+              <div class="text-3-container">
+                <h1>{{{ body-headline }}}</h1>
+              </div>
+            </div>
+          </div><!--text-3-->
+
+          <div class="text-4">
+            <div class="body-overflow">
+              <div class="body-container">
+                {{{ body-1 }}}
+              </div>
+            </div>
+          </div><!--text-4-->
+
+          <div class="text-5">
+            <div class="body-overflow">
+              <div class="body-container">
+                {{{ body-2 }}}
+              </div>
+            </div>
+          </div><!--text-5-->
+
+          <div class="text-6">
+            <div class="cta">
+              <div class="cta-overflow">
+                <div class="cta-container">
+                  {{#cta}}<h3 id="cta">{{{ cta }}}</h3>{{/cta}}
+                </div>
+              </div>
+              <div class="website-overflow" style="max-width: 19em">
+                <div class="website-container" style="font-size: 1em" id="text">
+                  <h4>{{{ website }}}</h4>
+                </div>
+              </div>
+            </div><!--cta-->
+          </div><!--text-6-->
+
+          <div class="cricos">
+            <p>{{{ cricos }}}</p>
+          </div><!--cricos-->
+
+          
+
+        </div><!--content-->
+
+      </div><!--document-->
+
+    </div><!--page-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/main.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+	<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+
+    <script>
+      function loop() {
+        checkHeight(document.getElementsByClassName('headline-container'));
+        checkHeight(document.getElementsByClassName('sub-headline-container'));
+        checkHeight(document.getElementsByClassName('body-container'));
+        checkHeight(document.getElementsByClassName('text-3-container'));
+        checkHeight(document.getElementsByClassName('cta-container'));
+        checkHeight(document.getElementsByClassName('website-container'));
+
+
+        /* Add any other text boxes you want to check the overflows on with the following: checkHeight(document.getElementsByClassName('CLASS NAME')); */
+
+      } setInterval(loop, 2000);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+
+    </script>
+
+    <script>
+      function checkFormatSize(targetID){
+        const formatSizes = { 
+          "formatSizes" : [
+            {
+              "name" : "a5Landscape",
+              "digitalDimensions" : [794, 559],
+              "printDimensions" :  [842, 607]
+            },
+            {
+              "name" : "dlLandscape",
+              "digitalDimensions" : [831, 378],
+              "printDimensions" :  [879, 426]
+            },
+          ]
+        }
+                
+        var documentWidth = document.getElementById(targetID).offsetWidth;
+        var documentHeight = document.getElementById(targetID).offsetHeight;
+        var currentDocumentDimensions = [documentWidth, documentHeight];
+       	var formatName = "";
+       
+        formatSizes["formatSizes"].forEach(function(formatSize){
+          if(currentDocumentDimensions.toString() == formatSize["digitalDimensions"].toString() ||
+             currentDocumentDimensions.toString() == formatSize["printDimensions"].toString()
+            ){
+            formatName = formatSize["name"];
+          }          
+        });
+        
+        return formatName;
+      }
+
+      var formatSize = checkFormatSize('container');
+      var formatClassName = "formatSize--" + formatSize;
+      document.body.classList.add(formatClassName);
+          
+      var size = text.style.fontSize;
+      var sizeValue = parseInt(size.slice(0, -2))
+       
+      
+        imagesLoaded( '#container', { background: '.background' }, function() {
+          var count = 0;
+          console.log('all .background background images loaded');
+          if (count != 0) {
+            document.dispatchEvent(new Event('printready'));
+          }
+          count++;
+          console.log(count);
+        });
+      
+      setInterval(function() {
+        var text = document.querySelector('#text');
+        var len = text.innerText.split('').length;
+
+        if (len > 40) {
+          text.style.fontSize = sizeValue - 0.2 + 'em';
+        }
+
+        else if (len > 30) { 
+          text.style.fontSize = sizeValue - 0.1 + 'em';
+        }
+        
+        else {
+          text.style.fontSize = size;
+        }
+        
+      }, 2000);
+    </script>
+    
+
+  </body>
+</html>
