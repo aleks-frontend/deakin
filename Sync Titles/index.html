@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" style="background: white;">
+  <head>    
+    <link type="text/css" rel="stylesheet" href="globals.css" />
+    <link type="text/css" rel="stylesheet" href="main.css" />
+    <style type="text/css">
+      .test {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/c1379a72e6f84547b7abe94f1b2c7487/7b21425b4a0853d4c928adc55b1b4b27.png');
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/2664a3e8ffcb2b86e2228735270125d4/e0c9de084ef296a5504b0dfb06b72593.png');
+        background-position: top left;
+        opacity: .5;
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body class="{{deakin-theme}}{{^deakin-theme}}theme-1{{/deakin-theme}} c-{{deakin-colour}}{{^deakin-colour}}turquoise{{/deakin-colour}}">
+    <div class="page">
+      <div class="bleed">
+        <div class="test fit contain"></div>
+        <div class="fit">
+          <div class="wrapper">
+            <div class="image">{{{deakin-image}}}</div>
+            <div class="graphic"></div>
+            <div class="graphic2"></div>
+            <div class="main">
+              <div class="headline">
+                <div class="inner">
+                  {{{headline}}}
+                </div>
+              </div>
+              <div class="cta">
+                <div class="inner">
+                  {{{cta}}}
+                </div>
+              </div>
+            </div>            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}false{{/show-crop}};
+    </script>
+    <script>
+      if (showCrop) {
+        document.querySelector('body').classList.add('crop');
+      }
+
+      var cropImage = 'https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bdb964a7c7fdc5ebc8bbde9204b62464/crop.svg'
+
+      Array.prototype.slice.call(document.querySelectorAll('.page'))
+        .forEach(function(page) {
+          var parser = new DOMParser();
+          page.style.cssText = 'overflow: hidden; position: relative; height: 100vh; width: 100vw';
+
+          var cropString = (
+            '<div class="crop-marks">' +
+            '<img style="height: 28.81px; width: 28.81px; position: absolute; top: 0; left: 0;" src="'+cropImage+'">' +
+            '<img style="height: 28.81px; width: 28.81px; transform: rotate(90deg); position: absolute; top: 0; right: 0;" src="'+cropImage+'">' +
+            '<img style="height: 28.81px; width: 28.81px; transform: rotate(180deg); position: absolute; bottom: 0; right: 0;" src="'+cropImage+'">' +
+            '<img style="height: 28.81px; width: 28.81px; transform: rotate(270deg); position: absolute; bottom: 0; left: 0;" src="'+cropImage+'">' +
+            '</div>'
+          )
+
+          var cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+
+          !!window.showCrop && page.insertBefore(cropNode, null);
+        }
+      );
+
+      Array.prototype.slice.call(document.querySelectorAll('.bleed'))
+        .forEach(function(bleed) {
+          bleed.style.cssText = !!window.showCrop 
+            ? 'position: absolute; top: 4.41mm; right: 4.41mm; bottom: 4.41mm; left: 4.41mm;'
+            : 'position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm';
+      	});
+      
+      window.addEventListener("resize", () => {
+        setSize();
+      	rounding('.graphic', { topRight: true, bottomRight: true });
+        rounding($('.graphic'), { bottomLeft: true, bottomRight: true });
+      	rounding($('.graphic2'), { topLeft: true, bottomLeft: true });
+      });
+
+      function setSize(){
+        var vw   = (showCrop ? window.innerWidth : window.innerWidth + 56) / 100;
+        var vh   = (showCrop ? window.innerHeight : window.innerHeight + 56) / 100;
+        var vmin = Math.min(vw, vh);
+        var vmax = Math.max(vw, vh);
+        document.documentElement.style.fontSize = ((vmin * 2) + (vmax * 1.4) + (vh * 2)) + "px";
+      } setSize();
+      
+      function rounding(e, { topLeft, topRight, bottomRight, bottomLeft }) {
+        const size = e.outerHeight();
+        const topLeftRadius = topLeft ? `${size}px` : 0;
+        const topRightRadius = topRight ? `${size}px` : 0;
+        const bottomRightRadius = bottomRight ? `${size}px` : 0;
+        const bottomLeftRadius = bottomLeft ? `${size}px` : 0;
+        e.css({ 
+          'clip-path': `inset(0 0 round ${topLeftRadius} ${topRightRadius} ${bottomRightRadius} ${bottomLeftRadius})`,
+          '-webkit-clip-path': `inset(0 0 round ${topLeftRadius} ${topRightRadius} ${bottomRightRadius} ${bottomLeftRadius})`,
+        });
+      }      
+                                                        
+      function checkHeight(e) {
+        const height = e.find('.inner').height();        
+        const parentHeight = e.height() + 2;
+
+        if (height > parentHeight) {
+          e.addClass('overflow');
+        } else {
+          e.removeClass('overflow');
+        }
+      }
+      
+      function loop() {
+        checkHeight($('.headline'));
+        checkHeight($('.cta'));
+      } setInterval(loop, 1000);
+      
+      rounding($('.image'), { topLeft: true, topRight: true });
+      rounding($('.graphic'), { bottomLeft: true, bottomRight: true });
+      rounding($('.graphic2'), { topLeft: true, bottomLeft: true });
+      
+      $(window).bind("load", function() {
+        // Window has been loaded..
+      });
+    </script>
+  </body>
+</html>
