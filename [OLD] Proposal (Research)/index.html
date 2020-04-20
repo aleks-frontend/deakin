@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <link rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/worldly/stylesheet.css">
+    <link rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/ACS-Calibri/stylesheet.css">
+    <style>
+
+      * { -webkit-font-smoothing: antialiased; }
+
+      /* Base Code */
+      .overflow {
+        border: 1px dashed red;
+        position: relative; }
+      .overflow h1, 
+      .overflow h2, 
+      .overflow h3, 
+      .overflow h4, 
+      .overflow h5, 
+      .overflow h6, 
+      .overflow p, 
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 5px;
+        right: 5px;
+        height: 15px;
+        width: 15px;
+        border: 1px solid red;
+        color: red;
+        padding: 2px 2px 2px 3px;
+        box-sizing: border-box;
+        font-size: 13px;
+        text-align: center;
+        line-height: 8px;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'There is overset content in this column. Please remove it';
+        position: absolute;
+        top: 25px;
+        right: 5px;
+        background-color: black;
+        color: white;
+        border-radius: 2px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 1.1em;
+        text-align: right;
+        width: 15em;
+      }
+      .placeholder {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        z-index: 100;
+      }
+
+      /* Font Sizing */
+      h1, h2, h3, h4, h5, h6 { color: black; font-family: 'Worldly', sans-serif; }
+      h1 { font-size: 1.05em; }
+      h2 { font-size: 0.55em; }
+      h3 { font-size: 0.25em; font-family: 'Calibri'; font-weight: bold; }
+      h4 { font-size: 0.3em; }
+      p, li { margin-bottom: 0.4em; }
+      p, ul, ol, td { font-family: 'Calibri'; font-size: 0.23em; font-weight: 300; }
+      ul { margin: 0 0 1em 1.2em; list-style-type: disc; }
+      ol { margin: 0 0 1em 1.2em; }
+      strong { font-weight: bold; }
+      table { width: 100%; }
+      table td { padding: 0.2em; text-align: center; width: 25%; }
+      table tr:first-of-type > td { color: white; background-color: #CF4E9B; font-weight: bold;  }
+      table tr td { border-right: 1px solid white; color: black; background-color: #EBBFD9; }
+      table tr:nth-of-type(2) > td { font-weight: bold; color: black; background-color: #F3D8E6; }
+      
+      ul li ul { font-size: 1em; margin: 0.4em 0 0 0; list-style-type: none; }
+      ul li ul li { position: relative; padding-left: 1.5em; }
+      ul li ul li::before { position: absolute; top: 0; left: 0; content: "—"; }
+
+      /* Main Content */
+      .header { position: absolute; top: 4.2em; left: 0.3em; right: 5.5em; z-index: 10000; display: flex; align-items: center; }
+      .header-shape { position: absolute; top: 3em; left: 0; width: 10.8em; z-index: 9; } .header-shape img { width: 100%; }
+      .header-inner { display: flex; position: relative; padding: 1em; height: 5em; color: white; flex-direction: column; justify-content: center; }
+      .header-inner h1 { font-size: {{{ header-copy-size }}}pt; }
+      .header-inner h2 { margin: 2.2em 0 0 0; line-height: 1.6em; }
+      .content { position: absolute; top: 7.2em; left: 1em; right: 1em; }
+      .intro-copy h3 { font-weight: 700; }
+      .columns-inner h3 { font-size: 0.43em; font-weight: bold; }
+      .columns-inner h3, .columns-inner p { margin: 1em 0 0 0; }
+      .website { font-family: 'Calibri'; font-size: 0.5em; font-weight: bold; }
+      .cricos { margin: 1em 0 0 0; font-family: 'Calibri'; font-size: 0.15em; }
+
+      .columns-container {
+        position: absolute;
+        top: 9.4em;
+        left: 1em;
+        right: 1em; 
+      }
+
+      .columns {
+        height: 9em;
+        -webkit-column-gap: 30px;
+        -moz-column-gap: 30px;
+        column-gap: 30px;
+        -webkit-column-fill: auto;
+        -moz-column-fill: auto;
+        column-fill: auto;
+      }
+
+      .columns {
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+      }
+
+      .columns-max-height { max-height: 9em; }
+
+      .columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+      }
+
+      .image-inner { position: relative; height: 100%; }
+
+      /* Crop Mark Hack */
+      .no-crop .outfit-resizable-background { top: 3mm !important; left: 3mm !important; } 
+
+      /* Colour Themes */
+      .theme-one .columns-inner h3 { color: #0B7161; }
+      .theme-one #header-shape { fill: #AC3382; }
+      .theme-one .page.back { background-color: #AC3382; }
+
+      .logo { position: absolute; top: 3.3em; left: 9.15em; width: 2.95em; z-index: 10; }
+
+      .details { position: absolute; top: 5.3em; left: 4em; right: 4em; display: flex; flex-direction: column; text-align: center; }
+      .details-logo { width: 2.8em; margin: 0 auto; }
+      .details-inner p { color: white; }
+
+      .footer { position: absolute; top: 15.15em; left: 4em; right: 4em; text-align: center; }
+      .footer p { color: white; }
+      
+      /* Page Front */
+      .page.front .header h1, .page.front .header h2 { color: white; }
+      
+      .page.front .bleed { overflow: hidden !important; }
+
+      /* Page One */ 
+      
+      .page.one .placeholder { 
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/e9c98415483ad2dcaf3b2d73f6a6a853/DK11.png');
+	  }
+      
+      .page.one .header { position: absolute; top: 1.7em; left: 1em; right: 5.8em; width: 11.5em; }
+      .page.one .header h1 { }
+      .page.one .caption { position: absolute; top: 17em; left: 8.6em; right: 0; width: 9.8em; }
+
+      .page.one .left { position: absolute; top: 7.4em; left: 3em; width: 5.2em; }
+      .page.one .right { position: absolute; top: 7.4em; left: 8.6em; width: 4.9em; }
+      
+      .page.one .image { position: absolute; left: 0; bottom: 0; width: 8.1em; height: 8.5em; z-index: -2; }
+      
+      .page.one .shape { position: absolute; bottom: -2.6em; left: -5.2em; width: 21.4em; z-index: -1; }
+      .page.one .shape svg { width: 100%; }
+      
+      .no-crop .page.one .outfit-resizable-background { top: 0 !important; left: 0 !important; } 
+      .no-crop .page.front .outfit-resizable-background { top: 0 !important; left: 0 !important; } 
+
+      /* Page Two */ 
+      
+      .page.two .placeholder { 
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/3276a8063afcc99ca0d5036a684394ca/DK12.png');
+	  }
+      
+      .page.two .header { position: absolute; top: 0.6em; left: 5.2em; right: 0; width: 11.5em; height: 2.7em; display: flex; align-items: center; }
+      .page.two .header h1 { }
+      .page.two .caption { position: absolute; top: 13.85em; left: 8.2em; right: 0; width: 9.8em; }
+      
+      .page.two .subheader { position: absolute; top: 15.6em; right: 2.2em; width: 7em; }
+      
+      .page .subheader-inner:before { display: inline-block; font-family: 'Worldly', sans-serif; font-size: 0.27em; line-height: 1.6em; }
+      
+      .page .subheader-inner:after { 
+        position: absolute; bottom: -2.5em; left: 0; 
+        display: inline-block; font-family: 'Calibri', sans-serif; font-size: 0.2em; font-weight: bold; 
+      }
+      
+      .page.quote-one .subheader-inner:before { 
+        content: '"The scholarship helps relieve the financial stresses associated with moving out of home. It also alleviates the pressure of needing a job, increasing time that can be spent studying."';
+      }
+      .page.quote-one .subheader-inner:after { 
+        content: 'Beth Kynaston, den Hollander scholarship recipient 2018';      
+      }
+      .page.quote-two .subheader-inner:before { 
+        content: '"I cannot express the gratitude I have for being selected for your scholarship. Taking to heart the kindness and generosity has encouraged me to work more diligently to make a more positive impact on the people around me, my family, friends and the community around me."';    
+      }
+      .page.quote-two .subheader-inner:after { 
+        content: 'Matthew Li, den Hollander scholarship recipient 2018';      
+      }
+      .page.quote-three .subheader-inner:before { 
+        content: '"Growing up in the small town of Clunes, it has always been a goal of mine to defeat the odds and make it to University. This scholarship has meant that I am able to support myself and move away to focus on achieving my personal best. This scholarship allows me to put my best foot forward and immerse myself into the university."';    
+      }
+      .page.quote-three .subheader-inner:after { 
+        content: 'Alice Newitt, George Alexander Foundation scholarship recipient 2018';      
+      }
+      .page.quote-four .subheader-inner:before { 
+        content: '"I am humbled by your generosity and faith in me. The scholarship has allowed me the opportunity to help promote positive mental health and raise funds for mental health agencies such as the Butterfly Foundation and RUOK Day."';   
+      }
+      .page.quote-four .subheader-inner:after { 
+        content: 'Iain Colliver, George Alexander Foundation scholarship recipient 2018';      
+      }
+      .page.quote-five .subheader-inner:before { 
+        content: '"Scholarships for me personally, aren’t a hand out; they are a hand up. They enable me to make the move away from home, complete my degree and become a helpful member of society."'; 
+      }
+      .page.quote-five .subheader-inner:after { 
+        content: 'Casey Williams,Grigg Family Access to Education scholarship recipient 2018';      
+      }
+      .page.quote-six .subheader-inner:before { 
+        content: '"Just before I received notice of the scholarship I had entertained the thought of deferring due to financial hardship. This scholarship has allowed me to continue with my studies and finish in October as I had hoped. Knowing I can take time off at exam time is a great relief."';
+      }
+      .page.quote-six .subheader-inner:after { 
+        content: 'Marija Venables, Platinum Asset Management scholarship recipient 2018';      
+      }
+      .page.quote-seven .subheader-inner:before { 
+        content: '"I went through personal hardship with the loss of both of my Great Aunties and my Uncle. However, with this support the scholarship has provided, I’m confident that this year, I will be able to try my absolute best."';  
+      }
+      .page.quote-seven .subheader-inner:after { 
+        content: 'Molly McMeel, South West Philanthropic Academic scholarship recipient 2018';      
+      }
+      
+      
+      .page.two .intro-copy { position: absolute; top: 6.3em; left: 1em; width: 11em; }
+      
+      .page.two .left { 
+        
+        position: absolute; top: 7.4em; left: 1em; width: 11em; height: 7.7em;
+      
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+
+        -webkit-column-gap: 20px;
+        -moz-column-gap: 20px;
+        column-gap: 20px;
+
+        -webkit-column-fill: auto;
+        -moz-column-fill: auto;
+        column-fill: auto;
+      
+      }
+
+      .page.two .right { position: absolute; top: 7.4em; left: 6.5em; width: 5em; }
+      
+      .page.two .image { position: absolute; left: 0; bottom: 0; width: 8.1em; height: 8.5em; z-index: -2; }
+      
+      .page.two .shape { position: absolute; bottom: 16em; right: -2.8em; width: 15.6em; z-index: -1; }
+      
+      .page.two .shape svg { width: 100%; }
+
+      /* Page Three */ 
+
+      .page.three .placeholder { 
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/b690674f3f851e73e5877c329d48ab1e/Screen%20Shot%202018-05-09%20at%204.55.46%20pm.png');
+      }
+
+      .page.three .header { position: absolute; top: 1.5em; left: 0.7em; width: 12.5em; }
+      .page.three .header h1 { }
+      .page.three .caption { position: absolute; top: 13.85em; left: 8.2em; right: 0; width: 9.8em; }
+
+      .page.three .subheader { position: absolute; top: 4.6em; left: 0.7em; width: 12.5em; }
+      .page.three .subheader h1 { font-size: 0.37em; color: black; }
+
+      .page.three .intro-copy { position: absolute; top: 6.6em; left: 1em; width: 10em; }
+
+      .page.three .copy-cols { margin: 0.5em 0 0 0; display: flex; justify-content: space-between; width: 100%; }
+      .page.three .left, .page.three .middle, .page.three .right { width: 4em; }
+      
+      /*
+      .page.three .left { position: absolute; top: 7.7em; left: 0.7em; width: 4em; }
+      .page.three .middle { position: absolute; top: 7.7em; left: 5em; width: 4em; }
+      .page.three .right { position: absolute; top: 7.7em; left: 9.2em; width: 4em; }
+      */
+
+      .page.three .shape { position: absolute; bottom: -0.1em; left: -0.5em; right: 0; z-index: -1; }
+
+      .page.three .shape svg { width: 100%; }
+      
+      .page.three .image { position: absolute; bottom: -0.1em; right: -0.5em; width: 5.8em; height: 5.9em; z-index: -2; overflow: hidden; }
+
+      /* Page Four */ 
+
+      .page.four .placeholder { 
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/1256b5d8299a5b1711236042761e30bf/Screen%20Shot%202018-05-09%20at%208.35.17%20pm.png');
+      }
+
+      .page.four .header { position: absolute; top: 1.5em; left: 0.7em; width: 12.5em; z-index: 10; }
+      .page.four .header h1 { font-size: 1.15em; }
+      .page.four .caption { position: absolute; top: 13.85em; left: 8.2em; right: 0; width: 9.8em; }
+
+      .page.four .subheader { position: absolute; top: 14.1em; right: 3em; width: 7.7em; }
+      .page.four .subheader h1 { font-size: 0.33em; font-weight: bold; text-align: right; }
+
+      .page.four .intro-copy { position: absolute; top: 6.6em; left: 1em; width: 10em; }
+
+      .page.four .left { position: absolute; top: 4.85em; left: 0.7em; width: 6.2em; z-index: 10; }
+      .page.four .right { position: absolute; top: 4.85em; left: 7.15em; width: 6.2em; z-index: 10; }
+
+      .page.four .shape { position: absolute; bottom: -0.2em; left: 0; right: 0; width: 13.9em; z-index: -1; }
+
+      .page.four .shape svg { width: 100%; }
+      
+      .page.four .image { position: absolute; bottom: 7px; left: 2px; width: 11em; height: 11em; z-index: -2; }
+
+      /* Page Five */ 
+
+      .page.five .placeholder { 
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/512b442303171d54e6fe162effd83776/Screen%20Shot%202018-05-09%20at%208.35.40%20pm.png');
+      }
+
+      .page.five .header { position: absolute; top: 1.5em; left: 0.7em; width: 12.5em; }
+      .page.five .header h1 { }
+      .page.five .caption { position: absolute; top: 13.85em; left: 8.2em; right: 0; width: 9.8em; }
+
+      .page.five .subheader { position: absolute; top: 16.5em; left: 3em; width: 8.1em; }
+      .page.five .subheader h1 { font-size: 0.38em; }
+pa
+      .page.five .intro-copy { position: absolute; top: 6.6em; left: 1em; width: 10em; }
+
+      .page.five .left { position: absolute; top: 3.15em; left: 0.9em; width: 6em; }
+      .page.five .right { position: absolute; top: 3.15em; left: 7.35em; width: 6em; }
+
+      .page.five .shape { position: absolute; bottom: 0.2em; right: 0; width: 13.5em; z-index: -1; }
+s
+      .page.five .shape svg { width: 100%; }
+
+      /* Page Six */ 
+
+      .page.six .placeholder { 
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/2d10ba2ad47c99ec030ce658d0fcbed2/Screen%20Shot%202018-05-09%20at%208.35.49%20pm.png');
+      }
+      
+      .page.six .header { position: absolute; top: 1.5em; left: 0.7em; width: 12.5em; }
+
+      .page.six .left { position: absolute; top: 11.25em; left: 0.75em; width: 9em; height: 6.1em; z-index: 2; }
+      
+      .page.six .left {
+        
+        color: white;
+        
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+
+        -webkit-column-gap: 20px;
+        -moz-column-gap: 20px;
+        column-gap: 20px;
+
+        -webkit-column-fill: auto;
+        -moz-column-fill: auto;
+        column-fill: auto;
+        
+      }
+      
+      .theme-four .page.six .left { color: black; }
+      
+      .page.six .image { position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: -1; }
+
+      .page.six .shape { position: absolute; bottom: 1.3em; left: -10.4em; width: 22em; z-index: 1; transform: rotate(180deg); }
+
+      .page.six .shape svg { width: 100%; }
+
+      /* Page Seven */ 
+
+      .page.seven .placeholder { 
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/f0c1a839eefc8b506c1597b0d9a70db1/Screen%20Shot%202018-05-09%20at%208.35.56%20pm.png');
+      }
+
+      .page.seven .header { position: absolute; top: 1.5em; left: 1em; right: 1em; }
+      .page.seven .header h1 { }
+      .page.seven .caption { position: absolute; top: 13.85em; left: 8.2em; right: 0; width: 9.8em; }
+
+      .page.seven .subheader { position: absolute; top: 14.1em; right: 3em; width: 7.7em; }
+      .page.seven .right h2 { font-size: 0.37em; line-height: 1.2em; }
+
+      .page.seven .intro-copy { position: absolute; top: 4.75em; left: 1em; width: 12.2em; }
+      .page.seven .intro-copy h1 { font-size: 0.37em; }
+
+      .page.seven .left { position: absolute; top: 7.9em; left: 1em; width: 8.5em; height: 11.4em; }
+      
+      .page.seven .left {
+        
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+
+        -webkit-column-gap: 20px;
+        -moz-column-gap: 20px;
+        column-gap: 20px;
+
+        -webkit-column-fill: auto;
+        -moz-column-fill: auto;
+        column-fill: auto;
+        
+      }
+      
+      
+      .page.seven .middle { position: absolute; top: 7.9em; left: 5.2em; width: 4em; }
+      .page.seven .right { position: absolute; top: 7.9em; left: 9.8em; width: 3.8em; }
+      .page.seven .right h2 { margin-bottom: 0.2em; }
+
+      .page.seven .shape { position: absolute; top: -3.53em; left: -7em; width: 18.8em; z-index: -1; }
+
+      .page.seven .shape svg { width: 100%; }
+
+      /* Page Eight */ 
+
+      .page.eight .placeholder { 
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/ce6f1fe2e7ad702b9cccec74082758ac/Screen%20Shot%202018-05-09%20at%208.36.05%20pm.png');
+      }
+
+      .page.eight .header { position: absolute; top: 1.5em; left: 1em; right: 1em; }
+      .page.eight .header h1 { font-size: 1.15em; }
+      .page.eight .caption { position: absolute; top: 13.85em; left: 8.2em; right: 0; width: 9.8em; }
+
+      .page.eight .subheader { position: absolute; top: 14.1em; right: 3em; width: 7.7em; }
+      .page.eight .right h2 { font-size: 0.37em; line-height: 1.2em; }
+
+      .page.eight .intro-copy { position: absolute; top: 4.75em; left: 0.8em; width: 10.4em; }
+      .page.eight .intro-copy h1 { font-size: 0.37em; }
+
+      .page.eight .left { position: absolute; top: 7.9em; left: 0.8em; width: 10.2em; height: 10.3em; }
+      
+      .page.eight .left {
+        
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+
+        -webkit-column-gap: 20px;
+        -moz-column-gap: 20px;
+        column-gap: 20px;
+
+        -webkit-column-fill: auto;
+        -moz-column-fill: auto;
+        column-fill: auto;
+        
+      }
+
+      .page.eight .shape { position: absolute; bottom: -4.2em; left: -0.2em; width: 14em; z-index: -1; }
+
+      .page.eight .shape svg { width: 100%; }
+
+      /* Page Nine */ 
+
+      .page.nine .placeholder { 
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/34951d87c19cf0ba16ed70f4ad85baec/Screen%20Shot%202018-05-09%20at%202.33.56%20pm.png');
+      }
+
+      .page.nine .header { position: absolute; top: 0.4em; left: 4.5em; right: 0; width: 8.6em; z-index: 3; display: flex; align-items: center; height: 2.7em; }
+      .page.nine .header h1 { color: white; }
+                  
+      .page.nine .shape-one { position: absolute; bottom: 16.5em; right: -10em; width: 24em; z-index: 2; }
+      .page.nine .shape-two { position: absolute; bottom: -4.2em; right: -0.2em; width: 14em; z-index: 1; }
+      
+      .page.nine .shape svg { width: 100%; }
+      
+
+      /* Themes */
+      
+      .theme-one .header h1, .theme-one .subheader h1, .theme-one .page.ten .right h2, .theme-one .subheader-inner:before, .theme-one h3 { color: #C74298; }
+      .theme-one .header-shape-fill { fill: #AC3382; }
+      .theme-one .page.back { background-color: #AC3382; }
+      .theme-one table tr:first-of-type > td { background-color: #AC3382; }
+      
+      .theme-one table tr:nth-of-type(2) td { background-color: rgba(171,51,130, 0.6); }
+      .theme-one table tr td { background-color: rgba(171,51,130, 0.3); }
+      
+      .theme-two .header h1, .theme-two .subheader h1, .theme-two .page.ten .right h2, .theme-two .subheader-inner:before, .theme-two h3 { color: #0B7161; }
+      .theme-two .header-shape-fill { fill: #0D8572; }
+      .theme-two .page.back { background-color: #0D8572; }
+      .theme-two table tr:first-of-type > td { background-color: #0D8572; }
+      
+      .theme-two table tr:nth-of-type(2) td { background-color: rgba(13,133,114, 0.6); }
+      .theme-two table tr td { background-color: rgba(13,133,114, 0.3); }
+      
+      .theme-three .header h1, .theme-three .subheader h1, .theme-three .page.ten .right h2, .theme-three .subheader-inner:before, .theme-three h3 { color: #006D88; }
+      .theme-three .header-shape-fill { fill: #007D98; }
+      .theme-three .page.back { background-color: #007D98; }
+      .theme-three table tr:first-of-type > td { background-color: #007D98; }
+      
+      .theme-three table tr:nth-of-type(2) td { background-color: rgba(0,125,152, 0.6); }
+      .theme-three table tr td { background-color: rgba(0,125,152, 0.3); }
+      
+      .theme-four .header h1, .theme-four .subheader h1, .theme-four .page.ten .right h2, .theme-four .subheader-inner:before, .theme-four h3 { color: black; }
+      .theme-four .header-shape-fill { fill: #FFD923; }   
+      .theme-four .page.back { background-color: #FFD923; }
+      .theme-four table tr:first-of-type > td { background-color: #FFD923; }
+      
+      .theme-four table tr:nth-of-type(2) td { color: black; background-color: rgba(255,217,35, 0.6); }
+      .theme-four table tr td { background-color: rgba(255,217,35, 0.3); }
+      
+      /* Theme Bulk Overrides */
+      
+      .quote-author { 
+        display: inline;
+        color: black;
+        font-family: 'Calibri';
+        font-size: 0.7em;
+      }
+      
+      .theme-one .page.five .subheader-inner::before { color: white !important; }
+      .theme-two .page.five .subheader-inner::before { color: white !important; }
+      .theme-three .page.five .subheader-inner::before { color: white !important; }
+      .theme-four .page.five .subheader-inner::before { color: black !important; }
+      
+      .page.two h1 { color: white; }
+      .theme-four .page.front h1, .theme-four .page.front h2, .theme-four .page.nine h1 { color: black; }
+      .theme-four .page.two h1 { color: black; }
+      
+      .image-inner div { overflow: inherit !important; }
+      
+      .theme-four .page.back p { color: black !important; }
+      
+      .theme-four table tr td { color: black !important; }
+      
+      body {
+        counter-reset: section;
+      }
+      
+      .page-number { position: absolute; bottom: 20px; right: 40px; z-index: 9999999; color: white; }
+      
+      .page-number::before {
+        color: white; 
+        font-family: 'Calibri';
+        font-size: 0.15em;
+        counter-increment: section;
+        content: counter(section);
+      }
+      
+      .one .page-number::before, .two .page-number::before, .four .page-number::before, .seven .page-number::before, .eight .page-number::before { color: black; }
+      
+      .five .page-number { bottom: 40px; }
+      
+      
+      .page.nine .infographic { position: absolute; top: 3.2em; left: 0; right: 0; bottom: 1.4em; background-size: contain; background-repeat: no-repeat; background-position: center; }
+      
+      .theme-one .page.nine .infographic			 { background-image: url(https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/f0346958499e38eeabc7bd563a4a3cc7/001.png); }
+      .theme-two .page.nine .infographic			 { background-image: url(https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/f0346958499e38eeabc7bd563a4a3cc7/001.png); }
+      .theme-three .page.nine .infographic		 { background-image: url(https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/213b37c4b7be200f4236ac0820e914b5/002.png); }
+      .theme-four .page.nine .infographic 		 { background-image: url(https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/5ed046f0ce9570d281592d8ff9ca1e97/003.png); }
+      
+    </style>
+  </head>
+  <body style="background: white" class="{{{ dr-theme-colour }}}">
+    <div class="page front">
+      <div class="bleed">
+
+        {{{ dr-background-image }}}
+
+        <div class="logo">
+          <img src="{{{account.logos.circle}}}">
+        </div>
+
+        <div class="header-shape">
+          <svg width="100%" height="100%" viewBox="0 0 486 365" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g id="header-shape" class="header-shape-fill" fill="#D8D8D8">
+                <circle id="Oval" cx="303.803247" cy="182.765625" r="182.027344"></circle>
+                <rect id="Rectangle-2" x="0.699738108" y="0.73828125" width="303.103509" height="364.054688"></rect>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <div class="header">
+          <div class="header-inner">
+            <div style="max-height: 4.2em;">
+              <div class="check-overflow">
+                <h1>{{{ dr-heading }}}</h1>
+              </div>
+            </div>
+            <div style="max-height: 2em;">
+              <div class="check-overflow">
+                <h2>{{{ dr-subheading }}}</h2>
+              </div>
+            </div>
+          </div>
+        </div><!--header-->
+
+      </div><!--bleed-->
+    </div><!--page-->
+
+    <div class="page one">
+      <div class="bleed">
+        <div class="page-number"></div>
+
+        <div class="header">
+          <div style="max-height: 2.7em; z-index: 10;">
+            <div class="check-overflow">
+              <h1>{{{ dr-page-one-heading }}}</h1>
+            </div>              
+          </div>
+        </div><!--header-->
+        
+        <div class="caption">
+          <div style="max-height: 2.1em; z-index: 10;">
+            <div class="check-overflow">
+              <p><strong>{{{ dr-page-one-name }}}</strong></p>
+              <p>{{{ dr-page-one-title }}}</p>
+            </div>              
+          </div>
+        </div><!--caption-->
+
+        <div class="left">
+          <div style="max-height: 3.9em;">
+            <div class="check-overflow">
+            {{{ dr-page-one-copy }}}
+            </div>
+          </div>
+        </div><!--left-->
+        
+        <div class="right">
+          <div style="max-height: 9.2em;">
+            <div class="check-overflow">
+            {{{ dr-page-one-copy-two }}}
+            </div>
+          </div>
+        </div><!--right-->
+        
+        <div class="image">
+          {{{ dr-page-one-image }}}
+        </div>
+        
+        <div class="shape">
+          <svg width="100%" height="100%" viewBox="0 0 1253 891" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g id="Group-5" transform="translate(0.781022, -0.351562)">
+                <path d="M526.128906,271.660156 L0,271.660156 L0,0.4140625 L1252,0.4140625 L1252,845.414062 L0,845.414062 L0,757.253906 L526.128906,757.253906 C660.221918,757.253906 768.925781,648.550043 768.925781,514.457031 C768.925781,380.36402 660.221918,271.660156 526.128906,271.660156 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+                <path d="M6,757.226715 L6,757.253906 L522.426495,757.253906 C614.201902,757.253906 694.292389,708.099793 736.913571,635.125 L947.926929,635.125 C1019.4092,635.666224 1077.18761,692.766185 1077.18761,763.125 C1077.18761,833.483815 1019.4092,890.583776 947.926929,891.121175 L0.0441734147,891.125 L0.0441734147,757.226715 L6,757.226715 Z" id="Combined-Shape" class="header-shape-fill" fill="#D8D8D8"></path>
+              </g>
+            </g>
+          </svg>
+        </div><!--shape-->
+        
+      </div><!--bleed-->
+    </div><!--page-->
+    
+    {{#collection.dr-pages}}    
+    {{#block.dr-page-two}}
+    <div class="page {{{ dr-quote-selection }}} two">
+      <div class="bleed">
+        <div class="page-number"></div>
+
+        <div class="header">
+          <div style="max-height: 2.7em; z-index: 10;">
+            <div class="check-overflow">
+              <h1>{{{ dr-page-two-heading }}}</h1>
+            </div>              
+          </div>
+        </div><!--header-->
+        
+        <div class="intro-copy">
+          <div style="max-height: 1em; z-index: 10;">
+            <div class="check-overflow">
+              <p><strong>{{{ dr-page-two-intro-copy }}}</strong></p>
+            </div>              
+          </div>
+        </div><!--intro-copy-->
+        
+        <div class="left">
+          <div style="max-height: 15.4em;">
+            <div class="check-overflow">
+            {{{ dr-page-two-copy }}}
+            </div>
+          </div>
+        </div><!--left-->
+        
+        <div class="subheader">
+          <div class="subheader-inner"></div>
+        </div>
+        
+        <div class="shape">
+          <svg width="100%" height="100%" viewBox="0 0 1033 403" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <path d="M202.5,402.445312 C90.9320085,402.445312 0.48828125,312.454547 0.48828125,201.445312 C0.48828125,90.4360778 90.9320085,0.4453125 202.5,0.4453125 L1032.03125,0.4453125 L1032.03125,402.445312 L202.5,402.445312 Z" id="Combined-Shape" class="header-shape-fill" fill="#D8D8D8"></path>
+            </g>
+          </svg>
+        </div><!--shape-->
+        
+      </div><!--bleed-->
+    </div><!--page-->
+    {{/block.dr-page-two}}
+
+    {{#block.dr-page-three}}
+    <div class="page three">
+      <div class="bleed">
+        <div class="page-number"></div>
+
+        <div class="header">
+          <div style="max-height: 2.7em; z-index: 10;">
+            <div class="check-overflow">
+              <h1>{{{ dr-heading-three }}}</h1>
+            </div>              
+          </div>
+        </div><!--header-->
+
+        <div class="subheader">
+          
+          
+          {{# dr-subheading-three }}
+            <div style="max-height: 2.2em; z-index: 10;">
+              <div class="check-overflow">
+                <h1>{{{ dr-subheading-three }}}</h1>
+              </div>              
+            </div>
+          {{/ dr-subheading-three }}
+          
+          <div class="copy-cols">
+            <div class="left">
+              <div style="max-height: 10.8em;">
+                <div class="check-overflow">
+                  {{{ dr-copy }}}
+                </div>
+              </div>
+            </div><!--left-->
+
+            <div class="middle">
+              <div style="max-height: 10.8em;">
+                <div class="check-overflow">
+                  {{{ dr-copy-two-three }}}
+                </div>
+              </div>
+            </div><!--right-->
+
+            <div class="right">
+              <div style="max-height: 6.5em;">
+                <div class="check-overflow">
+                  {{{ dr-copy-three }}}
+                </div>
+              </div>
+            </div><!--right-->
+          </div>
+          
+        </div><!--subheader-->
+        
+        <div class="shape">
+          <svg width="100%" height="100%" viewBox="0 0 553 789" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <path d="M186.596067,789 C186.599078,788.523636 186.600586,788.046882 186.600586,787.569742 C186.600586,675.768755 103.799935,585.136148 1.66015625,585.136148 C1.10619861,585.136148 0.552809814,585.138814 8.77076189e-15,585.144135 L0,0 L553,0 L553,789 L186.596067,789 Z" id="Combined-Shape" fill="#FFFFFF" transform="translate(276.500000, 394.500000) scale(-1, 1) translate(-276.500000, -394.500000) "></path>
+            </g>
+          </svg>          
+        </div><!--shape-->
+        
+        <div class="image">
+          {{{ dr-image }}}
+        </div><!--image-->
+
+      </div><!--bleed-->
+    </div><!--page-->
+    {{/block.dr-page-three}}
+
+    {{#block.dr-page-four}}
+    <div class="page four">
+      <div class="bleed">
+        <div class="page-number"></div>
+
+        <div class="header">
+          <div style="max-height: 2.9em; z-index: 10;">
+            <div class="check-overflow">
+              <h1>{{{ dr-heading-four }}}</h1>
+            </div>              
+          </div>
+        </div><!--header-->
+
+        <div class="left">
+          <div style="max-height: 3.6em;">
+            <div class="check-overflow">
+              {{{ dr-copy }}}
+            </div>
+            <table>
+              <tbody>
+                {{#spreadsheet.dr-table}}
+                <tr>
+                  {{#one}}<td>{{{ one }}}</td>{{/one}}
+                  {{#two}}<td>{{{ two }}}</td>{{/two}}
+                  {{#three}}<td>{{{ three }}}</td>{{/three}}
+                  {{#four}}<td>{{{ four }}}</td>{{/four}}
+                </tr>
+                {{/spreadsheet.dr-table}}
+              </tbody>
+            </table>
+          </div>
+        </div><!--left-->
+
+        <div class="right">
+          <div style="max-height: 3.6em;">
+            <div class="check-overflow">
+              {{{ dr-copy-two }}}
+            </div>
+          </div>
+        </div><!--right-->
+
+        <div class="shape">
+          <svg width="100%" height="100%" viewBox="0 0 554 789" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g id="Group-4" fill="#FFFFFF">
+                <path d="M304.542969,342.777344 L1,342.777344 L1,746.777344 L304.542969,746.777344 C416.104488,746.777344 506.542969,656.338863 506.542969,544.777344 C506.542969,433.215824 416.104488,342.777344 304.542969,342.777344 Z M553.90625,0 L553.90625,789 L0.90625,789 L0.90625,0 L553.90625,0 Z" id="Combined-Shape"></path>
+              </g>
+            </g>
+          </svg>
+        </div><!--shape-->
+
+        <div class="image">
+          {{{ dr-image }}}
+        </div>
+
+      </div><!--bleed-->
+    </div><!--page-->
+    {{/block.dr-page-four}}
+
+    {{#block.dr-page-five}}
+    <div class="page {{{ dr-quote-selection-five }}} five">
+      <div class="bleed">
+        <div class="page-number"></div>
+
+        <div class="left">
+          <div style="max-height: 11.9em;">
+            <div class="check-overflow">
+              {{{ dr-copy }}}
+            </div>
+          </div>
+          <table>
+            <tbody>
+              {{#spreadsheet.dr-table}}
+              <tr>
+                {{#one}}<td>{{{ one }}}</td>{{/one}}
+                {{#two}}<td>{{{ two }}}</td>{{/two}}
+                {{#three}}<td>{{{ three }}}</td>{{/three}}
+                {{#four}}<td>{{{ four }}}</td>{{/four}}
+              </tr>
+              {{/spreadsheet.dr-table}}
+            </tbody>
+          </table>
+        </div><!--left-->
+
+        <div class="right">
+          <div style="max-height: 11.9em;">
+            <div class="check-overflow">
+              {{{ dr-copy-two }}}
+            </div>
+          </div>
+        </div><!--right-->
+        
+        <div class="subheader">
+          <div class="subheader-inner"></div>
+        </div><!--subheader-->
+
+        <div class="shape">
+          <svg width="100%" height="100%" viewBox="0 0 553 171" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g id="Group-4-Copy" transform="translate(-33.000000, -609.000000)" fill="#D8D8D8">
+                <path class="header-shape-fill" d="M502.091873,609.138102 C548.296215,610.198246 585.425781,647.985253 585.425781,694.444336 C585.425781,740.903418 548.296215,778.690426 502.091873,779.75057 L502.091873,779.773437 L33.4023438,779.773437 L33.4023438,609.115234 L502.091873,609.115234 L502.091873,609.138102 Z" id="Combined-Shape-Copy-5" transform="translate(309.414063, 694.444336) scale(-1, 1) translate(-309.414063, -694.444336) "></path>
+              </g>
+            </g>
+          </svg>
+        </div><!--shape-->
+
+      </div><!--bleed-->
+    </div><!--page-->
+    {{/block.dr-page-five}}
+
+    {{#block.dr-page-six}}
+    <div class="page six">
+      <div class="bleed">
+        <div class="page-number"></div>
+        
+        <div class="header">
+          <div style="max-height: 2.7em; z-index: 10;">
+            <div class="check-overflow">
+              <h1>{{{ dr-heading-six }}}</h1>
+            </div>              
+          </div>
+        </div><!--header-->
+
+        <div class="left">
+          <div style="max-height: 13em;">
+            <div class="check-overflow">
+              {{{ dr-copy }}}
+            </div>
+          </div>
+        </div><!--left-->
+        
+        <div class="shape">
+          <svg width="100%" height="100%" viewBox="0 0 1033 403" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <path d="M202.5,402.445312 C90.9320085,402.445312 0.48828125,312.454547 0.48828125,201.445312 C0.48828125,90.4360778 90.9320085,0.4453125 202.5,0.4453125 L1032.03125,0.4453125 L1032.03125,402.445312 L202.5,402.445312 Z" id="Combined-Shape" class="header-shape-fill" fill="#D8D8D8"></path>
+            </g>
+          </svg>
+        </div><!--shape-->
+        
+        <div class="image">
+          {{{ dr-image }}}
+        </div>
+
+      </div><!--bleed-->
+    </div><!--page-->
+    {{/block.dr-page-six}}
+
+    {{#block.dr-page-seven}}
+    <div class="page {{{ quote-selection-seven }}} seven">
+      <div class="bleed">
+        <div class="page-number"></div>
+
+        <div class="header">
+          <div style="max-height: 2.7em; z-index: 10;">
+            <div class="check-overflow">
+              <h1>{{{ dr-heading-seven }}}</h1>
+            </div>              
+          </div>
+        </div><!--header-->
+        
+        <div class="intro-copy">
+          <div style="max-height: 2.7em; z-index: 10;">
+            <div class="check-overflow">
+              <h1>{{{ dr-intro-copy }}}</h1>
+            </div>              
+          </div>
+        </div><!--header-->
+
+        <div class="left">
+          <div style="max-height: 22.85em;">
+            <div class="check-overflow">
+              {{{ dr-copy }}}
+            </div>
+          </div>
+        </div><!--left-->
+
+        <div class="right">
+          <div class="subheader-inner"></div>
+        </div><!--right-->
+
+      </div><!--bleed-->
+    </div><!--page-->
+    {{/block.dr-page-seven}}
+
+    {{#block.dr-page-eight}}
+    <div class="page eight">
+      <div class="bleed">
+        <div class="page-number"></div>
+
+        <div class="header">
+          <div style="max-height: 2.9em; z-index: 10;">
+            <div class="check-overflow">
+              <h1>{{{ dr-heading-eight-1 }}}</h1>
+            </div>              
+          </div>
+        </div><!--header-->
+
+        <div class="intro-copy">
+          <div style="max-height: 2.4em; z-index: 10;">
+            <div class="check-overflow">
+              <h1>{{{ dr-intro-copy }}}</h1>
+            </div>              
+          </div>
+        </div><!--header-->
+
+        <div class="left">
+          <div style="max-height: 20.6em;">
+            <div class="check-overflow">
+              {{{ dr-copy }}}
+            </div>
+          </div>
+        </div><!--left-->
+        
+        <div class="shape">
+          <svg width="100%" height="100%" viewBox="0 0 1033 403" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g id="back" transform="translate(516.500000, 201.500000) scale(-1, 1) translate(-516.500000, -201.500000) " fill="#D8D8D8" fill-rule="nonzero">
+                <path class="header-shape-fill" d="M202.5,402.445312 C90.9320085,402.445312 0.48828125,312.454547 0.48828125,201.445312 C0.48828125,90.4360778 90.9320085,0.4453125 202.5,0.4453125 L1032.03125,0.4453125 L1032.03125,402.445312 L202.5,402.445312 Z" id="Combined-Shape"></path>
+              </g>
+            </g>
+          </svg>
+        </div><!--shape-->
+
+      </div><!--bleed-->
+    </div><!--page-->
+    {{/block.dr-page-eight}}
+
+    {{#block.dr-page-nine}}
+    <div class="page nine">
+      <div class="bleed">
+        <div class="page-number"></div>
+
+        <div class="header">
+          <div style="max-height: 2.7em; z-index: 10;">
+            <div class="check-overflow">
+              <h1>{{{ dr-heading-nine }}}</h1>
+            </div>              
+          </div>
+        </div><!--header-->
+
+        <div class="shape-one">
+          <svg width="100%" height="100%" viewBox="0 0 1033 403" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <path d="M202.5,402.445312 C90.9320085,402.445312 0.48828125,312.454547 0.48828125,201.445312 C0.48828125,90.4360778 90.9320085,0.4453125 202.5,0.4453125 L1032.03125,0.4453125 L1032.03125,402.445312 L202.5,402.445312 Z" id="Combined-Shape" fill="#D8D8D8" class="header-shape-fill"></path>
+            </g>
+          </svg>
+        </div><!--shape-->
+
+        <div class="shape-two">
+          <svg width="100%" height="100%" viewBox="0 0 544 201" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <path d="M543.488281,75 L543.488281,201 L0,201 L0,72 L0.0808940804,72 C2.24351519,31.969388 47.4945202,0 103,0 L543.488281,0 L543.488281,75 Z" id="Combined-Shape" fill="#D8D8D8" class="header-shape-fill"></path>
+            </g>
+          </svg>
+        </div><!--shape-->
+
+        <div class="infographic">
+        </div><!--image-->
+
+      </div><!--bleed-->
+    </div><!--page-->
+    {{/block.dr-page-nine}}
+
+    {{/collection.dr-pages}}
+
+    <div class="page back">
+      <div class="bleed">
+
+        <div class="details">
+
+          <div class="details-logo"><img src="{{{account.logos.circle}}}"></div>
+
+          <div class="details-inner">
+            <div style="max-height: 1.5em;">
+              <div class="check-overflow">
+                <p class="website">{{{ website }}}</p>
+                <p class="cricos">{{{ cricos }}}</p>
+              </div>
+            </div>
+          </div>
+
+        </div><!--details-->
+
+
+        <div class="footer">
+          <div style="max-height: 2em;">
+            <div class="check-overflow">
+              <p>{{{ dr-footer }}}</p>
+            </div>
+          </div>
+        </div><!--footer-->
+
+      </div><!--bleed-->
+    </div><!--page-->
+
+    <script>
+
+      window.showCrop = {{show-crop}};
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+
+      function addClass() {
+        if (window.showCrop === true) {
+          document.body.classList.add('show-crop');
+        } else {
+          document.body.classList.add('no-crop'); 
+        }
+      }
+
+      addClass();
+      
+      function checkTable () {
+
+        var tableHeaderNode = document.querySelector('tr:first-of-type');
+        var tableMaxRow = tableHeaderNode.children.length;
+
+        var allRows = document.querySelectorAll('tr');
+
+        for (i = 0; i < allRows.length; i++) { 
+
+          var tableData = allRows[i].children;
+
+          if (tableData.length < tableMaxRow) {
+            var lastNode = tableData[tableData.length - 1]
+            lastNode.setAttribute('colspan', tableMaxRow - tableData.length + 1)
+          }
+
+        }
+
+      }
+
+      checkTable ();
+
+    </script>
+    <script src="main.js"></script>
+    <script src="prefixfree.js"></script>
+  </body>
+</html>
