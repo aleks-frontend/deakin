@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <link rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/worldly/stylesheet.css">
+    <link rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Calibri/stylesheet.css">
+    <style>
+
+      * { -webkit-font-smoothing: antialiased; }
+      
+      /* Base Code */
+      .overflow {
+        border: 1px dashed red;
+        position: relative; }
+      .overflow h1, 
+      .overflow h2, 
+      .overflow h3, 
+      .overflow h4, 
+      .overflow h5, 
+      .overflow h6, 
+      .overflow p, 
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 5px;
+        right: 5px;
+        height: 15px;
+        width: 15px;
+        border: 1px solid red;
+        color: red;
+        padding: 2px 2px 2px 3px;
+        box-sizing: border-box;
+        font-size: 13px;
+        text-align: center;
+        line-height: 8px;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'There is overset content in this column. Please remove it';
+        position: absolute;
+        top: 25px;
+        right: 5px;
+        background-color: black;
+        color: white;
+        border-radius: 2px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 1.1em;
+        text-align: right;
+        width: 15em;
+      }
+      .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/08ac018f8177d0edb150642ccc5ef816/1.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+
+      /* Font Sizing */
+      a { color: black !important; font-weight: bold !important; }
+      h1, h2, h3, h4, h5, h6 { font-family: 'Worldly', sans-serif; }
+      h1 { font-size: 0.8em; }
+      h2 { font-size: 0.5em; }
+      h3 { font-size: 0.3em; }
+      h4 { font-size: 0.3em; }
+      p, ul, ol { font-family: 'Calibri'; font-size: 0.23em; font-weight: normal; }
+      ul { margin: 1em 0 0 1.2em; list-style-type: disc; }
+      strong { font-weight: bold; }
+
+      /* Main Content */
+      .header { position: absolute; top: 0; left: 0; right: 0; height: 4.85em; overflow: hidden; }
+      .header-shape { position: absolute; top: 0; left: -0.3em; width: 10.5em; z-index: 9; } .header-shape img { width: 100%; }
+      .header-inner { display: flex; position: relative; height: 100%; padding: 1.3em 0 0 1.1em; color: white; }
+      .header-inner h1 { line-height: 0.9em; }
+      .header-inner h2 { margin: 0.8em 0 0 0; }
+      .header-image { position: absolute; top: 0; bottom: 0; right: 0; width: 7em; }
+      .no-crop-mark .header-image { width: calc(7em - 3mm); }
+      .header-image-inner { position: relative; height: 100%; }
+      .content { position: absolute; top: 5.9em; left: 1.1em; right: 3.2em; }
+      .intro-copy h3 { font-size: {{{ intro-copy-size }}}{{^intro-copy-size}}10{{/intro-copy-size}}pt; font-weight: 700; }
+      .columns-inner h3:first-of-type { margin-top: 0; }
+      .columns-inner p:first-of-type { margin-top: 0; }
+      .columns-inner h3 { font-size: 0.43em; font-weight: bold; }
+      .columns-inner h3, .columns-inner p { margin: 1em 0 0 0; }
+      .footer { position: absolute; bottom: 0.8em; left: 0.9em; width: 4em; }
+      .corner-shape { position: absolute; bottom: -3mm; right: 0; width: 5.2em; z-index: 9; } .corner-shape img { width: 100%; }
+      .website { font-family: 'Worldly'; font-size: 0.4em; font-weight: bold; }
+      .cricos { font-family: 'Calibri'; font-size: 0.15em; }
+
+      .columns-container {
+        position: absolute;
+        top: 9.4em;
+        left: 1em;
+        right: 1em; 
+      }
+
+      .columns {
+        margin: 0.4em 0 0 0;
+        height: 10.2em;
+        -webkit-column-gap: 30px;
+        -moz-column-gap: 30px;
+        column-gap: 30px;
+        -webkit-column-fill: auto;
+        -moz-column-fill: auto;
+        column-fill: auto;
+      }
+
+      .columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+      }
+
+      .columns-max-height { max-height: 20.4em; }
+
+      /* Colour Themes */
+      .theme-one .columns-inner h3, .theme-one .website { color: #C74298; }
+      .theme-one .header-shape-fill { fill: #AC3382; }
+      .theme-one .corner-shape-fill { fill: #AC3382; }
+
+      .theme-two .columns-inner h3, .theme-two .website { color: #0B7161; }
+      .theme-two .header-shape-fill { fill: #0D8572; }
+      .theme-two .corner-shape-fill { fill: #0D8572; }
+
+      .theme-three .columns-inner h3, .theme-three .website { color: #006D88; }
+      .theme-three .header-shape-fill { fill: #007D98; }
+      .theme-three .corner-shape-fill { fill: #007D98; }
+
+      .theme-four .header-inner h1, .theme-four .header-inner h2 { color: black; }
+      .theme-four .header-shape-fill { fill: #FFD923; }   
+      .theme-four .corner-shape-fill { fill: #FFD923; }
+
+      .logo { position: absolute; top: 1.1em; left: 8.65em; width: 2.5em; z-index: 10; }
+      
+      .page.two .columns { height: 13.2em; }
+      .page.two .columns-max-height { max-height: 25.6em; }
+      
+      
+    </style>
+  </head>
+  <body style="background: white" class="{{{ dr-theme-colour }}}">    
+    <div class="page one">
+      <div class="bleed">
+        
+        <div class="logo">
+          <img src="{{{account.logos.circle}}}">
+        </div>
+
+        <div class="header">
+          <div class="header-inner">
+            <div class="header-shape">
+              <svg width="100%" height="100%" viewBox="0 0 710 332" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs></defs>
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <path d="M518.65625,331.616616 C587.80599,334.2937 642.837891,304.434976 683.751953,242.040444 C745.123047,148.448647 686.539062,36.5502099 622.902344,0.155678699 L0.6015625,0.155678699 L0.6015625,331.616616 L518.65625,331.616616 Z" class="header-shape-fill" fill="#D8D8D8"></path>
+                </g>
+              </svg>
+            </div>
+            <div class="header-image">
+              <div class="header-image-inner">
+                {{{ dr-cover-letter-header-image }}}
+              </div>
+            </div>
+            <div style="width: 7.4em; max-height: 3.1em; z-index: 10;">
+              <div class="check-overflow">
+                <h1>{{{ dr-heading }}}</h1>
+                <h2>{{{ dr-subheading }}}</h2>
+              </div>              
+            </div>
+          </div>
+        </div><!--header-->
+
+        <div class="content">
+          <div class="intro-copy">
+            <div style="max-height: 2.9em;">
+              <div class="check-overflow">
+                <h3>{{{ dr-intro-copy }}}</h3>
+              </div>
+            </div>
+          </div><!--intro-copy-->
+          <div class="columns">
+            <div class="columns-inner">
+              <div class="columns-max-height">
+                <div class="check-overflow">
+                  {{{ dr-copy }}}    
+                  <p>{{{ dr-contact-details }}}</p>
+                </div>
+              </div>
+            </div>
+          </div><!--columns-->
+        </div><!--content-->
+
+        <div class="corner-shape">
+          <svg width="100%" height="100%" viewBox="0 0 364 194" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <path d="M363.781022,57.321322 L363.781022,194 L0.830291036,194 C13.2589457,85.3587841 105.519352,0.9765625 217.488281,0.9765625 L363.781022,0.9765625 L363.781022,57.321322 Z" class="corner-shape-fill" fill="#D8D8D8"></path>
+            </g>
+          </svg>
+        </div><!--corner-shape-->        
+
+      </div><!--bleed-->
+    </div><!--page-->
+
+    <script>
+
+      window.showCrop = {{show-crop}};
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+
+      function addClass() {
+        if (window.showCrop === true) {
+          document.body.classList.add('show-crop');
+        } else {
+          document.body.classList.add('no-crop'); 
+        }
+      }
+
+      addClass();
+
+    </script>
+    <script src="main.js"></script>
+    <script src="prefixfree.js"></script>
+  </body>
+</html>
