@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <!-- {{crop-marks}} {{colour-options}} {{headline-font-size}} {{headline}} {{subheader-font-size}} {{sub-headline}} {{body}} {{cta}} {{website}} {{cricos}} -->
+  
+  <title>Deakin University</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  <style>
+    
+    .test-background-image {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/6b648a295abb702f6ee4803d90ad4318/Screen%20Shot%202017-05-23%20at%203.51.01%20pm.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.7;
+      z-index: 100;
+    }
+
+    .show-crop-marks .test-background-image {
+      top: 0.5in;
+      left: 0.5in;
+      right: 0.5in;
+      bottom: 0.5in;
+    }
+    
+    /*.document {
+      background-image: url("");
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }*/
+    
+    
+    {{^image-upload}}
+    .document {
+      
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/d6bc331640b6ac5bbc41494c1d2aa1d5/BX4A2925_PRINT-resize2.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      
+    }
+    {{/image-upload}}
+    
+    .theme-one .column-1 {
+      background-color: {{{account.colors.teal}}};
+    }
+    
+    .theme-two .column-1  {
+      background-color: {{{account.colors.yellow}}};
+    }
+    
+    .theme-one .circle-fill {
+      fill: {{{account.colors.teal}}};
+    }
+    
+    .theme-two .circle-fill  {
+      fill: {{{account.colors.yellow}}};
+    }
+    
+    .theme-one .text-position {
+      color: {{{account.colors.white}}};
+    }
+    
+    .theme-two .text-position  {
+      color: {{{account.colors.black}}};
+    }
+    
+    .theme-one .triangle-fill {
+      fill: {{{account.colors.teal}}};
+    }
+    
+    .theme-two .triangle-fill {
+      fill: {{{account.colors.yellow}}};
+    }
+    
+    .theme-one .detail-position {
+      color: {{{account.colors.black}}};
+    }
+
+    .theme-two .detail-position {
+      color: {{{account.colors.black}}};
+    }
+
+    .cta {
+      width: 100%;
+      line-height: 1em;
+    }
+    
+  </style>
+</head>
+<body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+  <div class="page {{{Colour-Options}}}">
+        
+    <div class="document">
+      
+      {{{image-upload}}}
+      
+      <div class="content">
+        
+        <div class="column-1">
+          <div class="circle-1">
+            <svg width="100%" height="100%" viewBox="0 0 441 220" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+                <desc>Created with Sketch.</desc>
+                <defs></defs>
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <path d="M0.000554829508,1.1102547e-08 C0.270333438,121.548893 98.8879226,220 220.5,220 C342.112077,220 440.729667,121.548893 440.999445,1.11025441e-08 L0.000515056597,-5.68434189e-14 Z" id="Combined-Shape" class="circle-fill" fill="#D8D8D8" transform="translate(220.500020, 110.000000) scale(1, -1) translate(-220.500020, -110.000000) "></path>
+                </g>
+            </svg>
+          </div>
+          <div class="logo"><img src="{{{account.logos.circle}}}"></div> 
+          <div class="text-position">
+            <div class="headline-overflow">
+              <div class="headline-container">
+                <h1 style="font-size: calc(1.4em - {{{headline-font-size}}}em);">{{{ headline }}}</h1>
+              </div>
+            </div><!--headline-->
+            <div class="sub-headline-overflow">
+              <div class="sub-headline-container">
+                <h2 style="font-size: calc(0.8em - {{{subheader-font-size}}}em);">{{{ sub-headline }}}</h2>
+              </div>
+            </div><!--subheader-->
+          </div><!--text-position-->
+          <div class="cricos">
+            <p>{{{ cricos }}}</p>
+          </div><!--cricos-->
+        </div><!--column-1-->
+        
+        <div class="column-2">
+          <div class="cta">
+            <div class="cta-overflow">
+              <div class="cta-container">
+                {{#cta}}<h3 id="cta">{{{ cta }}}</h3>{{/cta}}
+              </div>
+            </div>
+            <div class="website-overflow">
+              <div class="website-container">
+                <h4>{{{ website }}}</h4>
+              </div>
+            </div>
+          </div><!--cta-->
+          <div class="body-overflow">
+            <div class="body-container">
+              {{{ body }}}
+            </div>
+          </div><!--body-->
+          <div class="circle-2">
+            <svg width="100%" height="100%" viewBox="0 0 441 220" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+                <desc>Created with Sketch.</desc>
+                <defs></defs>
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <path d="M0.000554829508,1.1102547e-08 C0.270333438,121.548893 98.8879226,220 220.5,220 C342.112077,220 440.729667,121.548893 440.999445,1.11025441e-08 L0.000515056597,-5.68434189e-14 Z" id="Combined-Shape" fill="#fff"></path>
+                </g>
+            </svg>
+          </div>
+        </div><!--column-2-->
+        
+      </div><!--content-->
+        
+    </div><!--document-->
+
+  </div><!--page-->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  
+  <script>
+    
+    function loop() {
+      checkHeight(document.getElementsByClassName('headline-container'));
+      checkHeight(document.getElementsByClassName('sub-headline-container'));
+      checkHeight(document.getElementsByClassName('body-container'));
+      checkHeight(document.getElementsByClassName('website-container'));
+      checkHeight(document.getElementsByClassName('cta-container'));
+
+
+      /* Add any other text boxes you want to check the overflows on with the following: checkHeight(document.getElementsByClassName('CLASS NAME')); */
+
+    } setInterval(loop, 500);
+
+    function checkHeight(element) {
+      for (i = 0 ; i < element.length ; i++ ) {
+        var currentElement = element[i];
+        var height         = currentElement.offsetHeight;
+        var parent         = currentElement.parentNode;
+        var parentHeight   = parent.offsetHeight;
+
+        if (height > parentHeight) {
+          parent.classList.add('overflow');
+        } else {
+          parent.classList.remove('overflow');
+        }
+
+        if ((currentElement).parentNode.classList.contains('overflow')) {
+          document.body.classList.add('overflow-true');
+        } else {
+          document.body.classList.remove('overflow-true'); 
+        }
+      }
+    }
+    
+  </script>
+  
+</body>
+</html>
