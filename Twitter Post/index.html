@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" style="background: #ffffff;">
+
+<head>
+  <link type="text/css" rel="stylesheet" href="main.css" />
+  <style type="text/css">
+    .box-headline {
+      font-size: {{tp-headline-font-size}}{{^tp-headline-font-size}}27{{/tp-headline-font-size}}rem;
+    }        
+    
+    .pl2 .box-headline,
+    .pl3 .box-headline {
+      font-size: {{tp-headline-font-size-2}}{{^tp-headline-font-size-2}}23{{/tp-headline-font-size-2}}rem;
+    }
+    
+    .box-subheading {
+      font-size: {{tp-subheading-font-size}}{{^tp-subheading-font-size}}18{{/tp-subheading-font-size}}rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page pl{{layout}}{{^layout}}1{{/layout}} pc-{{di-colour-theme}}{{^di-colour-theme}}turquoise{{/di-colour-theme}}">
+    <div class="bleed">
+      <div class="test contain fit d-none"></div>
+      <div class="wrapper fit">
+        <div class="hero-image fit">
+          {{{hero-image}}}
+        </div>
+        <div class="shapes">
+          <div class="shape shape-1 fit"></div>
+          <div class="shape shape-2 fit"></div>
+          <div class="shape shape-3 fit"></div>          
+          <div class="shape shape-4 fit"></div>
+          <div class="shape shape-5 fit"></div>
+        </div>
+        <div class="headings">
+          {{#headline}}
+          <div class="box-limit box-headline">
+            <div class="box-inner">
+              <h1 class="headline">{{{headline}}}</h1>
+            </div>
+          </div>
+          {{/headline}}
+          {{#subheading}}
+          <div class="box-limit box-subheading">
+            <div class="box-inner">
+              <h2 class="subheading">{{{subheading}}}</h2>
+            </div>
+          </div>
+          {{/subheading}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    window.showCrop = '{{show-crop}}' === 'true';
+
+    if (showCrop) {
+      document.querySelector('body').classList.add('crop');
+    }
+
+    Array.prototype.slice.call(document.querySelectorAll('.page'))
+      .forEach(function (page) {
+        var parser = new DOMParser();
+        var cropString = '<div class="crop-marks"><span class="cm1"></span><span class="cm2"></span><span class="cm3"></span><span class="cm4"></span></div>';
+        var cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+        !!window.showCrop && page.insertBefore(cropNode, null);
+      });
+    
+    function getSize() {
+      const vw = (showCrop ? window.innerWidth : window.innerWidth + 57.62) / 100;
+      const vh = (showCrop ? window.innerHeight : window.innerHeight + 57.62) / 100;
+      const vmin = Math.min(vw, vh);
+      const vmax = Math.max(vw, vh);
+      return ((vmin * 2) + (vmax * 1.41891892) + (vh * 2)) / 39.1578;
+    }
+
+    function setSize() {
+      const size = getSize();
+      document.documentElement.style.fontSize = `${size}px`;
+    };
+    
+    setSize();
+
+    function checkHeight() {
+      $('.box-limit')
+        .each(function () {
+          const e = $(this);
+          const height = e.find('.box-inner').height();
+          const parentHeight = e.height() + 2;
+          e.toggleClass('overflow', height > parentHeight);
+        });
+    }        
+
+    function loop() {
+      checkHeight();
+    } setInterval(loop, 1000);
+  </script>
+</body>
+
+</html>
