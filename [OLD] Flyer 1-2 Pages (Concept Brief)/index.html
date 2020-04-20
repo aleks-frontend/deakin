@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <link rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/worldly/stylesheet.css">
+    <link rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Calibri/stylesheet.css">
+    <style>
+
+      * { -webkit-font-smoothing: antialiased; }
+
+      /* Base Code */
+      .overflow {
+        border: 1px dashed red;
+        position: relative; }
+      .overflow h1, 
+      .overflow h2, 
+      .overflow h3, 
+      .overflow h4, 
+      .overflow h5, 
+      .overflow h6, 
+      .overflow p, 
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 5px;
+        right: 5px;
+        height: 15px;
+        width: 15px;
+        border: 1px solid red;
+        color: red;
+        padding: 2px 2px 2px 3px;
+        box-sizing: border-box;
+        font-size: 13px;
+        text-align: center;
+        line-height: 8px;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'There is overset content in this column. Please remove it';
+        position: absolute;
+        top: 25px;
+        right: 5px;
+        background-color: black;
+        color: white;
+        border-radius: 2px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 1.1em;
+        text-align: right;
+        width: 15em;
+      }
+      .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/cf13c60b95a962e1eb60b01136a7f213/Flyer_1-2_Pages_Example_1_Page_1.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+
+      /* Font Sizing */
+      h1, h2, h3, h4, h5, h6 { font-family: 'Worldly', sans-serif; }
+      h1 { font-size: 0.8em; }
+      h2 { font-size: 0.43em; }
+      h3 { font-size: 0.3em; }
+      h4 { font-size: 0.3em; }
+      p, ul, ol, td { font-family: 'Calibri'; font-size: 0.23em; font-weight: normal; }
+      ul { margin: 1em 0 0 1.2em; list-style-type: disc; }
+      strong { font-weight: bold; }
+
+      table { width: 100%; }
+      table td { padding: 0.2em; text-align: center; }
+      table tr:first-of-type > td { color: white; background-color: #CF4E9B; font-weight: bold;  }
+      table tr td { border-right: 1px solid white; color: black; background-color: #EBBFD9; }
+      table tr:last-of-type > td { color: black; background-color: #F3D8E6; }
+
+      /* Main Content */
+      .header { position: absolute; top: 0; left: 0; right: 0; height: 6.15em; overflow: hidden; }
+      .header-shape { position: absolute; top: 0; left: -6.1em; width: 14.6em; z-index: 9; } .header-shape img { width: 100%; }
+      .header-inner { display: flex; position: relative; padding: 1em; color: white; }
+      .header-inner h2 { margin: 0.8em 0 0 0; }
+      .header-image { position: absolute; top: 0; bottom: 0; right: 0; height: 6.2em; width: 8.5em; }
+      .no-crop-mark .header-image { width: calc(8.5em - 3mm); }
+      .header-image-inner { position: relative; height: 100%; }
+      .content { position: absolute; top: 7.2em; left: 1em; right: 1em; }
+      .intro-copy h3 { font-size: {{{ intro-copy-size }}}pt; font-weight: 700; }
+      .columns-inner h3 { font-size: 0.43em; font-weight: bold; }
+      .columns-inner h3, .columns-inner p { margin: 1em 0 0 0; }
+      .footer { position: absolute; bottom: 0.8em; left: 0.9em; width: 4em; }
+      .website { font-family: 'Worldly'; font-size: 0.4em; font-weight: bold; }
+      .cricos { font-family: 'Calibri'; font-size: 0.15em; }
+
+      .page.one .columns-container {
+        position: absolute;
+        top: 9.4em;
+        left: 1em;
+        right: 1em; 
+      }
+
+      .page.one .columns {
+        margin: 0.4em 0 0 0;
+        height: 9em;
+        -webkit-column-gap: 30px;
+        -moz-column-gap: 30px;
+        column-gap: 30px;
+        -webkit-column-fill: auto;
+        -moz-column-fill: auto;
+        column-fill: auto;
+      }
+
+      .page.one.one-column .columns {
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+      }
+
+      .page.one.one-column .columns-max-height { max-height: 9em; }
+
+      .page.one.two-columns .columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+      }
+
+      .page.one.two-columns .columns-max-height { max-height: 18em; }
+
+      .page.two .content { position: absolute; top: 2em; left: 1em; right: 1em; }
+
+      .page.two .columns {
+        margin: 0.4em 0 0 0;
+        height: 15.5em;
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+        -webkit-column-gap: 30px;
+        -moz-column-gap: 30px;
+        column-gap: 30px;
+        -webkit-column-fill: auto;
+        -moz-column-fill: auto;
+        column-fill: auto;
+      }
+
+      .page.two.one-column .columns {
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+      }
+
+      .page.two.one-column .columns-max-height { max-height: 15.5em; }
+
+      .page.two.two-columns .columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+      }
+
+      .page.two.two-columns .columns-max-height { max-height: 31em; }
+
+      /* Added by Blake 13/11/2018 (appr. James) */
+	  .columns-inner h3:first-child {
+	    margin: 0;
+	  }
+      
+      /* Colour Themes */
+      .theme-one .columns-inner h3, .theme-one .website { color: #C74298; }
+      .theme-one .header-shape-fill { fill: #AC3382; }
+      .theme-one .corner-shape-fill { fill: #AC3382; }
+
+      .theme-two .columns-inner h3, .theme-two .website { color: #0B7161; }
+      .theme-two .header-shape-fill { fill: #0D8572; }
+      .theme-two .corner-shape-fill { fill: #0D8572; }
+
+      .theme-three .columns-inner h3, .theme-three .website { color: #006D88; }
+      .theme-three .header-shape-fill { fill: #007D98; }
+      .theme-three .corner-shape-fill { fill: #007D98; }
+
+      .theme-four .header-inner h1, .theme-four .header-inner h2 { color: black; }
+      .theme-four .header-shape-fill { fill: #FFD923; }   
+      .theme-four .corner-shape-fill { fill: #FFD923; }   
+
+      .logo { position: absolute; top: 2.5em; left: 6.85em; width: 2.5em; z-index: 10; }
+
+
+      .corner-shape { position: absolute; bottom: -3mm; right: 0; width: 5.2em; z-index: 9; } .corner-shape img { width: 100%; }
+      
+      
+      .hide-page-two .page.two { display: none; }
+      .hide-page-two .contact-details-p1 { display: block; }
+      .hide-page-two .contact-details-p2 { display: none; }
+
+      .show-page-two .page.two { display: block; }
+      .show-page-two .contact-details-p1 { display: none; }
+      .show-page-two .contact-details-p2 { display: block; }
+
+    </style>
+  </head>
+  <body style="background: white" class="{{{ dr-theme-colour }}} {{{ page-two-visibility }}}">
+    <div class="page one  {{ dr-page-one-columns }}">
+      <div class="bleed">
+
+        <div class="logo">
+          <img src="{{{account.logos.circle}}}">
+        </div>
+
+        <div class="header">
+          <div class="header-inner">
+            <div class="header-shape">
+              <svg width="100%" height="100%" viewBox="0 0 1235 539" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <path d="M0.671875,0.765625 L1078.98757,0.765625 C1203.23737,76.199906 1253.11219,181.071 1228.61202,315.378906 C1188.5378,535.0625 985.393273,538.683594 978.461106,538.683594 C973.839661,538.683594 647.909917,538.683594 0.671875,538.683594 L0.671875,453.593913 L0.671875,0.765625 Z" class="header-shape-fill" fill="#D8D8D8"></path>
+                </g>
+              </svg>
+            </div>
+            <div class="header-image">
+              <div class="header-image-inner">
+                {{{ dr-concept-brief-header-image }}}
+              </div>
+            </div>
+            <div style="width: 5.6em; max-height: 4em; z-index: 10;">
+              <div class="check-overflow">
+                <h1>{{{ dr-heading }}}</h1>
+                <h2>{{{ dr-subheading }}}</h2>
+              </div>              
+            </div>
+          </div>
+        </div><!--header-->
+
+        <div class="content">
+          <div class="intro-copy">
+            <div style="max-height: 2.6em;">
+              <div class="check-overflow">
+                <h3>{{{ dr-intro-copy }}}</h3>
+              </div>
+            </div>
+          </div><!--intro-copy-->
+          <div class="columns">
+            <div class="columns-inner">
+              <div class="columns-max-height">
+                <div class="check-overflow">
+                  {{#collection.concept-brief-page-one.length}}
+                  <div>
+                  {{#collection.concept-brief-page-one}}
+
+                  {{#block.text}}
+                  <div style="padding-bottom: 10pt;">{{{ dr-copy }}}</div>
+                  {{/block.text}}
+
+                  {{#block.image}}
+                  <img style="width: 100%; padding-bottom: 0;" src="{{{ dr-image-main }}}">
+                  {{/block.image}}
+
+                  {{#block.caption}}
+                  <p style="margin: 0; padding-bottom: 10pt; font-family: 'Calibri'; font-size: 7pt;">{{{ dr-caption }}}</p>
+                  {{/block.caption}}
+
+                  {{#block.table}}
+                  <div style="padding-bottom: 10pt;">
+                  <table>
+                    <tbody>
+                      {{#spreadsheet.dr-table}}
+                      <tr>
+                        {{#one}}<td>{{{ one }}}</td>{{/one}}
+                        {{#two}}<td>{{{ two }}}</td>{{/two}}
+                        {{#three}}<td>{{{ three }}}</td>{{/three}}
+                        {{#four}}<td>{{{ four }}}</td>{{/four}}
+                        {{#five}}<td>{{{ five }}}</td>{{/five}}
+                        {{#six}}<td>{{{ six }}}</td>{{/six}}
+                      </tr>
+                      {{/spreadsheet.dr-table}}
+                    </tbody>
+                  </table>
+                  </div>
+                  {{/block.table}}
+
+                  {{/collection.concept-brief-page-one}}
+                  </div>
+                  {{/collection.concept-brief-page-one.length}}
+                  
+                  {{{ dr-copy }}}
+
+                  <p class="contact-details-p1">{{{ dr-contact-details }}}</p>
+                </div>
+              </div>
+            </div>
+          </div><!--columns-->
+        </div><!--content-->
+
+        <div class="footer">
+          <div style="max-height: 1.5em;">
+            <div class="check-overflow">
+              <p class="website">{{{ website }}}</p>
+              <p class="cricos">{{{ cricos }}}</p>
+            </div>
+          </div>
+        </div><!--footer-->
+
+      </div><!--bleed-->
+    </div><!--page-->
+
+    {{# dr-copy-two }}    
+    <div class="page two {{ dr-page-two-columns }}">
+      <div class="bleed">
+
+        <div class="content">
+          <div class="columns">
+            <div class="columns-inner">
+              <div class="columns-max-height">
+                <div class="check-overflow">
+
+                  <div>
+                  {{#collection.concept-brief-page-two}}
+
+                  {{#block.text}}
+                  <div style="padding-bottom: 10pt;">{{{ dr-copy }}}</div>
+                  {{/block.text}}
+
+                  {{#block.image}}
+                  <img style="width: 100%; padding-bottom: 0;" src="{{{ dr-image-main }}}">
+                  {{/block.image}}
+
+                  {{#block.caption}}
+                  <p style="margin: 0; padding-bottom: 10pt; font-family: 'Calibri'; font-size: 7pt;">{{{ dr-caption }}}</p>
+                  {{/block.caption}}
+
+                  {{#block.table}}
+                  <div style="padding-bottom: 10pt;">
+                  <table>
+                    <tbody>
+                      {{#spreadsheet.dr-table}}
+                      <tr>
+                        {{#one}}<td>{{{ one }}}</td>{{/one}}
+                        {{#two}}<td>{{{ two }}}</td>{{/two}}
+                        {{#three}}<td>{{{ three }}}</td>{{/three}}
+                        {{#four}}<td>{{{ four }}}</td>{{/four}}
+                        {{#five}}<td>{{{ five }}}</td>{{/five}}
+                        {{#six}}<td>{{{ six }}}</td>{{/six}}
+                      </tr>
+                      {{/spreadsheet.dr-table}}
+                    </tbody>
+                  </table>
+                  </div>
+                  {{/block.table}}
+
+                  {{/collection.concept-brief-page-two}}
+                  </div>
+                  
+                  {{{ dr-copy-two }}}
+                  
+                  <p class="contact-details-p2">{{{ dr-contact-details }}}</p>
+                </div>
+              </div>
+            </div>
+          </div><!--columns-->
+        </div><!--content-->
+
+        <div class="footer">
+          <div style="max-height: 1.5em;">
+            <div class="check-overflow">
+              <p class="website">{{{ website }}}</p>
+              <p class="cricos">{{{ cricos }}}</p>
+            </div>
+          </div>
+        </div><!--footer-->
+
+        <div class="corner-shape">
+          <svg width="100%" height="100%" viewBox="0 0 364 194" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <path d="M363.781022,57.321322 L363.781022,194 L0.830291036,194 C13.2589457,85.3587841 105.519352,0.9765625 217.488281,0.9765625 L363.781022,0.9765625 L363.781022,57.321322 Z" class="corner-shape-fill" fill="#D8D8D8"></path>
+            </g>
+          </svg>
+        </div><!--corner-shape--> 
+
+      </div><!--bleed-->
+    </div><!--page-->
+    {{/ dr-copy-two }}    
+
+    <script>
+
+      window.showCrop = {{show-crop}};
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+
+      function addClass() {
+        if (window.showCrop === true) {
+          document.body.classList.add('show-crop');
+        } else {
+          document.body.classList.add('no-crop'); 
+        }
+      }
+
+      addClass();
+
+      function checkTable () {
+
+        var tableHeaderNode = document.querySelector('tr:first-of-type');
+        var tableMaxRow = tableHeaderNode.children.length;
+
+        var allRows = document.querySelectorAll('tr');
+
+        for (i = 0; i < allRows.length; i++) { 
+
+          var tableData = allRows[i].children;
+
+          if (tableData.length < tableMaxRow) {
+            var lastNode = tableData[tableData.length - 1]
+            lastNode.setAttribute('colspan', tableMaxRow - tableData.length + 1)
+          }
+
+        }
+
+      }
+
+      checkTable ();
+
+    </script>
+    <script src="main.js"></script>
+    <script src="prefixfree.js"></script>
+  </body>
+</html>
