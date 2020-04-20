@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html data-sign="OSL">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+
+      @import url("https://outfit-assets-production.s3.amazonaws.com/fonts/worldly/stylesheet.css");
+      @import url("https://outfit-assets-production.s3.amazonaws.com/fonts/Calibri/stylesheet.css");
+
+      :root {
+        --font-family-primary: 'Calibri';
+        --font-family-secondary: 'Worldly';
+
+        --white: #fff;
+        --black: #000;
+
+        /*CMYK COLOUR*/
+        --cmyk-pink: {{{account.colors.hex-cmyk-pink}}}; 
+        --cmyk-turquoise: {{{account.colors.hex-cmyk-turquoise}}};   
+        --cmyk-teal: {{{account.colors.hex-cmyk-teal}}};
+        --cmyk-orange: {{{account.colors.hex-cmyk-orange}}};
+        --cmyk-charcoal: {{{account.colors.hex-cmyk-charcoal}}};
+
+
+        /*RGB COLOUR*/       
+        --rgb-turquoise: rgb(13,133,114);
+        --rgb-pink: rgb(199, 66, 152);
+        --rgb-teal: rgb(0, 125, 152);
+        --rgb-orange: rgb(247, 105, 25);
+        --rgb-yellow: rgb(255, 217, 35);
+        --rgb-charcoal: rgb(54, 54, 53);
+        --rgb-grey: rgb(255, 255, 255);
+
+
+        /*RGB HEADING COLOUR*/
+        --rgb-heading-turquoise: rgb(11, 113, 97);
+        --rgb-heading-pink: rgb(172, 51, 130);
+        --rgb-heading-teal: rgb(0, 109, 136);
+        --rgb-heading-orange: rgb(173, 66, 6);
+      }
+
+      .cmyk.cmyk-pink {
+        --dynamic-color-primary: var(--cmyk-pink);
+        --dynamic-color-secondary: var(--cmyk-turquoise);
+        --heading-color-primary: var(--cmyk-pink);
+        --heading-colour-secondary: var(--cmyk-turquoise);
+      }
+
+      .rgb.rgb-pink {
+        --dynamic-color-primary: var(--rgb-pink);
+        --dynamic-color-secondary: var(--rgb-turquoise);
+        --heading-color-primary: var(--rgb-heading-pink);
+        --heading-colour-secondary: var(--rgb-heading-turquoise);
+      }
+
+      .cmyk.cmyk-turquoise {
+        --dynamic-color-primary: var(--cmyk-turquoise);
+        --dynamic-color-secondary: var(--cmyk-pink);
+        --heading-color-primary: var(--cmyk-turquoise);
+        --heading-colour-secondary: var(--cmyk-pink);
+      }
+
+      .rgb.rgb-turquoise {
+        --dynamic-color-primary: var(--rgb-turquoise);
+        --dynamic-color-secondary: var(--rgb-pink);
+        --heading-color-primary: var(--rgb-heading-turquoise);
+        --heading-colour-secondary: var(--rgb-heading-pink);
+      }
+
+      .cmyk.cmyk-teal {
+        --dynamic-color-primary: var(--cmyk-teal);
+        --dynamic-color-secondary: var(--cmyk-pink);
+        --heading-color-primary: var(--cmyk-teal);
+        --heading-colour-secondary: var(--cmyk-pink);
+      }
+
+      .rgb.rgb-teal {
+        --dynamic-color-primary: var(--rgb-teal);
+        --dynamic-color-secondary: var(--rgb-pink);
+        --heading-color-primary: var(--rgb-heading-teal);
+        --heading-colour-secondary: var(--rgb-heading-pink);
+      }
+
+      .cmyk.cmyk-orange {
+        --dynamic-color-primary: var(--cmyk-orange);
+        --dynamic-color-secondary: var(--cmyk-charcoal);
+        --heading-color-primary: var(--cmyk-orange);
+        --heading-colour-secondary: var(--cmyk-charcoal);
+      }
+
+      html {
+        font-size: 11pt;
+        font-family: var(--font-family-primary);       
+        color: var(--black);
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: 1fr 281pt 1fr;
+      }
+
+      .column {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: 60pt 0pt 33pt 0pt;
+        font-size: 10pt;        
+      }
+
+      .column--middle {
+        justify-content: space-between;
+      } 
+
+      .column--middleSecondary {
+        padding: 60pt 0pt 196pt 0pt;
+      }
+
+      .column--right {
+        overflow: hidden;
+        background: #e1dedb;       
+      }
+
+      .column-rightSecondary {
+        padding: 343pt 0 33pt 0;
+        background: var(--white);
+      }
+
+      .body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .body--primary {
+        padding: 0pt 31pt 0pt 36pt;
+      }
+
+      .body--secondary {
+        justify-content: space-between;
+        padding: 0 27.2pt 0 33pt;
+      }
+
+      .body--tertiary {
+        padding: 0 36pt 0 31pt;
+      }      
+
+      .cover-design-1 .body--tertiary {
+        max-height: 195px;
+      }
+
+      .cover-design-2 .body--tertiary {
+        max-height: 230px;
+      }
+
+      .heading {
+        margin-bottom: 14.8pt;
+        font-size: 25pt;   
+        font-family: var(--font-family-secondary);        
+        color: var(--heading-color-primary);
+      }
+
+      .heading--front {
+        font-size: 32pt;
+        font-family: var(--font-family-secondary);
+      }
+
+      .cover-design-2 .heading--front,
+      .cover-design-2 .subheading {
+        position: relative;
+        z-index: 999; 
+        color: var(--white);
+      }
+
+      .content h3 {
+        margin-bottom: 7pt;
+        font-size: 12.2pt;
+        font-family: var(--font-family-secondary);        
+        color: var(--heading-colour-secondary);
+      }
+
+      .content h4 {
+        margin-bottom: 2pt;
+        font-size: 10.3pt;     
+      }
+
+      .content p {
+        margin-bottom: 8pt;
+        font-size: 8.9pt;
+        line-height: 1.4em;    
+      }
+
+      .content p:last-child {
+        margin-bottom: 0;
+      }
+
+      .content p + h4 {
+        margin-top: 6pt;
+      }
+
+      .content li {
+        position: relative;
+        margin-bottom: 5pt;
+        padding-left: 18pt;        
+        font-size: 8.9pt;
+      }
+
+      li::before {
+        content: '\2022';
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      .subheading  {
+        font-size: 15pt;
+        font-family: var(--font-family-secondary);
+      }
+
+      .website {
+        margin-bottom: 18pt;
+        font-size: 23pt; 
+        font-family: var(--font-family-secondary);      
+      }
+
+      .footer {
+        padding: 0 27.2pt 0 33pt;
+      }
+
+      .footer__content {
+        font-size: 6.1pt;
+      }
+
+      .cricos {
+        margin-top: 8pt;    
+      }
+
+      .quote {  
+        position: relative;
+        margin-top: 20pt;
+        padding: 0 19pt;     
+        font-size: 21.4pt;
+        font-family: var(--font-family-secondary);
+      }
+
+      .quote:before,
+      .quote:after {
+        content: "’";
+        position: absolute;
+        left: 12pt;
+      }
+
+      .quote:after {
+        position: relative;
+        left: 0pt;
+      }
+
+      .logo {
+        position: absolute;
+        top: 220pt;
+        right: 174pt;
+        max-width: 85pt;        
+        z-index: 999;
+      }
+
+      .cover-design-2 .logo {
+        right: 49pt;
+        top: 214pt;
+      }
+
+      .clippedImage {
+        position: absolute;
+        overflow: hidden;
+      }
+
+      .clippedImage--primary {
+        bottom: 0;
+        left: 0;
+        height: 270pt;
+        width: 225pt;
+        clip-path: polygon(0% 46%, 31% 0, 100% 100%, 0 100%);
+      }
+
+      .clippedImage--secondary {
+        bottom: 0;
+        right: -83pt;
+        width: 341pt;
+        height: 402pt;
+        clip-path: inset(0px round 245pt 245pt 0 0);
+      }
+
+      .cover-design-2 .clippedImage--secondary {
+        bottom: 0;
+        right: 0;
+        left: 0;
+        top: 0;     
+        height: auto;
+        width: auto;
+        clip-path: none;
+      }
+
+      .clippedImage--tertiary {
+        left: -101pt;
+        bottom: 0;
+        width: 490pt;
+        height: 262pt;
+        clip-path: inset(0px round 245pt 245pt 0 0);
+      }
+
+      .clippedImage--fourth {
+        left: auto;
+        bottom: auto;
+        right: 0;
+        top: 0;
+        width: 264pt;
+        height: 320pt;
+        clip-path: polygon(71% 100%, 0% 0%, 100% 0%, 100% 59%);
+      }
+
+      .clippedImage__inner {
+        position: absolute;
+        top: 0;
+        bottom: 0;  
+        overflow: hidden;
+      }
+
+      .clippedImage__inner--primary {
+        right: 0;
+        width: 225pt;
+      }
+
+      .clippedImage__inner--secondary {
+        left: 0;
+        width: 289pt;
+      }
+
+      .clippedImage__inner--tertiary {   
+        right: 0;
+        width: 389pt;
+      }
+
+      .clippedImage__inner--fourth {   
+        left: 0;
+        width: 264pt;
+      }
+
+      .shape {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: -89pt;
+        width: 336pt;
+        height: 320pt;        
+        clip-path: inset(0px round 0% 0% 224pt 224pt);
+        background: var(--dynamic-color-primary);
+      }
+
+      .cover-design-2 .shape {
+        display: block;       
+      }
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }      
+
+      .u-hide {
+        display: none;
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}} 
+                                         {{DKN_cover-design--dlbr}}{{^DKN_cover-design--dlbr}}cover-design-1{{/DKN_cover-design--dlbr}}
+                                         {{ DKN_colour-type--dlbr }}{{^DKN_colour-type--dlbr}}cmyk{{/DKN_colour-type--dlbr}}
+                                         {{ DKN_colour-theme-CMYK--dlbr }}{{^DKN_colour-theme-CMYK--dlbr}}cmyk-pink{{/DKN_colour-theme-CMYK--dlbr}}
+                                         {{ DKN_colour-theme-RGB--dlbr }}{{^DKN_colour-theme-RGB--dlbr}}rgb-pink{{/DKN_colour-theme-RGB--dlbr}}" 
+        data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      {{#placeholder-image-1}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      {{/placeholder-image-1}}
+      {{#placeholder-image-2}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-2 }}"></div>
+      {{/placeholder-image-2}}
+    </div><!-- end placeholderMaster -->
+    <div class="js-cricos-src u-hide">{{{DKN_cricos--dlbr}}}</div>
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit column__container">
+
+          {{#collection.DKN_cover-page--dlbr}}
+
+          {{#block.DKN_dl-left--dlbr}}
+          <div class="column column--left">
+            <div class="body body--primary" data-max-height="380">
+              {{#DKN_heading-2--dlbr}}<div class="heading" data-max-line="3">{{{DKN_heading-2--dlbr}}}</div><!--heading-->{{/DKN_heading-2--dlbr}}
+              {{#DKN_copy--dlbr}}<div class="content">{{{DKN_copy--dlbr}}}</div><!--content-->{{/DKN_copy--dlbr}}            
+            </div><!--body-->
+            <div class="clippedImage clippedImage--primary">
+              <div class="clippedImage__inner clippedImage__inner--primary">
+                <div class="reposition-fix">
+                  {{{DKN_triangle-image--dlbr}}}
+                </div><!--reposition-fix-->
+              </div><!--clippedImage__inner-->
+            </div><!--clippedImage-->
+          </div><!--column-->
+          {{/block.DKN_dl-left--dlbr}}
+          {{#block.DKN_dl-middle--dlbr}}
+          <div class="column column--middle">
+            <div class="body body--secondary"  data-max-height="470">
+              {{#DKN_heading-2--dlbr}}<div class="heading" data-max-line="3">{{{DKN_heading-2--dlbr}}}</div><!--heading-->{{/DKN_heading-2--dlbr}}
+              {{#DKN_copy--dlbr}}<div class="content">{{{DKN_copy--dlbr}}}</div><!--content-->{{/DKN_copy--dlbr}}
+            </div><!--body body--secondary-->
+            <div class="footer">
+              <div class="website"><span class="textFit">{{{DKN_url--dlbr}}}{{^DKN_url--dlbr}}{{team.website}}{{/DKN_url--dlbr}}</span></div><!--website-->
+              <div class="footer__content">
+                {{#DKN_disclaimer--dlbr}}<div class="disclaimer" data-max-line="5">{{{DKN_disclaimer--dlbr}}}</div><!--disclaimer-->{{/DKN_disclaimer--dlbr}}
+                <div class="cricos js-cricos-target" data-max-line="1"></div><!--cricos-->
+              </div><!--footer__content-->
+            </div><!--footer-->
+          </div><!--column column--middle-->
+          {{/block.DKN_dl-middle--dlbr}}
+          {{#block.DKN_dl-right--dlbr}}
+          <div class="column column--right">
+            <div class="clippedImage clippedImage--secondary">
+              <div class="clippedImage__inner clippedImage__inner--secondary">
+                <div class="reposition-fix">
+                  {{{DKN_cover-image--dlbr}}}
+                </div><!--reposition-fix-->
+              </div><!--clipedImage__inner-->
+            </div><!--clippedImage--secondary-->        
+            <div class="body body--tertiary" data-max-height="css">
+              {{#DKN_cover-heading-1--dlbr}}<div class="heading heading--front" data-max-line="3">{{{DKN_cover-heading-1--dlbr}}}</div><!--heading heading--front-->{{/DKN_cover-heading-1--dlbr}}
+              {{#DKN_cover-subheading--dlbr}}<div class="subheading subheading--front" data-max-line="2">{{{DKN_cover-subheading--dlbr}}}</div><!--subheading subheading--front-->{{/DKN_cover-subheading--dlbr}}          
+            </div><!--body-->
+            <img class="logo" src="{{{account.logos.circle}}}" alt="">
+            <div class="shape"></div><!--shape-->
+          </div><!--column-->
+          {{/block.DKN_dl-right--dlbr}}
+          {{/collection.DKN_cover-page--dlbr}}
+
+        </div><!--fit column__container-->         
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit column__container">
+          {{#collection.DKN_back-page--dlbr}}
+          {{#block.DKN_dl-left--dlbr}}
+          <div class="column column--left">
+            <div class="body body--primary" data-max-height="380">
+              {{#DKN_heading-2--dlbr}}<div class="heading" data-max-line="2">{{{DKN_heading-2--dlbr}}}</div><!--heading-->{{/DKN_heading-2--dlbr}}
+              {{#DKN_copy--dlbr}}<div class="content">{{{DKN_copy--dlbr}}}</div><!--content-->{{/DKN_copy--dlbr}}
+            </div><!--body-->
+            <div class="clippedImage clippedImage--tertiary">
+              <div class="clippedImage__inner clippedImage__inner--tertiary">
+                <div class="reposition-fix">
+                  {{{DKN_circle-image--dlbr}}}
+                </div><!--reposition-fix-->
+              </div><!--clippedImage__inner-->
+            </div><!--clippedImage-->
+          </div><!--column-->
+          {{/block.DKN_dl-left--dlbr}}
+          {{#block.DKN_dl-middle--dlbr}}
+          <div class="column column--middle column--middleSecondary">
+            <div class="body body--secondary" data-max-height="dynamic">
+              {{#DKN_heading-2--dlbr}}<div class="heading" data-max-line="2">{{{DKN_heading-2--dlbr}}}</div><!--heading-->{{/DKN_heading-2--dlbr}}
+              {{#DKN_copy--dlbr}}<div class="content">{{{DKN_copy--dlbr}}}</div><!--content-->{{/DKN_copy--dlbr}}
+            </div><!--body body--secondary-->
+            <div class="footer js-subtrahend">              
+              {{#DKN_quote--dlbr}}<div class="quote">{{{DKN_quote--dlbr}}}</div><!--quote-->{{/DKN_quote--dlbr}}
+            </div><!--footer-->
+          </div><!--column column--middle-->
+          {{/block.DKN_dl-middle--dlbr}}
+          {{#block.DKN_dl-right--dlbr}}
+          <div class="column column--right column-rightSecondary">
+            <div class="clippedImage clippedImage--fourth">
+              <div class="clippedImage__inner clippedImage__inner--fourth">
+                <div class="reposition-fix">  
+                  {{{DKN_downward-triangle-image--dlbr}}}
+                </div><!--reposition-fix-->
+              </div><!--clippedImage__inner-->
+            </div><!--clippedImage--tertiary-->
+            <div class="body body--tertiary" data-max-height="320">      
+              {{#DKN_heading-2--dlbr}}<div class="heading" data-max-line="2">{{{DKN_heading-2--dlbr}}}</div><!--heading-->{{/DKN_heading-2--dlbr}}
+              {{#DKN_copy--dlbr}}<div class="content">{{{DKN_copy--dlbr}}}</div><!--content-->{{/DKN_copy--dlbr}}
+            </div><!--body-->
+          </div><!--column-->
+          {{/block.DKN_dl-right--dlbr}}
+          {{/collection.DKN_back-page--dlbr}}
+
+        </div><!--fit column__container-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+        });
+      });
+      
+      const cricosObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          injectCricos();
+        });
+      });      
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+      
+      cricosObserver.observe(document.querySelector('.js-cricos-src'), {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });      
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+      });
+      
+      // Injecting global cricos into collection items
+      function injectCricos() {
+        const cricos = document.querySelector('.js-cricos-src').innerText;
+        const targets = document.querySelectorAll('.js-cricos-target');
+        
+        targets.forEach(target => {
+          target.innerText = cricos;
+        })
+      }
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+      injectCricos();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+    </script>
+
+
+  </body>
+</html>
