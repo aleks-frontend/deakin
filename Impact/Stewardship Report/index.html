@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <link rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/worldly/stylesheet.css">
+    <link rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/ACS-Calibri/stylesheet.css">
+    <style>
+
+      * { -webkit-font-smoothing: antialiased; }
+      
+      .relative { position: relative; height: 100%; width: 100%; }
+
+      /* Base Code */
+      .overflow {
+        border: 1px dashed red;
+        position: relative; }
+      .overflow h1, 
+      .overflow h2, 
+      .overflow h3, 
+      .overflow h4,
+      .overflow h5, 
+      .overflow h6,
+      .overflow p, 
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 5px;
+        right: 5px;
+        height: 15px;
+        width: 15px;
+        border: 1px solid red;
+        color: red;
+        padding: 2px 2px 2px 3px;
+        box-sizing: border-box;
+        font-size: 13px;
+        text-align: center;
+        line-height: 8px;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'There is overset content in this column. Please remove it';
+        position: absolute;
+        top: 25px;
+        right: 5px;
+        background-color: black;
+        color: white;
+        border-radius: 2px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 1.1em;
+        text-align: right;
+        width: 15em;
+      }
+      .placeholder {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: -3mm;
+        left: -3mm;
+        right: -3mm;
+        bottom: -3mm;
+        opacity: 0.7;
+        z-index: 100;
+      }
+      
+      .page.one .placeholder { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/fe7aaed5d4885cb263cbccac11103cf0/Impact_stewardship_Report_example_2_Page_2.png'); }
+      .page.two .placeholder { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/56f0e04fee30bcedf87f9862925b5f40/Impact_stewardship_Report_example_2_Page_3.png'); }
+      .page.three .placeholder { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/9f2d4c070a014f873b22f0a42bb25c7b/Impact_stewardship_Report_example_2_Page_4.png'); }
+      .page.four .placeholder { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/3beba28c2902922bcd56e37e49150d6c/Impact_stewardship_Report_example_2_Page_5.png'); }
+      .page.five .placeholder { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/672ca4a7d15b6e12f005dd882c9044d1/Impact_stewardship_Report_example_2_Page_6.png'); }
+      .page.six .placeholder { background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/64d1d20e97f567f584590f7c8ceb743f/Impact_stewardship_Report_example_2_Page_7.png'); }
+
+      /* Font Sizing */
+      h1, h2, h3, h4, h5, h6 { color: black; font-family: 'Worldly', sans-serif; }
+      h1 { font-size: 1.05em; }
+      h2 { font-size: 0.55em; }
+      h3 { font-size: 0.3em; }
+      h4 { font-size: 0.3em; }
+      p, li { margin-bottom: 0.4em; }
+      p, ul, ol, td { font-family: 'Calibri'; font-size: 0.23em; font-weight: 300; }
+      ul { margin: 0 0 1em 1.2em; list-style-type: disc; }
+      strong { font-weight: bold; }
+      table { width: 100%; }
+      table td { padding: 0.2em; text-align: center; }
+      table tr:first-of-type > td { color: white; background-color: #CF4E9B; font-weight: bold;  }
+      table tr td { border-right: 1px solid white; color: black; background-color: #EBBFD9; }
+      table tr:last-of-type > td { color: black; background-color: #F3D8E6; }
+      
+      ul li ul { font-size: 1em; margin: 0.4em 0 0 0; list-style-type: none; }
+      ul li ul li { position: relative; padding-left: 1.5em; }
+      ul li ul li::before { position: absolute; top: 0; left: 0; content: "—"; }
+
+      /* Main Content */
+      .header { position: absolute; top: 3.7em; left: 0.3em; right: 0; }
+      .header-shape { position: absolute; top: 3em; left: 0; width: 10.8em; z-index: 9; } .header-shape img { width: 100%; }
+      
+      .header-inner h1 { font-size: {{{ header-copy-size }}}pt; }
+      .header-inner { display: flex; position: relative; padding: 1em; color: white; }
+      .header-inner h2 { margin: 2.2em 0 0 0; line-height: 1.6em; }
+      .content { position: absolute; top: 7.2em; left: 1em; right: 1em; }
+      .intro-copy h3 { font-weight: 700; }
+      .columns-inner h3 { font-size: 0.43em; font-weight: bold; }
+      .columns-inner h3, .columns-inner p { margin: 1em 0 0 0; }
+      .website { font-family: 'Calibri'; font-size: 0.5em; font-weight: bold; }
+      .cricos { margin: 1em 0 0 0; font-family: 'Calibri'; font-size: 0.15em; }
+
+      .columns-container {
+        position: absolute;
+        top: 9.4em;
+        left: 1em;
+        right: 1em; 
+      }
+
+      .columns {
+        height: 9em;
+        -webkit-column-gap: 30px;
+        -moz-column-gap: 30px;
+        column-gap: 30px;
+        -webkit-column-fill: auto;
+        -moz-column-fill: auto;
+        column-fill: auto;
+      }
+
+      .columns {
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+      }
+
+      .columns-max-height { max-height: 9em; }
+
+      .columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+      }
+      
+      .image-inner { position: relative; height: 100%; }
+
+      /* Crop Mark Hack */
+      .no-crop .outfit-resizable-background { top: 3mm !important; left: 3mm !important; } 
+
+      /* Colour Themes */
+      .theme-one .columns-inner h3 { color: #0B7161; }
+      .theme-one #header-shape { fill: #AC3382; }
+      .theme-one .page.back { background-color: #AC3382; }
+
+      .logo { position: absolute; top: 3.3em; left: 9.15em; width: 2.95em; z-index: 10; }
+      
+      .details { position: absolute; top: 5.3em; left: 4em; right: 4em; display: flex; flex-direction: column; text-align: center; }
+      .details-logo { width: 2.8em; margin: 0 auto; }
+      .details-inner p { color: white; }
+      
+      .footer { position: absolute; top: 15.15em; left: 4em; right: 4em; text-align: center; }
+      .footer p { color: white; }
+      
+      /* Page One */ 
+      
+      .page.one .header { position: absolute; top: 1.7em; left: 1em; right: 5.8em; width: 11.5em; }
+      .page.one .header h1 { font-size: 1.1em; }
+      .page.one .caption { position: absolute; top: 13.85em; left: 8.6em; right: 0; width: 9.8em; }
+
+      .page.one .left { position: absolute; top: 5.8em; left: 3em; width: 5.2em; }
+      .page.one .right { position: absolute; top: 5.8em; left: 8.6em; width: 5.2em; }
+      
+      .page.one .image { position: absolute; bottom: 1.2em; left: 0; width: 7.5em; height: 8.2em; z-index: -2; overflow: hidden; }
+      
+      .page.one .shape { position: absolute; bottom: -0.3em; left: -0.1em; width: 14.6em; z-index: -1; }
+
+      .page.one .shape svg { width: 100%; }
+      
+      .no-crop .page.one .outfit-resizable-background { top: 0 !important; left: 0 !important; } 
+
+      /* Page Two */ 
+
+     
+    </style>
+  </head>
+  <body style="background: white" class="{{{ dr-theme-colour }}}">
+    <div class="page front">
+      <div class="bleed">
+
+        {{{ dr-background-image }}}
+
+        <div class="logo">
+          <img src="{{{account.logos.circle}}}">
+        </div>
+
+        <div class="header-shape">
+          <svg width="100%" height="100%" viewBox="0 0 486 365" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g id="header-shape" class="header-shape-fill" fill="#D8D8D8">
+                <circle id="Oval" cx="303.803247" cy="182.765625" r="182.027344"></circle>
+                <rect id="Rectangle-2" x="0.699738108" y="0.73828125" width="303.103509" height="364.054688"></rect>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <div class="header">
+          <div class="header-inner">
+            <div style="max-height: 5.8em; z-index: 10;">
+              <div class="check-overflow">
+                <h1>{{{ dr-heading }}}</h1>
+                <h2>{{{ dr-subheading }}}</h2>
+              </div>              
+            </div>
+          </div>
+        </div><!--header-->
+
+
+      </div><!--bleed-->
+    </div><!--page-->
+    
+    <div class="page one">
+      <div class="bleed">
+        <div class="placeholder"></div>
+        <div class="page-number"></div>
+
+        <div class="header">
+          <div style="max-height: 2.8em; z-index: 10;">
+            <div class="check-overflow">
+              <h1>{{{ dr-page-one-heading }}}</h1>
+            </div>              
+          </div>
+        </div><!--header-->
+        
+        <div class="caption">
+          <div style="max-height: 2.1em; z-index: 10;">
+            <div class="check-overflow">
+              <p><strong>{{{ dr-page-one-name }}}</strong></p>
+              <p>{{{ dr-page-one-title }}}</p>
+            </div>              
+          </div>
+        </div><!--caption-->
+
+        <div class="left">
+          <div style="max-height: 5.7em;">
+            <div class="check-overflow">
+            {{{ dr-page-one-copy }}}
+            </div>
+          </div>
+        </div><!--left-->
+        
+        <div class="right">
+          <div style="max-height: 7.6em;">
+            <div class="check-overflow">
+            {{{ dr-page-one-copy-two }}}
+            </div>
+          </div>
+        </div><!--right-->
+        
+        <div class="image">
+          {{{ dr-page-one-image }}}
+        </div>
+        
+        <div class="shape">
+          <svg width="100%" height="100%" viewBox="0 0 1329 1842" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g id="Group-2" transform="translate(0.875000, 0.406250)">
+                <path d="M296.90625,1001.29688 L0,1001.29688 L0,0 L1328,0 L1328,1841 L0,1841 L0,1701.29688 L296.90625,1701.29688 C490.205912,1701.29688 646.90625,1544.59654 646.90625,1351.29688 C646.90625,1157.99721 490.205912,1001.29688 296.90625,1001.29688 Z" id="Combined-Shape" fill="red"></path>
+                <path d="M244.396012,1001.38281 L1.80720599e-06,1001.38281 L1.80720599e-06,810.366327 C14.0233709,807.266921 28.5972203,805.632812 43.5527362,805.632812 C152.786705,805.632812 241.659788,892.808131 244.396011,1001.3828 Z" id="Combined-Shape" fill="#CD519E"></path>
+              </g>
+            </g>
+          </svg>
+        </div><!--shape-->
+        
+      </div><!--bleed-->
+    </div><!--page-->
+    
+    {{#collection.dr-pages-impact}}    
+    
+    {{#block.dr-page-two}}
+    <div class="page two">
+      <div class="bleed">
+        
+        <div class="placeholder"></div>
+        <div class="page-number"></div>
+
+        <div class="header">
+          <div class="header-inner">
+            <div style="max-height: 5.8em; z-index: 10;">
+              <div class="check-overflow">
+                <h1>{{{ dr-heading }}}</h1>
+              </div>              
+            </div>
+          </div>
+        </div><!--header-->
+        
+      </div><!--bleed-->
+    </div><!--page-->
+    {{/block.dr-page-two}}
+    
+    {{#block.dr-page-three}}
+    <div class="page three">
+      <div class="bleed">
+        
+        <div class="placeholder"></div>
+        <div class="page-number"></div>
+        
+        <div class="header">
+          <div class="header-inner">
+            <div style="max-height: 5.8em; z-index: 10;">
+              <div class="check-overflow">
+                <h1>{{{ dr-heading }}}</h1>
+              </div>              
+            </div>
+          </div>
+        </div><!--header-->
+        
+      </div><!--bleed-->
+    </div><!--page-->
+    {{/block.dr-page-three}}
+    
+    {{#block.dr-page-four}}
+    <div class="page four">
+      <div class="bleed">
+        
+        <div class="placeholder"></div>
+        <div class="page-number"></div>
+
+        <div class="header">
+          <div class="header-inner">
+            <div style="max-height: 5.8em; z-index: 10;">
+              <div class="check-overflow">
+                <h1>{{{ dr-heading }}}</h1>
+              </div>              
+            </div>
+          </div>
+        </div><!--header-->
+        
+      </div><!--bleed-->
+    </div><!--page-->
+    {{/block.dr-page-four}}
+    
+    {{#block.dr-page-five}}
+    <div class="page five">
+      <div class="bleed">
+        
+        <div class="placeholder"></div>
+        <div class="page-number"></div>
+
+        <div class="header">
+          <div class="header-inner">
+            <div style="max-height: 5.8em; z-index: 10;">
+              <div class="check-overflow">
+                <h1>{{{ dr-heading }}}</h1>
+              </div>              
+            </div>
+          </div>
+        </div><!--header-->
+        
+      </div><!--bleed-->
+    </div><!--page-->
+    {{/block.dr-page-five}}
+    
+    {{#block.dr-page-six}}
+    <div class="page six">
+      <div class="bleed">
+        
+        <div class="placeholder"></div>
+        <div class="page-number"></div>
+
+        <div class="header">
+          <div class="header-inner">
+            <div style="max-height: 5.8em; z-index: 10;">
+              <div class="check-overflow">
+                <h1>{{{ dr-heading }}}</h1>
+              </div>              
+            </div>
+          </div>
+        </div><!--header-->
+        
+      </div><!--bleed-->
+    </div><!--page-->
+    {{/block.dr-page-six}}
+    
+    {{/collection.dr-pages-impact}}
+    
+    <div class="page back">
+      <div class="bleed">
+
+        <div class="details">
+          
+          <div class="details-logo"><img src="{{{account.logos.circle}}}"></div>
+          
+          <div class="details-inner">
+            <div style="max-height: 1.5em;">
+              <div class="check-overflow">
+                <p class="website">{{{ website }}}</p>
+                <p class="cricos">{{{ cricos }}}</p>
+              </div>
+            </div>
+          </div>
+          
+        </div><!--details-->
+        
+        <div class="footer">
+          <div style="max-height: 2em;">
+            <div class="check-overflow">
+              <p>{{{ dr-footer }}}</p>
+            </div>
+          </div>
+        </div><!--footer-->
+
+      </div><!--bleed-->
+    </div><!--page-->
+
+    <script>
+
+      window.showCrop = {{show-crop}};
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+
+      function addClass() {
+        if (window.showCrop === true) {
+          document.body.classList.add('show-crop');
+        } else {
+          document.body.classList.add('no-crop'); 
+        }
+      }
+
+      addClass();
+      
+      function checkTable () {
+
+        var tableHeaderNode = document.querySelector('tr:first-of-type');
+        var tableMaxRow = tableHeaderNode.children.length;
+
+        var allRows = document.querySelectorAll('tr');
+
+        for (i = 0; i < allRows.length; i++) { 
+
+          var tableData = allRows[i].children;
+
+          if (tableData.length < tableMaxRow) {
+            var lastNode = tableData[tableData.length - 1]
+            lastNode.setAttribute('colspan', tableMaxRow - tableData.length + 1)
+          }
+
+        }
+
+      }
+
+      checkTable ();
+
+    </script>
+    <script src="main.js"></script>
+    <script src="prefixfree.js"></script>
+  </body>
+</html>
