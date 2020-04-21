@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Deakin University</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <style>
+
+      .test-background-image {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/2a153fb48c592e27a60fca7f57528cea/Screen%20Shot%202017-06-05%20at%2010.49.13%20am.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+
+      .show-crop-marks .test-background-image {
+        top: 0.5in;
+        left: 0.5in;
+        right: 0.5in;
+        bottom: 0.5in;
+      }
+
+      .background-image {
+        position: absolute;
+        right: 6.5mm;
+        top: 11em;
+        bottom: 6.5mm;
+        width: 25em;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        overflow: hidden;
+      }
+
+      {{^image-upload}}
+      .clippy {
+
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/2a3cc2bf281107d76a658f6881cf01bc/bg.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+      }
+      {{/image-upload}}
+
+
+
+      .clippy {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        position: absolute;
+        right: 0;
+      }
+
+      .hide-crop-marks .background-image {
+        position: absolute;
+        right: 0;
+        top: 9em;
+        bottom: 0;
+        width: 25em;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      .theme-one .headline-container h1 {
+        color: {{{account.colors.purple}}};
+      }
+
+      .theme-two .headline-container h1  {
+        color: {{{account.colors.teal}}};
+      }
+
+      .theme-one .text-back {
+        background-color: {{{account.colors.teal}}};
+      }
+
+      .theme-two .text-back {
+        background-color: {{{account.colors.purple}}};
+      }
+
+      .theme-one .sub-headline-container h2 {
+        color: {{{account.colors.black}}};
+      }
+
+      .theme-two .sub-headline-container h2 {
+        color: {{{account.colors.black}}};
+      }
+
+      .theme-one .body-container h3 {
+        color: {{{account.colors.black}}};
+      }
+
+      .theme-two .body-container h3 {
+        color: {{{account.colors.black}}};
+      }    
+
+
+
+    </style>
+  </head>
+  <body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+    <div class="page {{{Colour-Options}}}">
+
+      <div class="background-image">
+
+        <div class="clippy">
+          {{{image-upload}}}
+        </div>
+
+      </div>
+
+      <div class="document">
+
+        <div class="overlay-mask">
+          <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/8eb12ee9e388deab192c2fbe7d541d5e/image.png">
+        </div>
+
+        <div class="content">
+
+          <div class="logo"><img src="{{{account.logos.circle}}}"></div>
+
+          <div class="text-position">
+
+            <div class="headline-overflow">
+              <div class="headline-container">
+                <h1 style="font-size: calc(2em - {{{headline-font-size}}}em);">{{{ headline }}}</h1>
+              </div>
+            </div><!--headline-->
+
+            <div class="sub-headline-overflow">
+              <div class="sub-headline-container">
+                <h2 style="font-size: calc(1em - {{{headline-font-size}}}em);">{{{ sub-headline }}}</h2>
+              </div>
+            </div><!--subheader-->
+
+            <div class="body-overflow">
+              <div class="body-container">
+                <h3 style="font-family: 'Calibri'; font-weight: normal;">{{{ tagline }}}</h3>
+              </div>
+            </div><!--body-->
+
+          </div><!--text-position-->
+
+        </div><!--content-->
+
+      </div><!--document-->
+
+    </div><!--page-->
+
+
+
+
+
+
+
+
+
+
+    <div class="page {{{Colour-Options}}}">
+
+      <div class="background-image">
+
+        <div class="clippy">
+          {{{image-upload}}}
+        </div>
+
+      </div>
+
+      <div class="document">
+
+        <div class="overlay-mask">
+          <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/8eb12ee9e388deab192c2fbe7d541d5e/image.png">
+        </div>
+
+        <div class="content">
+
+          <div class="logo"><img src="{{{account.logos.circle}}}"></div>
+
+          <div class="text-position">
+
+            <div class="headline-overflow">
+              <div class="headline-container">
+                <h1 style="font-size: calc(2em - {{{headline-font-size}}}em);">{{{ headline }}}</h1>
+              </div>
+            </div><!--headline-->
+
+            <div class="sub-headline-overflow">
+              <div class="sub-headline-container">
+                <h2 style="font-size: calc(1em - {{{headline-font-size}}}em);">{{{ sub-headline }}}</h2>
+              </div>
+            </div><!--subheader-->
+
+            <div class="body-overflow">
+              <div class="body-container">
+                <h3 style="font-family: 'Calibri'; font-weight: normal;">{{{ tagline }}}</h3>
+              </div>
+            </div><!--body-->
+
+          </div><!--text-position-->
+
+        </div><!--content-->
+
+      </div><!--document-->
+
+    </div><!--page-->
+
+
+
+
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/main.js"></script>
+
+    <script>
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('headline-container'));
+        checkHeight(document.getElementsByClassName('sub-headline-container'));
+        checkHeight(document.getElementsByClassName('body-container'));
+
+        /* Add any other text boxes you want to check the overflows on with the following: checkHeight(document.getElementsByClassName('CLASS NAME')); */
+
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+
+    </script>
+
+  </body>
+</html>
