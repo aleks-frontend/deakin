@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Deakin University</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  <style>
+    
+    .test-background-image {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/eda3d4db7b26fc16024327b8edbeeedd/Screen%20Shot%202017-06-05%20at%2010.48.57%20am.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.7;
+      z-index: 100;
+    }
+
+    .show-crop-marks .test-background-image {
+      top: 0.5in;
+      left: 0.5in;
+      right: 0.5in;
+      bottom: 0.5in;
+    }
+    
+    .circle-clip {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    
+    .hide-crop-marks .content-background-image {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+        
+    .content-background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+    }
+  
+    
+    {{^image-upload}}
+    .content-background-image {
+      
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/2a3cc2bf281107d76a658f6881cf01bc/bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      
+    }
+    {{/image-upload}}
+    
+
+    .theme-one .text-position {
+      color: {{{account.colors.white}}};
+    }
+    
+    .theme-two .text-position  {
+      color: {{{account.colors.white}}};
+    }
+    
+    .theme-one .headline-container h1 {
+      color: {{{account.colors.white}}};
+    }
+    
+    .theme-two .headline-container h1  {
+      color: {{{account.colors.white}}};
+    }
+    
+    .theme-one .circle-fill {
+      fill: {{{account.colors.teal}}};
+    }
+    
+    .theme-two .circle-fill {
+      fill: {{{account.colors.purple}}};
+    }  
+    
+    .theme-one .document {
+      background-color: {{{account.colors.teal}}};
+    }
+    
+    .theme-two .document {
+      background-color: {{{account.colors.purple}}};
+    }   
+    
+    .theme-one .text-back {
+      background-color: {{{account.colors.teal}}};
+    }
+    
+    .theme-two .text-back {
+      background-color: {{{account.colors.purple}}};
+    }
+    
+  </style>
+</head>
+<body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+  <div class="page {{{Colour-Options}}}">
+            
+    <div class="document">
+      
+	  <div class="content-background-image">
+      
+      		{{{image-upload}}}
+      
+      </div>
+
+      <div class="content">
+                
+        <div class="logo"><img src="{{{account.logos.circle}}}"></div>
+                  
+        <div class="text-position">
+        
+          <div class="headline-overflow">
+            <div class="headline-container">
+              <h1 style="font-size: calc(1.9em - {{{headline-font-size}}}em);">{{{ headline }}}</h1>
+            </div>
+          </div><!--headline-->
+
+          <div class="sub-headline-overflow">
+            <div class="sub-headline-container">
+              <h2 style="font-size: calc(1em - {{{subheader-font-size}}}em);">{{{ sub-headline }}}</h2>
+            </div>
+          </div><!--subheader-->
+
+          <div class="body-overflow">
+            <div class="body-container">
+              <h3 style="font-family: 'Calibri'; font-weight: normal;">{{{ tagline }}}</h3>
+            </div>
+          </div><!--body-->
+          
+        </div><!--text-position-->
+        
+      </div><!--content-->
+
+      <div class="circle">
+        <svg width="100%" height="100%" viewBox="0 0 1000 752" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+          <desc>Created with Sketch.</desc>
+          <defs></defs>
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <path class="circle-fill" d="M624.087591,0 L0,0 L0,751.824818 L624.087591,751.824818 C831.698282,751.824818 1000,583.523099 1000,375.912409 C1000,168.301718 831.698282,0 624.087591,0 Z" id="Combined-Shape" fill="#C54697"></path>
+          </g>
+        </svg>
+      </div><!--circle-->
+              
+    </div><!--document-->
+
+  </div><!--page-->
+  
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  
+  <script>
+    
+    function loop() {
+      checkHeight(document.getElementsByClassName('headline-container'));
+      checkHeight(document.getElementsByClassName('sub-headline-container'));
+      checkHeight(document.getElementsByClassName('body-container'));
+
+      /* Add any other text boxes you want to check the overflows on with the following: checkHeight(document.getElementsByClassName('CLASS NAME')); */
+
+    } setInterval(loop, 500);
+
+    function checkHeight(element) {
+      for (i = 0 ; i < element.length ; i++ ) {
+        var currentElement = element[i];
+        var height         = currentElement.offsetHeight;
+        var parent         = currentElement.parentNode;
+        var parentHeight   = parent.offsetHeight;
+
+        if (height > parentHeight) {
+          parent.classList.add('overflow');
+        } else {
+          parent.classList.remove('overflow');
+        }
+
+        if ((currentElement).parentNode.classList.contains('overflow')) {
+          document.body.classList.add('overflow-true');
+        } else {
+          document.body.classList.remove('overflow-true'); 
+        }
+      }
+    }
+    
+  </script>
+  
+</body>
+</html>
