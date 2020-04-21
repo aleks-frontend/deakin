@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <!-- {{crop-marks}} {{colour-options}} {{headline}} {{sub-headline}} {{cricos}} -->  
+
+    <title>Deakin University</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <style>
+
+      .test-background-image {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/6b648a295abb702f6ee4803d90ad4318/Screen%20Shot%202017-05-23%20at%203.51.01%20pm.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+
+      .show-crop-marks .test-background-image {
+        top: 0.5in;
+        left: 0.5in;
+        right: 0.5in;
+        bottom: 0.5in;
+      }
+
+      .theme-one #main {
+        fill: {{{account.colors.teal}}};
+      }
+
+      .theme-two #main {
+        fill: {{{account.colors.purple}}};
+      }
+
+      .theme-one .block {
+        background-color: {{{account.colors.teal}}};
+      }
+
+      .theme-two .block {
+        background-color: {{{account.colors.purple}}};
+      }
+
+
+      .page.theme-one {
+        background-color: {{{account.colors.grey}}};
+      }
+
+      .page.theme-two {
+        background-color: {{{account.colors.grey}}};
+      }    
+
+      #back {
+        fill: {{{account.colors.slate}}};
+      }
+
+      .page {
+        height: 50vh;
+      }
+
+      .content {
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+      }
+
+      .cricos p {
+        position: absolute;
+        bottom: 1em;
+      }
+
+      .headline-container h1 {
+        font-size: 2.9em;
+      }
+
+      .svg-shape {
+        position: absolute;
+        top: 10em;
+        left: 10em;
+      }
+
+      .block {
+        width: 35.25em;
+        border-radius: 0px 60em 60em 0px;
+        height: 100%;
+        top: 0;
+      }
+
+      .logo {
+        position: absolute;
+        top: 3.6em;
+        left: auto;
+        right: 6.3em;
+        width: 6.4em;
+        z-index: 3;
+      }
+
+      .logo img {
+        width: 100%;
+      }
+
+      .cricos {
+        height: 1em;
+        bottom: 0.5em;
+        width: 100%;
+        position: absolute;
+
+        z-index: 10000000000;
+      }
+
+    </style>
+  </head>
+  <body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+    <div class="page {{{Colour-Options}}}">
+    </div><!--page-->
+
+    <div class="page {{{Colour-Options}}}">
+
+      <div class="document">
+        <div class="content">
+
+          <div class="text" style="z-index: 11;">
+
+            <div class="headline-overflow">
+              <div class="headline-container">
+                <h1>{{{ headline }}}</h1>
+              </div>
+            </div><!--headline-->
+
+            <div class="sub-headline-overflow">
+              <div class="sub-headline-container">
+                <h2>{{{ sub-headline }}}</h2>
+              </div>
+            </div><!--subheader-->
+
+          </div>
+
+          <div class="cricos">
+            <p>{{{ cricos }}}</p>
+          </div><!--cricos-->
+
+          <div class="block"></div>
+
+
+          <div class="logo">
+            <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/707519103ba710c7b30755b32af38a99/circle-white.svg">
+          </div>
+
+
+
+        </div><!--content-->
+      </div><!--document-->
+
+    </div><!--page-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/main.js"></script>
+
+    <script>
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('headline-container'));
+        checkHeight(document.getElementsByClassName('sub-headline-container'));
+        checkHeight(document.getElementsByClassName('body-container'));
+
+        /* Add any other text boxes you want to check the overflows on with the following: checkHeight(document.getElementsByClassName('CLASS NAME')); */
+
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+
+    </script>
+
+  </body>
+</html>
