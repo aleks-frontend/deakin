@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Print Generic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  <script src="https://cdn.jsdelivr.net/prefixfree/1.0.7/prefixfree.min.js"></script>
+  <style>
+    
+    .test-background-image {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/21795060f624dcde5fc0b2920b9255ea/Template.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      z-index: 100;
+    }
+
+    .show-crop-marks .test-background-image {
+      top: 0.5in;
+      left: 0.5in;
+      right: 0.5in;
+      bottom: 0.5in;
+    }
+    
+    .text-1, .text-2 {
+      color: white !important;
+    }
+    
+    .theme-one .text-1, .theme-one .text-2 {
+      color: #fff !important;
+    }
+    
+    .theme-two .text-1, .theme-two .text-2, .theme-three .text-1, .theme-three.text-2 {
+      color: #000 !important;
+    }
+    
+    .art-2, .art-3 {
+      display: none;
+    }
+    
+    .theme-two .art-2 {
+      display: block;
+    }
+    
+    .theme-two .art-1, .theme-two .art-3 {
+      display: none;
+    }
+    
+    .theme-three .art-3 {
+      display: block;
+    }
+
+    .theme-three .art-1, .theme-three .art-1 {
+      display: none;
+    }
+    
+    .tab { position: absolute; bottom: 0.2em; right: 0; height: 0.6em; display: flex; align-items: flex-end; }
+    .tab img { height: 100%; }
+    
+  </style>
+</head>
+<body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+  
+  <!-- where everything will be appended -->
+  <div class="pages"></div>
+
+  <!-- displayed none page template --> 
+  <div class="template" style="display: none">
+
+    <div class="page">
+    <div class="label">Avery Label A-0093-01</div>
+      <div class="test-background-image"></div>
+      <div class="document">
+        <div class="content">
+          <div class="spreadsheet">
+            <!-- names get appended here -->
+          </div>
+        </div><!--content-->
+      </div><!--document-->
+    </div><!--page-->
+
+  </div>
+  
+  {{#spreadsheet.names}}
+  <div class="names">
+    <div class="text-1">
+      <div>
+        <h1 style="width: 8em;">{{{ first-name }}} {{last-name}}</h1>
+      </div>
+      <div>
+        <h2>{{{ job-title }}}</h2>
+      </div>
+    </div><!--text-1-->
+    <div class="text-2">
+      <div class="copy-overflow">
+        <div class="copy-container">
+          <p class="copy"></p>
+        </div>
+      </div>
+      <p class="cricos"></p>
+    </div><!--text-2-->
+    <div class="deakin">
+	  <img class="art-1" style="background-size: cover; position: absolute; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;" src="https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/42d94e716b48a179b4af2326949d9cf0/Artboard.png">
+	  <img class="art-2" style="background-size: cover; position: absolute; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;" src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/2197e01815f68a4417c4f788fbcd4f34/2%403x.png">
+	  <img class="art-3" style="background-size: cover; position: absolute; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;" src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/eb7764e75538e91c5b2e567ea50dd503/3%403x.png">
+    </div>
+    <div class="tab">
+      <img src="https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/65486cb5500a53d97789998fc517a46c/tab.svg">
+    </div>
+  </div>
+  {{/spreadsheet.names}}
+    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+    
+  <script>
+    
+    loopThroughPages()
+    
+    function loopThroughPages() {
+
+      var pages = document.querySelector('.pages');
+      var pageTemplate = document.querySelector('.template .page');
+      var entries = Array.prototype.slice.call(document.querySelectorAll('.names'));
+
+      pages.insertBefore(pageTemplate.cloneNode(true), null);
+
+      // item count to decide when to add a new page
+      var itemCount = 0;
+
+      // so we know which page to append to
+            
+      entries.forEach(function(entry) {
+        
+        if (itemCount < 8 ) {
+          var allPages = document.querySelectorAll('.pages .page')
+          allPages[allPages.length - 1].querySelector('.spreadsheet').insertBefore(entry, null)
+                    
+          itemCount++
+        }
+        
+        else {
+          
+          // add a new page
+          pages.insertBefore(pageTemplate.cloneNode(true), null);
+
+          var allPages = document.querySelectorAll('.pages .page')
+          allPages[allPages.length - 1].querySelector('.spreadsheet').insertBefore(entry, null)
+
+          // reset count
+          itemCount = 1 
+        }
+      })
+
+    }
+    
+    var text = {
+      copy: '{{{copy}}}',
+      cricos: '{{{cricos}}}'
+    };
+
+    loopThroughShit('copy');
+    loopThroughShit('cricos');
+
+    function loopThroughShit(input) {
+      var nodeList = document.getElementsByClassName(input);
+      var nodeArray = Array.from(nodeList)	
+
+      nodeArray.forEach(function(node) {
+        node.innerHTML = text[input];
+      });
+    }
+    
+    var els = $('.js-fittext h1');
+
+    for(var i = 0; i < els.length; ++i) {
+      while($(els[i]).width() > $(els[i]).parent().width()) {
+        var size = parseInt($(els[i]).css('font-size')); 
+        $(els[i]).css('font-size', size - 1); 
+      }
+    }
+    
+    function loop() {
+      checkHeight(document.getElementsByClassName('container'));
+
+      /* Add any other text boxes you want to check the overflows on with the following: checkHeight(document.getElementsByClassName('CLASS NAME')); */
+
+    } setInterval(loop, 500);
+
+    function checkHeight(element) {
+      for (i = 0 ; i < element.length ; i++ ) {
+        var currentElement = element[i];
+        var height         = currentElement.offsetHeight;
+        var parent         = currentElement.parentNode;
+        var parentHeight   = parent.offsetHeight;
+
+        if (height > parentHeight) {
+          parent.classList.add('overflow');
+        } else {
+          parent.classList.remove('overflow');
+        }
+
+        if ((currentElement).parentNode.classList.contains('overflow')) {
+          document.body.classList.add('overflow-true');
+        } else {
+          document.body.classList.remove('overflow-true'); 
+        }
+      }
+    }
+    
+  </script>
+</body>
+</html>
