@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <!-- {{crop-marks}} {{colour-options}} {{headline-font-size}} {{headline}} {{subheader-font-size}} {{sub-headline}} {{body}} {{cta}} {{website}} {{cricos}} -->
+
+    <title>Deakin University</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <style>
+
+      .test-background-image {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/7043f4cb1e31a6025b525ddf982dbb11/Screen%20Shot%202017-05-24%20at%2011.28.24%20am.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+
+      .show-crop-marks .test-background-image {
+        top: 0.5in;
+        left: 0.5in;
+        right: 0.5in;
+        bottom: 0.5in;
+      }
+
+      .clip {
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        right: -17.5em;
+      }
+
+
+      .clip {
+
+      }
+
+      .clippy {
+        width: 50%;
+        height: 100%;
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+      }
+
+
+      {{^image-upload}}
+      .clippy {
+
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/2a3cc2bf281107d76a658f6881cf01bc/bg.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+      }
+      {{/image-upload}}
+
+
+      .document {
+        background-color: {{{account.colors.grey}}};
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: #000;
+      }
+
+      .theme-one .headline-container h1 {
+        color: {{{account.colors.purple}}};
+      }
+
+      .theme-two .headline-container h1  {
+        color: {{{account.colors.orange}}};
+      }
+
+      /* New colour updates */
+
+      .hide-crop-marks .theme-one .headline-container h1 {
+        color: #AC3382;
+      }
+
+      .hide-crop-marks .theme-two .headline-container h1 {
+        color: #0b7161;
+      }
+
+    </style>
+  </head>
+  <body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+    <div class="page {{{Colour-Options}}}">
+
+      <div class="document">
+        <div class="content">
+
+          <div class="logo"><img src="{{{account.logos.circle}}}"></div>
+
+          <div class="text-position">
+
+            <div class="headline-overflow">
+              <div class="headline-container">
+                <h1 style="font-size: calc(1.6em - {{{headline-font-size}}}em);">{{{ headline }}}</h1>
+              </div>
+            </div><!--headline-->
+
+            <div class="sub-headline-overflow">
+              <div class="sub-headline-container">
+                <h2 style="font-size: calc(0.7em - {{{subheader-font-size}}}em);">{{{ sub-headline }}}</h2>
+              </div>
+            </div><!--subheader-->
+
+            <div class="body-overflow">
+              <div class="body-container">
+                {{{ body }}}
+              </div>
+            </div><!--body-->
+
+            <div class="detail-position">
+
+              <div class="cta">
+                <div class="cta-overflow">
+                  <div class="cta-container">
+                    {{#cta}}<h3 id="cta">{{{ cta }}}</h3>{{/cta}}
+                  </div>
+                </div>
+                <div class="website-overflow">
+                  <div class="website-container">
+                    <h4>{{{ website }}}</h4>
+                  </div>
+                </div>
+              </div><!--cta-->
+
+              <div class="cricos">
+                <p>{{{ cricos }}}</p>
+              </div><!--cricos-->
+
+            </div><!--detail-position-->
+
+          </div><!--text-position-->
+
+
+        </div><!--content-->
+
+        <div class="clip">
+
+          <div class="clippy">
+            {{{image-upload}}}
+          </div>
+
+        </div>
+
+      </div><!--document-->
+
+    </div><!--page-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/main.js"></script>
+
+    <script>
+
+
+      // Opera 8.0+
+      var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+      // Firefox 1.0+
+      var isFirefox = typeof InstallTrigger !== 'undefined';
+      // At least Safari 3+: "[object HTMLElementConstructor]"
+      var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+      // Internet Explorer 6-11
+      var isIE = /*@cc_on!@*/false || !!document.documentMode;
+      // Edge 20+
+      var isEdge = !isIE && !!window.StyleMedia;
+      // Chrome 1+
+      var isChrome = !!window.chrome && !!window.chrome.webstore;
+      // Blink engine detection
+      var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+      if (isOpera == true) {
+        $('body').addClass('-js-opera-browser');
+      } if (isFirefox == true) {
+        $('body').addClass('-js-firefox-browser');
+      } if (isSafari == true) {
+        $('body').addClass('-js-safari-browser');
+      } if (isIE == true) {
+        $('body').addClass('-js-ie-browser');
+      } if (isEdge == true) {
+        $('body').addClass('-js-edge-browser');
+      } if (isChrome == true) {
+        $('body').addClass('-js-chrome-browser');
+      } if (isBlink == true) {
+        $('body').addClass('-js-blink-browser');
+      }
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('headline-container'));
+        checkHeight(document.getElementsByClassName('sub-headline-container'));
+        checkHeight(document.getElementsByClassName('body-container'));
+        checkHeight(document.getElementsByClassName('website-container'));
+
+        /* Add any other text boxes you want to check the overflows on with the following: checkHeight(document.getElementsByClassName('CLASS NAME')); */
+
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+
+    </script>
+
+  </body>
+</html>
