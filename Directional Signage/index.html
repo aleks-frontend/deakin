@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Deakin University</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <style>
+
+      .test-background-image {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/ef13741646aa5f504b6a9f0ec6f8ecb6/1739.01-Outfit-Template-Mocks-Directional-Signage-B%26W-ml_Page_6.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.3;
+        z-index: 100;
+      }
+
+      .show-crop-marks .test-background-image {
+        top: 0.5in;
+        left: 0.5in;
+        right: 0.5in;
+        bottom: 0.5in;
+      }
+
+      .document {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      /** 
+      Deakin Logo 
+      - Black and White theme uses a bordered logo 
+      - Other themes for Directional Signage uses a circled logo with white background
+      **/
+
+      /** Logo Disabled **/
+      .logo-border { opacity: 0; }
+
+      /** Logo Enabled **/
+      .theme-black-and-white .logo-border { opacity: 1; }
+
+      .theme-yellow-and-white .logo-circle,
+      .theme-teal-and-purple .logo-circle,
+      .theme-teal-and-orange .logo-circle { opacity: 1; }
+
+      /** Start- Black and White theme **/
+
+      .theme-black-and-white .document {
+        background-color: {{{account.colors.white}}};
+      }
+
+      .theme-black-and-white .text-position,
+      .theme-black-and-white .detail-position,
+      .theme-black-and-white .website,
+      .theme-black-and-white .cricos {
+        color: {{{account.colors.black}}};
+      }
+
+      .theme-black-and-white .arrow-one {
+        fill: {{{account.colors.black}}};
+      }
+
+      .theme-black-and-white .arrow-two {
+        fill: {{{account.colors.grey}}};
+      }
+
+      /** End - Black and White Theme **/
+
+      /** Start- Yellow and White theme **/
+
+      .theme-yellow-and-white .document {
+        background-color: {{{account.colors.charcoal}}};
+      }
+
+      .theme-yellow-and-white .text-position,
+      .theme-yellow-and-white .detail-position,
+      .theme-yellow-and-white .website,
+      .theme-yellow-and-white .cricos {
+        color: {{{account.colors.white}}};
+      }
+
+      .theme-yellow-and-white .arrow-one {
+        fill: {{{account.colors.white}}};
+      }
+
+      .theme-yellow-and-white .arrow-two {
+        fill: {{{account.colors.yellow}}};
+      }
+
+      /** End - Yellow and White Theme **/
+
+      /** Start- Teal and Purple theme **/
+
+      .theme-teal-and-purple .document {
+        background-color: {{{account.colors.grey}}};
+      }
+
+      .theme-teal-and-purple .text-position,
+      .theme-teal-and-purple .detail-position,
+      .theme-teal-and-purple .website,
+      .theme-teal-and-purple .cricos {
+        color: {{{account.colors.black}}};
+      }
+
+      .theme-teal-and-purple .arrow-one {
+        fill: {{{account.colors.teal}}};
+      }
+
+      .theme-teal-and-purple .arrow-two {
+        fill: {{{account.colors.purple}}};
+      }
+
+      /** End - Yellow and White Theme **/
+
+      /** Start- Teal and Orange theme **/
+
+      .theme-teal-and-orange .document {
+        background-color: {{{account.colors.grey}}};
+      }
+
+      .theme-teal-and-orange .text-position,
+      .theme-teal-and-orange .detail-position,
+      .theme-teal-and-orange .website,
+      .theme-teal-and-orange .cricos {
+        color: {{{account.colors.black}}};
+      }
+
+      .theme-teal-and-orange .arrow-one {
+        fill: {{{account.colors.orange}}};
+      }
+
+      .theme-teal-and-orange .arrow-two {
+        fill: {{{account.colors.teal}}};
+      }
+
+      /** End - Yellow and White Theme **/    
+
+      /** Start - Arrow Right **/
+      .arrow-right .arrows {
+        transform: rotate(0deg);
+      }
+      /** End - Arrow Right **/
+
+      /** Start - Arrow Left **/
+      .arrow-left .arrows {
+        transform: rotate(180deg);
+      }
+      /** End - Arrow Left **/
+
+      /** Start - Arrow Top **/
+      .arrow-top .arrows {
+        transform: rotate(-90deg);
+      }
+      /** End - Arrow Top **/
+
+      /** Start - Arrow Bottom **/
+      .arrow-bottom .arrows {
+        transform: rotate(90deg);
+      }
+      /** End - Arrow Bottom **/
+
+      /** Start - Arrow Top Left **/
+      .arrow-top-left .arrows {
+        transform: rotate(-135deg);
+      }
+
+      /** End - Arrow Top Left **/
+
+      /** Start - Arrow Top Right **/
+      .arrow-top-right .arrows {
+        transform: rotate(-45deg);
+      }
+      /** End - Arrow Top Right **/
+      
+      /** Start - Arrow Bottom Left **/
+      .arrow-bottom-left .arrows {
+        transform: rotate(135deg);
+      }
+
+      /** End - Arrow Bottom Left **/
+
+      /** Start - Arrow Bottom Right **/
+      .arrow-bottom-right .arrows {
+        transform: rotate(45deg);
+      }
+      /** End - Arrow Bottom Right **/
+
+
+
+    </style>
+  </head>
+  <body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+    <div class="page {{{arrow-position}}}" style="color: #000; background-color: {{{account.colors.grey}}};">
+      <!-- <div class="test-background-image"></div> -->
+
+      <div class="document">
+        <div class="content">
+
+          <div class="event-text-position">
+            <div class="event-overflow">
+              <div class="event-container">
+                <h1 style="font-size: calc(2.6em - {{{headline-font-size}}}em);">{{{ headline }}}</h1>
+              </div>
+            </div><!--headline overflow-->
+          </div><!--text-position-->
+
+          <div class="text-position">
+            <div class="headline-overflow">
+              <div class="headline-container">
+                <h1 style="font-size: calc(1.45em - {{{subheader-font-size}}}em);">{{{ subheading }}}</h1>
+              </div>
+            </div><!--headline overflow-->
+          </div><!--text-position-->
+
+          <div class="arrows">
+
+            <svg width="100%" height="100%" viewBox="0 0 560 561" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <!-- Generator: Sketch 46.1 (44463) - http://www.bohemiancoding.com/sketch -->
+              <title>Artboard</title>
+              <desc>Created with Sketch.</desc>
+              <defs>
+                <polygon id="path-1" points="0 0.7882 0 560 559.2115 560 559.2115 0.7882"></polygon>
+              </defs>
+              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Artboard">
+                  <g id="Page-1">
+                    <g id="Group-3" transform="translate(0.000000, 0.212000)">
+                      <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                      </mask>
+                      <g id="Clip-2"></g>
+                      <path d="M559.2115,280.3942 C559.2115,434.8162 434.0275,560.0002 279.6055,560.0002 C125.1835,560.0002 -0.0005,434.8162 -0.0005,280.3942 C-0.0005,125.9722 125.1835,0.7882 279.6055,0.7882 C434.0275,0.7882 559.2115,125.9722 559.2115,280.3942" id="Fill-1" fill="#F76919" mask="url(#mask-2)"></path>
+                    </g>
+                    <path d="M513.7078,271.6365 C518.5328,276.4925 518.5358,284.4415 513.7148,289.3015 L366.4458,437.7595 C361.6248,442.6195 352.0828,446.5955 345.2418,446.5955 L262.2238,446.5955 C255.3828,446.5955 253.7648,442.6545 258.6288,437.8375 L369.4018,328.1465 C374.2648,323.3295 372.6478,319.3885 365.8068,319.3885 L54.3218,319.3885 C47.4798,319.3885 41.8828,313.7845 41.8828,306.9345 L41.8828,254.2775 C41.8828,247.4275 47.4798,241.8235 54.3218,241.8235 L365.8068,241.8235 C372.6478,241.8235 374.2648,237.8825 369.4018,233.0665 L258.6288,123.3745 C253.7648,118.5575 255.3828,114.6175 262.2238,114.6175 L345.2418,114.6175 C352.0828,114.6175 361.6278,118.5895 366.4528,123.4455 L513.7078,271.6365 Z" id="Fill-4" fill="#FEFEFE"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+
+          </div>
+
+          <div class="detail-position">
+            <div class="website">
+              <h3 class="js-scalable-text">{{{ url }}}</h3>
+            </div><!--website-->
+            <div class="cricos">
+              <p>Deakin University CRICOS Provider Code {{ cricos }}</p>
+            </div><!--cricos-->
+          </div><!--detail-position-->
+
+          <div class="logo logo-border"><img src="{{{account.logos.border}}}"></div>
+          <div class="logo logo-circle"><img src="{{{account.logos.circle}}}"></div>
+
+        </div><!--content-->
+
+      </div><!--document-->
+
+    </div><!--page-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/main.js"></script>
+
+    <script>
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('headline-container'));
+        checkHeight(document.getElementsByClassName('sub-headline-container'));
+        checkHeight(document.getElementsByClassName('body-container'));
+        checkHeight(document.getElementsByClassName('event-container'));
+
+        /* Add any other text boxes you want to check the overflows on with the following: checkHeight(document.getElementsByClassName('CLASS NAME')); */
+
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+      
+      setInterval(function() {
+        Array.prototype.slice.call(document.querySelectorAll('.js-scalable-text'))
+          .forEach(function(text){
+          var fontSize = 1; // size in ems
+          var len = text.innerText.length;
+          if (len > 40) text.style.fontSize = fontSize - 0.2 + 'em';
+          else if (len > 30) text.style.fontSize = fontSize - 0.1 + 'em';
+          else text.style.fontSize = fontSize
+        });
+      }, 1000);
+
+    </script>
+
+  </body>
+</html>
