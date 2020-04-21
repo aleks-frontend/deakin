@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Deakin University</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  <style>
+    
+    .test-background-image {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/a2360fa3bef498dc9e900c8abc2376d2/Screen%20Shot%202017-09-01%20at%2011.19.57%20am.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.7;
+      z-index: 100;
+    }
+
+    .show-crop-marks .test-background-image {
+      top: 0.5in;
+      left: 0.5in;
+      right: 0.5in;
+      bottom: 0.5in;
+    }
+    
+    .document {
+      overflow: hidden;
+    }
+    
+    h1, h2, .quote-subheader h3 {
+      color: {{{account.colors.purple}}};
+    }
+    
+    .column-clip {
+      float: right;
+      width: 500px;
+      height: 760px;
+      shape-outside: polygon(90% 0px, 0% 100%, 100% 100%);
+      font-size: 0.8em;
+    }
+    
+    .column-wrap {
+      max-height: 15em;
+      overflow: hidden;
+      position: absolute;
+      top: 9.9em;
+      width: 12.8em;
+    }
+    
+    .column-position h2 {
+      font-size: 0.418em;
+      margin: 0 0 0.2em 0;
+    }
+    
+    .column-position p {
+      color: #000;
+      margin: 0 0 1em 0;
+      font-family: 'Calibri';
+      font-size: 0.3em;
+    }
+
+    .hide-crop-marks h1, .hide-crop-marks h2, .quote-subheader h3 {
+      color: #AC3382;
+    }
+
+    .hide-crop-marks .circle-shape {
+      fill: #0D8572;
+    }
+    
+    .ologo { position: absolute; top: 1.4em; right: 1.4em; width: 3em; display: flex; align-items: flex-end; z-index: 99999; }
+    .ologo img { width: 100%; }
+    
+  </style>
+</head>
+<body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+  <div class="page">
+    <div class="document">
+      <div class="ologo">
+        <img src="https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/b6bbcef97f5320dd67c51ae976945a48/Orientation-Circle_Icon-FA-180118.svg">
+      </div> 
+      <div class="svg-main">
+        <svg width="100%" height="100%" viewBox="0 0 1290 942" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+          <desc>Created with Sketch.</desc>
+          <defs></defs>
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Artboard-2" transform="translate(-171.000000, -195.000000)">
+              <g id="Group" transform="translate(171.000000, 195.000000)">
+                <path d="M888.344811,942 L1290,942 L1290,2.58842947e-12 L1075.40649,0 L788.593509,2.58842947e-12 L2.98552083e-06,2.58842947e-12 L0,388.132786 L2.98552083e-06,812.867235 L2.98552083e-06,942 L101.655189,942 L495,267.866888 L888.344811,942 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+                <path d="M1290,700 L1112,700 C1111.8334,700.000299 1111.66674,700 1111.5,700 C1036.11313,700 975,761.113132 975,836.5 C975,879.001185 994.424292,916.965583 1024.87968,942 L1290,942 L1290,700 Z" id="Combined-Shape" class="circle-shape" fill="#C74298"></path>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="content">
+        <div class="text">
+          <div class="header">
+            <div class="header-overflow">
+              <h1>{{{ header }}}</h1>
+            </div>
+          </div><!--header-->
+          <div class="subheader">
+            <div class="subheader-overflow">
+              <h2>{{{ subheader }}}</h2>
+            </div>
+          </div><!--subheader-->     
+        </div><!--text-->
+        <div class="quote-position">
+          <div class="quote">
+            <div class="quote-overflow">
+              <h3>{{{ quote }}}</h3>
+            </div>
+          </div><!--quote-->
+        </div><!--quote-position-->
+        <div class="quote-subheader-position">
+          <div class="quote-subheader">
+            <div class="quote-subheader-overflow">
+              <h3>{{{ quote-subheader }}}</h3>
+            </div>
+          </div><!--quote-subheader-->
+        </div><!--quote-position-subheader-->
+        
+        <div class="column-wrap">
+          <div class="column-position check-overflow">
+            <div class="column-clip"></div>
+            {{{ column-1 }}}
+          </div>
+        </div>
+        
+        <div class="column-2-position">
+          <div class="column-2">
+            <div class="column-inner-2">{{{ column-2 }}}</div>
+          </div>
+        </div><!--column-2-position-->
+        <div class="column-3-position">
+          <div class="column-3">
+            <div class="column-inner-3">{{{ column-3 }}}</div>
+          </div>
+        </div><!--column-3-position-->
+        <p class="deakin"><span style="margin-right: 1em;">{{{ page-number }}}</span>DEAKIN UNIVERSITY</p>
+      </div><!--content-->
+      <div class="image-2">
+        {{{ image-1 }}}
+      </div><!--image-2-->
+    </div><!--document-->
+
+  </div><!--page-->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  
+  <script>
+    
+    function loop() {
+      checkHeight(document.getElementsByClassName('header-overflow'));
+      checkHeight(document.getElementsByClassName('subheader-overflow'));
+      checkHeight(document.getElementsByClassName('quote-overflow'));
+      checkHeight(document.getElementsByClassName('quote-subheader-overflow'));
+      checkHeight(document.getElementsByClassName('column-inner-1'));
+      checkHeight(document.getElementsByClassName('column-inner-2'));
+      checkHeight(document.getElementsByClassName('column-inner-3'));
+      checkHeight(document.getElementsByClassName('column-inner-4'));
+      checkHeight(document.getElementsByClassName('check-overflow'));
+
+      /* Add any other text boxes you want to check the overflows on with the following: checkHeight(document.getElementsByClassName('CLASS NAME')); */
+
+    } setInterval(loop, 500);
+
+    function checkHeight(element) {
+      for (i = 0 ; i < element.length ; i++ ) {
+        var currentElement = element[i];
+        var height         = currentElement.offsetHeight;
+        var parent         = currentElement.parentNode;
+        var parentHeight   = parent.offsetHeight;
+
+        if (height > parentHeight) {
+          parent.classList.add('overflow');
+        } else {
+          parent.classList.remove('overflow');
+        }
+
+        if ((currentElement).parentNode.classList.contains('overflow')) {
+          document.body.classList.add('overflow-true');
+        } else {
+          document.body.classList.remove('overflow-true'); 
+        }
+      }
+    }
+    
+  </script>
+  
+</body>
+</html>
