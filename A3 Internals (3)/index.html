@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>Deakin University</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <style>
+
+      .test-background-image {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/9e47305f1c7b69caaa754b994ed5acd1/Screen%20Shot%202017-09-01%20at%2011.19.48%20am.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+
+      .show-crop-marks .test-background-image {
+        top: 0.5in;
+        left: 0.5in;
+        right: 0.5in;
+        bottom: 0.5in;
+      }
+
+      .document {
+        overflow: hidden;
+      }
+
+      h1, h2 {
+        color: {{{account.colors.teal}}};
+      }
+
+      .hide-crop-marks h1, .hide-crop-marks h2 {
+        color: #0D8572;
+      }
+      
+      .hide-crop-marks .circle-shape {
+        fill: #C74298;
+      }
+
+    </style>
+  </head>
+  <body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+    <div class="page">
+      <div class="document">
+        <div class="svg-main">
+          <svg width="100%" height="100%" viewBox="0 0 1290 943" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+            <desc>Created with Sketch.</desc>
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g id="Group">
+                <path d="M603.597455,0 L0,0 L0,943 L1290,943 L1290,481.182037 C1003.86414,479.727346 816.364138,479 727.5,479 C586.391246,479 472,364.608754 472,223.5 C472,127.349356 525.111586,43.6035881 603.597455,-1.77635684e-15 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+                <path d="M947,378 C808.928813,378 697,489.928813 697,628 C697,766.071187 808.928813,878 947,878 L1290,878 L1290,378 L947,378 Z" id="Combined-Shape" class="circle-shape" fill="#0FA891" fill-rule="nonzero"></path>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div class="content">
+          <div class="text">
+            <div class="header">
+              <div class="header-overflow">
+                <h1>{{{ header }}}</h1>
+              </div>
+            </div><!--header-->
+            <div class="subheader">
+              <div class="subheader-overflow">
+                <h2>{{{ subheader }}}</h2>
+              </div>
+            </div><!--subheader-->     
+          </div><!--text-->
+          <div class="quote-position">
+            <div class="quote">
+              <div class="quote-overflow">
+                <h3>{{{ quote }}}</h3>
+              </div>
+            </div><!--quote-->
+            <div class="quote-subheader">
+              <div class="quote-subheader-overflow">
+                <h3>{{{ quote-subheader }}}</h3>
+              </div>
+            </div><!--quote-->
+          </div>
+          <div class="column-1-position">
+            <div class="column-1">
+              <div class="column-inner-1">{{{ column-1 }}}</div>
+            </div>
+          </div><!--column-1-position-->
+          <div class="column-2-position">
+            <div class="column-2">
+              <div class="column-inner-2">{{{ column-2 }}}</div>
+            </div>
+          </div><!--column-2-position-->
+          <div class="column-3-position">
+            <div class="column-3">
+              <div class="column-inner-3">{{{ column-3 }}}</div>
+            </div>
+          </div><!--column-3-position-->
+          <div class="column-4-position">
+            <div class="column-4">
+              <div class="column-inner-4">{{{ column-4 }}}</div>
+            </div>
+          </div><!--column-4-position-->
+          <p class="deakin"><span style="margin-right: 1em;">{{{ page-number }}}</span>DEAKIN UNIVERSITY</p>
+        </div><!--content-->
+        <div class="image-2">
+          {{{ image-1 }}}
+        </div><!--image-2-->
+      </div><!--document-->
+
+    </div><!--page-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/main.js"></script>
+
+    <script>
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('header-overflow'));
+        checkHeight(document.getElementsByClassName('subheader-overflow'));
+        checkHeight(document.getElementsByClassName('quote-overflow'));
+        checkHeight(document.getElementsByClassName('quote-subheader-overflow'));
+        checkHeight(document.getElementsByClassName('column-inner-1'));
+        checkHeight(document.getElementsByClassName('column-inner-2'));
+        checkHeight(document.getElementsByClassName('column-inner-3'));
+        checkHeight(document.getElementsByClassName('column-inner-4'));
+
+        /* Add any other text boxes you want to check the overflows on with the following: checkHeight(document.getElementsByClassName('CLASS NAME')); */
+
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+
+    </script>
+
+  </body>
+</html>
