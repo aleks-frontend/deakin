@@ -1,0 +1,379 @@
+<!DOCTYPE html> 
+<!--{{EDM-Header-Hint}}-->
+<html lang="en" style="background: white;">
+  <head>    
+    <link type="text/css" rel="stylesheet" href="globals.css" />
+    <link type="text/css" rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/worldly/stylesheet.css" />
+    <style type="text/css">
+
+      .test {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/3e900fa31638cd7ca7424f79bfaf1d2f/1f4d22c325592869f00b30ed3c822716.png');
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/4762855087d20ba7000e46c2099d9887/acd47a48166f4ccfda2a7b39ad764f97.png');
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/59b37a0e77c4fa91a21443897d1e9faa/68b977f39e1c548d266eace8f0bea16d.png');
+        background-position: top left;
+        opacity: .5;
+        z-index: -1;
+      }
+
+      body {
+        font-family: "Worldly", sans-serif;
+        background-color: #e1e1e1;
+        color: #ffffff;
+      }
+
+      /*
+      .pink { background: #C74298 !important; color: #fff !important; }
+      .turquoise { background: #0D8572 !important; color: #fff !important; }
+      .light-turquoise { background: #01A992 !important; color: #fff !important; }
+      .teal { background: #007D98 !important; color: #fff !important; }
+      .yellow { background: #FFD923 !important; color: #000 !important; }
+      .orange { background: #F86B02 !important; color: #fff !important; }
+      */
+
+      .wrapper {  
+        display: -webkit-box;  
+        display: -ms-flexbox;  
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        height: 100%;
+      }
+
+      .graphic {
+        height: 100%;
+        width: 75%;  
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+      }
+
+      .graphic2 {
+        height: 100%;
+        width: 50%;  
+        position: absolute;
+        top: 0;
+        right: -25%;
+        display: none;
+      }
+
+      .graphic3 {
+        height: 100%;
+        width: 68%;  
+        position: absolute;
+        top: 0;
+        left: 0;
+        -webkit-clip-path: polygon(0 0, 100% 0, 54% 100%, 15% 100%, 0 67%);
+        clip-path: polygon(0 0, 100% 0, 54% 100%, 15% 100%, 0 67%);
+        display: none;
+      }
+
+      .headline {
+        font-size: 1.8em;
+        font-weight: 300;
+        line-height: 1.1em;
+        width: 58%;
+        margin-left: 0.8em;
+        max-height: 3.3em;
+        position: relative;
+        z-index: 2;
+      }
+
+      .logo {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        width: 4.8em;
+        height: 4.8em;
+        position: relative;
+        background-color: #fff;
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/4b35e67d1c8c3c77734070f5b54cd3f5/circle-white.svg');
+        -webkit-clip-path: circle(50% at center);
+        clip-path: circle(50% at center);  
+        z-index: 3;
+        position: absolute;
+        top: 50%;
+        left: 65%;
+        margin-top: -2.4em;
+      }
+
+      /**Themes*/
+      .theme-1 .image { background-image: none !important; }
+      .theme-1 .graphic,
+      .theme-1 .graphic2 { display: block; background-color: #007c9c; }
+      .theme-1 .page { background-color: #e1e1e1; }
+      .theme-1 .flex-text { display: none; }
+
+      .theme-2 .graphic, .theme-2 .graphic2, .theme-2 .graphic3, .theme-2 .headline, .theme-2 .logo { display: none; }
+      /*.theme-2 .image {
+        left: 59% !important;
+      }*/
+
+      .theme-3 .wrapper { padding-bottom: 1.75em; }
+      .theme-3 .graphic3 { display: block; background-color: #007c9c; }
+      .theme-3 .headline { font-size: 1.6em; width: 38%; }
+      .theme-3 .logo {
+        left: 44%;
+        width: 3.8em;
+        height: 3.8em;
+        margin-top: -1.9em;
+      }
+      .theme-3 .page { background-color: #e1e1e1; }
+      .theme-3 .flex-text { display: none; }
+
+      .flex-text { 
+        display: flex;
+        align-items: center;
+        position: relative; 
+        height: 100%; 
+        min-width: 40%;
+        max-width: 70%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .flex-text .flex-logo {
+        position: absolute;
+        right: -2.1em;
+        width: 4.8em;
+        height: 4.8em;
+        background-color: #fff;
+        background-size: contain;
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/4b35e67d1c8c3c77734070f5b54cd3f5/circle-white.svg');
+        clip-path: circle(50% at center);  
+        z-index: 9999;
+      }
+
+      .flex-text-headline {
+        font-size: 1.8em;
+        font-weight: 300;
+        line-height: 1.1em;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        margin: 0 0.8em 0 0;
+        padding: 0 0 0 0.8em;
+        z-index: 99999;
+        background-color: #007c9c;
+      }
+      
+      .flex-text-headline-inner {
+        max-height: 3.3em;
+        overflow: hidden;
+      }
+      
+      .flex-circle {
+        position: absolute;
+        right: -70px;
+        background-color: #007c9c;
+        height: 365px;
+        width: 365px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+      }
+      
+      /* Colours */
+      
+      .yellow { color: black !important; }
+      
+      .turquoise .graphic { background-color: #007c9c; }
+      .yellow .graphic { background-color: #FFDA24; }
+      .teal .graphic { background-color: rgb(13,133,114); }
+      .pink .graphic { background-color: #C74298; }
+      
+      .turquoise .graphic2 { background-color: #007c9c; }
+      .yellow .graphic2 { background-color: #FFDA24; }
+      .teal .graphic2 { background-color: rgb(13,133,114); }
+      .pink .graphic2 { background-color: #C74298; }
+      
+      .turquoise .graphic3 { background-color: #007c9c; }
+      .yellow .graphic3 { background-color: #FFDA24; }
+      .teal .graphic3 { background-color: rgb(13,133,114); }
+      .pink .graphic3 { background-color: #C74298; }
+
+      .turquoise .flex-circle { background-color: #007c9c; }
+      .yellow .flex-circle { background-color: #FFDA24; }
+      .teal .flex-circle { background-color: rgb(13,133,114); }
+      .pink .flex-circle { background-color: #C74298; }
+      
+      .turquoise .flex-text-headline { background-color: #007c9c; }
+      .yellow .flex-text-headline { background-color: #FFDA24; }
+      .teal .flex-text-headline { background-color: rgb(13,133,114); }
+      .pink .flex-text-headline { background-color: #C74298; }
+      
+      .theme-1 .image { display: none !important; }
+      
+      .theme-1.turquoise .graphic2 { background-color: #C74298; }
+      .theme-1.yellow .graphic2 { background-color: #C74298; }
+      .theme-1.teal .graphic2 { background-color: #C74298; }
+      .theme-1.pink .graphic2 { background-color: #FFDA24; }
+      
+      
+      .theme-2 .flex-text-headline {
+        border-top-right-radius: 39px;
+        border-bottom-right-radius: 39px;
+      }
+
+      .theme-2 .flex-circle {
+        right: -45px !important;
+      }
+      
+    </style>
+  </head>
+  <body class="{{deakin-theme}}{{^deakin-theme}}theme-1{{/deakin-theme}} {{{ digi-colour-theme }}}">
+    <div class="page">
+      <div class="bleed">
+        <div class="test fit contain"></div>                
+        <div class="fit">
+          <div class="wrapper">
+            <div class="image fit">{{{ deakin-image }}}</div>
+            <div class="graphic"></div>
+            <div class="graphic2"></div>
+            <div class="graphic3"></div>
+            <div class="headline hyphenate">
+              <div class="inner">
+                {{{ headline }}}
+              </div>
+            </div>
+            <div class="logo contain"></div>
+
+            <div class="flex-text">
+              <div class="flex-text-headline hyphenate"><div class="flex-text-headline-inner"><div class="inner">{{{ headline }}}</div></div></div>
+              <div class="flex-circle"><div class="flex-logo"></div></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}false{{/show-crop}};
+    </script>
+    <script>
+      if (showCrop) {
+        document.querySelector('body').classList.add('crop');
+      }
+
+      var cropImage = 'https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/bdb964a7c7fdc5ebc8bbde9204b62464/crop.svg'
+
+      Array.prototype.slice.call(document.querySelectorAll('.page'))
+        .forEach(function(page) {
+        var parser = new DOMParser();
+        page.style.cssText = 'overflow: hidden; position: relative; height: 100vh; width: 100vw';
+
+        var cropString = (
+          '<div class="crop-marks">' +
+          '<img style="height: 28.81px; width: 28.81px; position: absolute; top: 0; left: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(90deg); position: absolute; top: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(180deg); position: absolute; bottom: 0; right: 0;" src="'+cropImage+'">' +
+          '<img style="height: 28.81px; width: 28.81px; transform: rotate(270deg); position: absolute; bottom: 0; left: 0;" src="'+cropImage+'">' +
+          '</div>'
+        )
+
+        var cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+
+        !!window.showCrop && page.insertBefore(cropNode, null);
+      }
+                );
+
+      Array.prototype.slice.call(document.querySelectorAll('.bleed'))
+        .forEach(function(bleed) {
+        bleed.style.cssText = !!window.showCrop 
+          ? 'position: absolute; top: 4.41mm; right: 4.41mm; bottom: 4.41mm; left: 4.41mm;'
+        : 'position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm';
+      });
+
+      window.addEventListener("resize", () => {
+        setSize();
+        rounding($('.graphic'), { topRight: true, bottomRight: true });
+        rounding($('.graphic2'), { topLeft: true, bottomLeft: true });
+      });
+
+      function setSize(){
+        var vw   = (showCrop ? window.innerWidth : window.innerWidth + 56) / 100;
+        var vh   = (showCrop ? window.innerHeight : window.innerHeight + 56) / 100;
+        var vmin = Math.min(vw, vh);
+        var vmax = Math.max(vw, vh);
+        document.documentElement.style.fontSize = ((vmin * 2) + (vmax * 1.4) + (vh * 2)) + "px";
+      } setSize();
+
+      function rounding(e, { topLeft, topRight, bottomRight, bottomLeft }) {
+        const size = e.outerHeight();
+        const topLeftRadius = topLeft ? `${size}px` : 0;
+        const topRightRadius = topRight ? `${size}px` : 0;
+        const bottomRightRadius = bottomRight ? `${size}px` : 0;
+        const bottomLeftRadius = bottomLeft ? `${size}px` : 0;
+        e.css({ 
+          'clip-path': `inset(0 0 round ${topLeftRadius} ${topRightRadius} ${bottomRightRadius} ${bottomLeftRadius})`,
+          '-webkit-clip-path': `inset(0 0 round ${topLeftRadius} ${topRightRadius} ${bottomRightRadius} ${bottomLeftRadius})`,
+        });
+      }      
+
+      function checkHeight(e) {
+        const height = e.find('.inner').height();        
+        const parentHeight = e.height() + 2;
+
+        if (height > parentHeight) {
+          e.addClass('overflow');
+        } else {
+          e.removeClass('overflow');
+        }
+      }
+      
+      function loop() {
+        checkHeight($('.headline'));
+        checkHeight($('.flex-text-headline-inner'));
+      } setInterval(loop, 1000);
+
+      rounding($('.graphic'), { topRight: true, bottomRight: true });
+      rounding($('.graphic2'), { topLeft: true, bottomLeft: true });
+
+      $(window).bind("load", function() {
+        // Window has been loaded..        
+      });
+      
+      theme2Image();
+      
+      function theme2Image() {
+        // Grab the Body To Check if we are on Theme-2 
+        // If we are we need to set the image left position dynamically
+        var body = document.querySelector("body");
+        var img = document.querySelector(".image.fit");
+        
+        // Set up our resizeObserver
+        if(body.classList.contains("theme-2")) {
+            const ro = new ResizeObserver(entries => {
+            for (let entry of entries) {
+              resizeImg(entry.contentRect,img);
+            }
+          });
+          // Only observe the 2nd box
+          ro.observe(document.querySelector('.flex-text-headline'));          
+        }
+      }
+      
+      function resizeImg(box,img) {
+        // Grab our Bounding Box
+        console.log("do i run?");
+        img.style.left = (box.x + box.width - 20) + "px" ;
+      }
+    </script>
+  </body>
+</html>
