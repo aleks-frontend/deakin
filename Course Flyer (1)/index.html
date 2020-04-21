@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Deakin University</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <link rel="stylesheet" href="crop.css" />
+    <link rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/worldly/stylesheet.css" />
+    <link rel="stylesheet" href="https://outfit-assets-production.s3.amazonaws.com/fonts/Calibri-Full/stylesheet.css" />
+    <style>
+
+      .test-background-image {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/f4b5e65cc7558d6aba4dd9ad3d6297c5/Screen%20Shot%202017-06-26%20at%204.34.24%20pm.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+
+      .show-crop-marks .test-background-image {
+        top: 0.5in;
+        left: 0.5in;
+        right: 0.5in;
+        bottom: 0.5in;
+      }
+
+      .header-image {
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      {{^image-upload}}
+      .header-image {
+
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/2a3cc2bf281107d76a658f6881cf01bc/bg.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+      }
+      {{/image-upload}}
+
+      /* Theme 1 */
+
+      .theme-one .page-1-column-1-container h2 {
+        font-size: 2em;
+        color: {{{account.colors.teal}}};
+        margin: 0.6em 0 0 0;
+      }
+
+      .theme-one .page-1-column-2-container h2 {
+        font-size: 2em;
+        color: {{{account.colors.teal}}};
+        margin: 0.6em 0 0.1em 0;
+      }
+
+      .theme-one .column-1-container h2 {
+        font-size: 2em;
+        color: {{{account.colors.teal}}};
+        margin: 0.6em 0 0 0;
+      }
+
+      .theme-one .column-2-container h2 {
+        font-size: 2em;
+        color: {{{account.colors.teal}}};
+        margin: 0.6em 0 0.1em 0;
+      }
+
+      .theme-one .website {
+        margin: 0;
+        color: {{{account.colors.teal}}};
+      }
+
+      .theme-one .column-table-header {
+        color: {{{account.colors.teal}}};
+      }
+
+      .theme-one tr:nth-child(odd) { background-color: {{{account.colors.grey}}}; }
+      .theme-one tr:nth-child(even) { color: #fff; background-color: {{{account.colors.teal}}}; }
+
+      /* Theme 2 */
+
+      .theme-two .page-1-column-1-container h2 {
+        font-size: 2em;
+        color: {{{account.colors.purple}}};
+        margin: 0.6em 0 0 0;
+      }
+
+      .theme-two .page-1-column-2-container h2 {
+        font-size: 2em;
+        color: {{{account.colors.purple}}};
+        margin: 0.6em 0 0.1em 0;
+      }
+
+      .theme-two .column-1-container h2 {
+        font-size: 2em;
+        color: {{{account.colors.purple}}};
+        margin: 0.6em 0 0 0;
+      }
+
+      .theme-two .column-2-container h2 {
+        font-size: 2em;
+        color: {{{account.colors.purple}}};
+        margin: 0.6em 0 0.1em 0;
+      }
+
+      .theme-two .website {
+        margin: 0;
+        color: {{{account.colors.purple}}};
+      }
+
+      .theme-two .column-table-header {
+        color: {{{account.colors.purple}}};
+      }
+
+      .theme-two tr:nth-child(odd) { background-color: {{{account.colors.grey}}}; }
+      .theme-two tr:nth-child(even) { color: #fff; background-color: {{{account.colors.purple}}}; }
+
+      /* SVG Fill */
+
+      .theme-one #Fill-1 {
+        fill: {{{account.colors.teal}}};
+      }    
+
+      .theme-two #Fill-1 {
+        fill: {{{account.colors.purple}}};
+      }
+
+      /* Bleedblocks by Alt-J */
+
+      .bleed-block-one {
+        position: absolute;
+        width: 11.9em;
+        height: 11.15em;
+        top: -0.25in;
+        left: -0.25in;
+        z-index: -1;
+
+
+
+        position: absolute;
+        background: black;
+        width: 15.5em;
+        height: 11.15em;
+        height: calc(10.47em + 0.25in);
+        top: -0.25in;
+        left: -0.25in;
+        z-index: 10;
+        border-radius: 0em 7em 6em 0em;
+      }
+
+      .bleed-block-two {
+        position: absolute;
+        width: 0.7em;
+        height: 11.25em;
+        top: -0.25in;
+        left: -0.25in;
+        z-index: -1;
+      }
+
+      .header-image {
+        z-index: -1;
+        right: -0.25in;
+        top: -0.25in;
+        position: absolute;
+        overflow: hidden;
+
+        width: 16.4em;
+        height: calc(10.47em + 0.25in);
+      }
+
+
+      .header-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20.545em;
+        height: 10.5em;
+        height: 10.47em;
+        z-index: 2;
+      }
+
+      .logo {
+        position: absolute;
+        top: 4.8em;
+        left: auto;
+        right: -1.3em;
+        width: 4.4em;
+        z-index: 3;
+      }
+
+      .logo img {
+        width: 100%;
+      }
+
+      .theme-one .bleed-block-one {
+        background-color: {{{account.colors.teal}}};
+      }
+
+      .theme-two .bleed-block-one {
+        background-color: {{{account.colors.purple}}};
+      } 
+
+      .theme-one .bleed-block-two {
+        background-color: {{{account.colors.teal}}};
+      }
+
+      .theme-two .bleed-block-two {
+        background-color: {{{account.colors.purple}}};
+      } 
+
+      /* Colour Updates */
+
+      .hide-crop-marks .theme-one .bleed-block-one {
+        background-color: #C74298;
+      }
+      
+      .hide-crop-marks .theme-one tr:nth-child(even) {
+        background-color: rgba(11,113,97,0.8);
+      }
+
+      .hide-crop-marks .theme-one .page-1-column-1-container h2,
+      .hide-crop-marks .theme-one .page-1-column-2-container h2,
+      .hide-crop-marks .theme-one .column-1-container h2,
+      .hide-crop-marks .theme-one .column-2-container h2,
+      .hide-crop-marks .theme-one .website,
+      .hide-crop-marks .theme-one .column-table-header {
+        color: #0B7161;
+      }
+      
+      .hide-crop-marks .theme-two .bleed-block-one {
+        background-color: #0D8572;
+      }
+      
+      .hide-crop-marks .theme-two tr:nth-child(even) {
+        background-color: rgba(172,51,130,0.8);
+      }
+
+      .hide-crop-marks .theme-two .page-1-column-1-container h2,
+      .hide-crop-marks .theme-two .page-1-column-2-container h2,
+      .hide-crop-marks .theme-two .column-1-container h2,
+      .hide-crop-marks .theme-two .column-2-container h2,
+      .hide-crop-marks .theme-two .website,
+      .hide-crop-marks .theme-two .column-table-header {
+        color: #AC3382;
+      }
+
+    </style>
+  </head>
+  <body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+    <div class="page page-1 {{{Colour-Options}}}">
+
+      <div class="document">
+        <div class="content">
+
+          <div class="bleed-block-one">
+
+            <div class="logo">
+              <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/707519103ba710c7b30755b32af38a99/circle-white.svg">
+            </div>
+
+          </div>
+
+
+
+          <div class="header-back">
+
+
+
+          </div><!--header-back-->
+
+          <div class="header-image">
+            {{{image-upload}}}
+          </div><!--header-image-->
+
+          <div class="headline">
+            <div class="headline-overflow">
+              <div class="headline-container">
+                <h1 class="headline-text" style="font-size: calc(1.4em - {{{headline-font-size}}}em);">{{{ headline }}}</h1>
+              </div><!--headline-container-->
+            </div><!--headline-overflow-->
+            <div class="subheader-overflow">
+              <div class="subheader-container">
+                <h2 class="subheader-text" style="font-weight: normal; font-size: calc(0.8em - {{{subheader-font-size}}}em);">{{{ subheader }}}</h2>
+                <h3 class="subheader-location">{{{ location }}}</h3>
+              </div><!--subheader-container-->
+            </div><!--subheader-overflow-->
+          </div><!--headline-->
+
+          <div class="column-section">
+            <div class="column-1-overflow">
+              <div class="page-1-column-1-container">
+                {{{ column-1 }}}
+              </div><!--column-1-container-->
+            </div><!--column-1-overflow-->
+            <div class="column-2-overflow">
+              <div class="page-1-column-2-container">
+                {{{ column-2 }}}
+              </div><!--column-2-container-->
+            </div><!--column-2-overflow-->
+          </div><!--column-section-->
+
+          <div class="footer">
+            <p class="website">{{{ website }}}</p>
+            <p class="cricos">{{{ cricos }}}</p>
+          </div><!--footer-->
+
+        </div><!--content-->
+      </div><!--document-->
+    </div><!--page-->
+
+
+    <div class="page page-2 {{{Colour-Options}}}">
+
+      <div class="document">
+        <div class="content">
+
+          <div class="column-section-overflow">
+            <div class="page-2-column-section-container">
+
+              <div class="column-table {{{hide-table}}}">   
+                <h1 class="column-table-header">{{{ table-header }}}</h1>
+                <p>{{{ table-copy }}}</p>
+                <table>
+                  <tbody>
+                    {{#collection.table}}
+                    <tr>
+                      {{#one}}<td>{{{ one }}}</td>{{/one}}
+                      {{#two}}<td>{{{ two }}}</td>{{/two}}
+                      {{#three}}<td>{{{ three }}}</td>{{/three}}
+                      {{#four}}<td>{{{ four }}}</td>{{/four}}
+                      {{#five}}<td>{{{ five }}}</td>{{/five}}
+                      {{#six}}<td>{{{ six }}}</td>{{/six}}
+                    </tr>
+                    {{/collection.table}}
+                  </tbody>
+                </table>
+                <p class="column-table-disclaimer">{{{ table-disclaimer }}}</p>
+              </div><!--column-table-->
+
+              <div class="column-section">
+                <div class="column-1-container">
+                  <div class="column-1-inner">
+                    {{{ column-3 }}}
+                  </div>
+                </div><!--column-1-container-->
+                <div class="column-2-container">
+                  <div class="column-2-inner">
+                    {{{ column-4 }}}
+                  </div>
+                </div><!--column-2-container-->
+              </div><!--column-section-->
+
+            </div><!--column-section-container-->
+          </div><!--column-section-overflow-->
+
+          <div class="footer">
+            <p class="website">{{{ website }}}</p>
+            <p class="cricos">{{{ cricos }}}</p>
+          </div><!--footer-->
+
+        </div><!--content-->
+      </div><!--document-->
+    </div><!--page-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/main.js"></script>
+
+    <script>
+
+      // Opera 8.0+
+      var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+      // Firefox 1.0+
+      var isFirefox = typeof InstallTrigger !== 'undefined';
+      // At least Safari 3+: "[object HTMLElementConstructor]"
+      var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+      // Internet Explorer 6-11
+      var isIE = /*@cc_on!@*/false || !!document.documentMode;
+      // Edge 20+
+      var isEdge = !isIE && !!window.StyleMedia;
+      // Chrome 1+
+      var isChrome = !!window.chrome && !!window.chrome.webstore;
+      // Blink engine detection
+      var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+      if (isOpera == true) {
+        $('body').addClass('-js-opera-browser');
+      } if (isFirefox == true) {
+        $('body').addClass('-js-firefox-browser');
+      } if (isSafari == true) {
+        $('body').addClass('-js-safari-browser');
+      } if (isIE == true) {
+        $('body').addClass('-js-ie-browser');
+      } if (isEdge == true) {
+        $('body').addClass('-js-edge-browser');
+      } if (isChrome == true) {
+        $('body').addClass('-js-chrome-browser');
+      } if (isBlink == true) {
+        $('body').addClass('-js-blink-browser');
+      }
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('headline-container'));
+        checkHeight(document.getElementsByClassName('subheader-container'));
+        checkHeight(document.getElementsByClassName('page-1-column-1-container'));
+        checkHeight(document.getElementsByClassName('page-1-column-2-container'));
+        checkHeight(document.getElementsByClassName('page-2-column-section-container'));
+
+        /* Add any other text boxes you want to check the overflows on with the following: checkHeight(document.getElementsByClassName('CLASS NAME')); */
+
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+
+    </script>
+
+  </body>
+</html>
